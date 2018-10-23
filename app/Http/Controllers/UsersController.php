@@ -9,6 +9,13 @@ use App\Handlers\ImageUploadHandler;
 
 class UsersController extends Controller
 {
+
+    //控制游客权限
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['show']]);
+    }
+
     //显示用户个人资料页面
     public function show(User $user)
     {
@@ -18,12 +25,18 @@ class UsersController extends Controller
     //加载编辑个人资料页面
     public function edit(User $user)
     {
+        //授权
+        $this->authorize('update', $user);
+
         return view('users.edit', compact('user'));
     }
 
     //确定提交个人资料编辑
     public function update(UserRequest $request, ImageUploadHandler $uploader, User $user)
     {
+
+        //授权验证
+        $this->authorize('update', $user);
 
         $data = $request->all();
 
