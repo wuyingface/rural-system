@@ -16,10 +16,12 @@ class ArticlesController extends Controller
     }
 
 
-	public function index()
+	public function index(Request $request, Article $article)
 	{
-		$articles = Article::with('user', 'category')->paginate(30);
-		return view('articles.index', compact('articles'));
+		/*$articles = Article::with('user', 'category')->paginate(20);
+		return view('articles.index', compact('articles'));*/
+        $articles = $article->withOrder($request->order)->paginate(20);
+        return view('articles.index', compact('articles'));
 	}
 
 
