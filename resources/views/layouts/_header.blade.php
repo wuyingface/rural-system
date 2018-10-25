@@ -18,8 +18,22 @@
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
+            <!-- <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ route('articles.index') }}">所有</a></li>
+                <li><a href="{{ route('articleCategories.show', 1) }}">乡村发展</a></li>
+                <li><a href="{{ route('articleCategories.show', 2) }}">民风民俗</a></li>
+                <li><a href="{{ route('articleCategories.show', 3) }}">文化建设</a></li>
+                <li><a href="{{ route('articleCategories.show', 4) }}">吃喝玩乐</a></li>
+                <li><a href="{{ route('articleCategories.show', 5) }}">随想随写</a></li>
+            </ul> -->
 
+            <ul class="nav navbar-nav">
+                <li class="{{ active_class(if_route('articles.index')) }}"><a href="{{ route('articles.index') }}">所有</a></li>
+                <li class="{{ active_class((if_route('articleCategories.show') && if_route_param('articleCategory', 1))) }}"><a href="{{ route('articleCategories.show', 1) }}">乡村发展</a></li>
+                <li class="{{ active_class((if_route('articleCategories.show') && if_route_param('articleCategory', 2))) }}"><a href="{{ route('articleCategories.show', 2) }}">民风民俗</a></li>
+                <li class="{{ active_class((if_route('articleCategories.show') && if_route_param('articleCategory', 3))) }}"><a href="{{ route('articleCategories.show', 3) }}">文化建设</a></li>
+                <li class="{{ active_class((if_route('articleCategories.show') && if_route_param('articleCategory', 4))) }}"><a href="{{ route('articleCategories.show', 4) }}">吃喝玩乐</a></li>
+                <li class="{{ active_class((if_route('articleCategories.show') && if_route_param('articleCategory', 5))) }}"><a href="{{ route('articleCategories.show', 5) }}">随想随写</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->

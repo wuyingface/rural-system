@@ -83,8 +83,8 @@ body {
 
 
 /* Article Index Page */
-.topics-index-page {
-    .topic-list {
+.articles-index-page, .articleCategories-show-page {
+    .article-list {
         .nav > li > a {
             position: relative;
             display: block;

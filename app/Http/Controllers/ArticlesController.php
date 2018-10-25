@@ -9,10 +9,12 @@ use App\Http\Requests\ArticleRequest;
 
 class ArticlesController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
+
 
 	public function index()
 	{
@@ -20,15 +22,18 @@ class ArticlesController extends Controller
 		return view('articles.index', compact('articles'));
 	}
 
+
     public function show(Article $article)
     {
         return view('articles.show', compact('article'));
     }
 
+
 	public function create(Article $article)
 	{
 		return view('articles.create_and_edit', compact('article'));
 	}
+
 
 	public function store(ArticleRequest $request)
 	{
@@ -36,11 +41,13 @@ class ArticlesController extends Controller
 		return redirect()->route('articles.show', $article->id)->with('message', 'Created successfully.');
 	}
 
+
 	public function edit(Article $article)
 	{
         $this->authorize('update', $article);
 		return view('articles.create_and_edit', compact('article'));
 	}
+
 
 	public function update(ArticleRequest $request, Article $article)
 	{
@@ -49,6 +56,7 @@ class ArticlesController extends Controller
 
 		return redirect()->route('articles.show', $article->id)->with('message', 'Updated successfully.');
 	}
+
 
 	public function destroy(Article $article)
 	{

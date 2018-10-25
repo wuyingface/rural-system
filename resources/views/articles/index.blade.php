@@ -1,11 +1,16 @@
 @extends('layouts.app')
 
-@section('title', '话题列表')
+@section('title', isset($articleCategory) ? $articleCategory->name : '文章列表')
 
 @section('content')
 
 <div class="row">
     <div class="col-lg-9 col-md-9 article-list">
+        @if (isset($articleCategory))
+            <div class="alert alert-info" role="alert">
+                {{ $articleCategory->name }} ：{{ $articleCategory->description }}
+            </div>
+        @endif
         <div class="panel panel-default">
 
             <div class="panel-heading">
@@ -16,7 +21,7 @@
             </div>
 
             <div class="panel-body">
-                {{-- 话题列表 --}}
+                {{-- 文章列表 --}}
                 @include('articles._article_list', ['articles' => $articles])
                 {{-- 分页 --}}
                 {!! $articles->appends(Request::except('page'))->render() !!}
