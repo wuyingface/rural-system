@@ -37,17 +37,17 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 /*-------------------------------用户认证 End------------------------------------*/
 
 
-/*-------------------------------用户操作 Start------------------------------------*/
-
-//用户个人主页
+//用户个人中心
 Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
+
+
+/*-------------------------------用户操作 Start------------------------------------*/
 
 //文章列表
 Route::resource('articles', 'ArticlesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
-
 //分类列表
 Route::resource('articleCategories', 'ArticleCategroiesController', ['only' => ['show']]);
-
-
+//文章上穿图片
+Route::post('upload_image', 'ArticlesController@uploadImage')->name('articles.upload_image');
 
 
