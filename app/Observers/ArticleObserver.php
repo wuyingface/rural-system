@@ -22,6 +22,10 @@ class ArticleObserver
     //在文章创建之前生成内容摘要
     public function saving(Article $article)
     {
-         $article->excerpt = make_excerpt($article->body);
+
+        //防止XSS攻击，过滤内容
+        $article->body = clean($article->body, 'user_article_body');
+
+        $article->excerpt = make_excerpt($article->body);
     }
 }
