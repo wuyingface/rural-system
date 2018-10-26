@@ -54,7 +54,8 @@ class ArticlesController extends Controller
 	public function edit(Article $article)
 	{
         $this->authorize('update', $article);
-		return view('articles.create_and_edit', compact('article'));
+        $categories = ArticleCategory::all();
+		return view('articles.create_and_edit', compact('article', 'categories'));
 	}
 
 
@@ -63,7 +64,7 @@ class ArticlesController extends Controller
 		$this->authorize('update', $article);
 		$article->update($request->all());
 
-		return redirect()->route('articles.show', $article->id)->with('message', 'Updated successfully.');
+		return redirect()->route('articles.show', $article->id)->with('message', '更新文章成功');
 	}
 
 
@@ -72,7 +73,7 @@ class ArticlesController extends Controller
 		$this->authorize('destroy', $article);
 		$article->delete();
 
-		return redirect()->route('articles.index')->with('message', 'Deleted successfully.');
+		return redirect()->route('articles.index')->with('message', '删除文章成功');
 	}
 
     //文章上传图片

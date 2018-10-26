@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title', '村村汇') - 广东美丽乡村文化建设平台</title>
+    <meta name="description" content="@yield('description', '村村汇')" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
