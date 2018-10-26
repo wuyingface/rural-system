@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\ArticleCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
+use Auth;
 
 class ArticlesController extends Controller
 {
@@ -33,14 +35,18 @@ class ArticlesController extends Controller
 
 	public function create(Article $article)
 	{
-		return view('articles.create_and_edit', compact('article'));
+		$categories = ArticleCategory::all();
+        return view('articles.create_and_edit', compact('article', 'categories'));
 	}
 
 
-	public function store(ArticleRequest $request)
+	public function store(ArticleRequest $request, Article $article)
 	{
-		$article = Article::create($request->all());
-		return redirect()->route('articles.show', $article->id)->with('message', 'Created successfully.');
+		$article->fill($request->all());
+        $article->user_id = Auth::id();
+        $article->save();
+
+		return redirect()->route('articles.show', $article->id)->with('message', '创建文章成功');
 	}
 
 

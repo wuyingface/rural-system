@@ -18,4 +18,10 @@ class ArticleObserver
     {
         //
     }
+
+    //在文章创建之前生成内容摘要
+    public function saving(Article $article)
+    {
+         $article->excerpt = make_excerpt($article->body);
+    }
 }
