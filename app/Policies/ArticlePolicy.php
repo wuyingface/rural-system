@@ -17,6 +17,6 @@ class ArticlePolicy extends Policy
 
     public function destroy(User $user, Article $article)
     {
-        return true;
+        return $article->user_id == $user->id;
     }
 }
