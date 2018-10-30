@@ -52,5 +52,10 @@ class Article extends Model
         return $query->orderBy('created_at', 'desc');
     }
 
+    //生成文章详情URL模型
+    public function link($params = [])
+    {
+        return route('articles.show', array_merge([$this->id, $this->slug], $params));
+    }
 
 }

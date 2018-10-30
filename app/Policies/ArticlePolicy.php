@@ -15,8 +15,10 @@ class ArticlePolicy extends Policy
 
     }
 
+    //删除文章授权
     public function destroy(User $user, Article $article)
     {
         return $article->user_id == $user->id;
     }
+
 }

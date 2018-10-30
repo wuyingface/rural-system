@@ -44,7 +44,8 @@ Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit'
 /*-------------------------------用户操作 Start------------------------------------*/
 
 //文章列表
-Route::resource('articles', 'ArticlesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('articles', 'ArticlesController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::get('articles/{article}/{slug?}', 'ArticlesController@show')->name('articles.show');//为文章详情页兼容友好的URL
 //分类列表
 Route::resource('articleCategories', 'ArticleCategroiesController', ['only' => ['show']]);
 //文章上穿图片
