@@ -58,4 +58,10 @@ class Article extends Model
         return route('articles.show', array_merge([$this->id, $this->slug], $params));
     }
 
+    //获取文章的回复
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
 }
