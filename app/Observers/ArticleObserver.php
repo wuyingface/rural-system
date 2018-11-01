@@ -38,4 +38,11 @@ class ArticleObserver
         }
 
     }
+
+    //删除文章后删除文章的所以评论
+    public function deleted(Article $article)
+    {
+        //使用模型监听器时，需避免使用相关模型进行数据库操作
+        \DB::table('replies')->where('article_id', $article->id)->delete();
+    }
 }
