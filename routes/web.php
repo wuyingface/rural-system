@@ -52,3 +52,5 @@ Route::resource('articleCategories', 'ArticleCategroiesController', ['only' => [
 Route::post('upload_image', 'ArticlesController@uploadImage')->name('articles.upload_image');
 //文章回复
 Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]);
+//消息通知
+Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
