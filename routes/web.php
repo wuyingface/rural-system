@@ -48,9 +48,7 @@ Route::resource('articles', 'ArticlesController', ['only' => ['index', 'create',
 Route::get('articles/{article}/{slug?}', 'ArticlesController@show')->name('articles.show');//为文章详情页兼容友好的URL
 //分类列表
 Route::resource('articleCategories', 'ArticleCategroiesController', ['only' => ['show']]);
-//文章上穿图片
+//文章上传图片
 Route::post('upload_image', 'ArticlesController@uploadImage')->name('articles.upload_image');
-
-
-
-Route::resource('replies', 'RepliesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+//文章回复
+Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]);
