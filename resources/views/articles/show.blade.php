@@ -68,7 +68,7 @@
         <div class="panel panel-default article-reply">
             <div class="panel-body">
                 @includeWhen(Auth::check(),'articles._reply_box', ['article' => $article])
-                @include('articles._reply_list', ['replies' => $article->replies()->with('user')->get()])
+                @include('articles._reply_list', ['replies' => $article->replies()->with('user', 'article')->get()])
             </div>
         </div>
 
