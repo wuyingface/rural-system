@@ -54,3 +54,8 @@ Route::post('upload_image', 'ArticlesController@uploadImage')->name('articles.up
 Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]);
 //消息通知
 Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
+
+//消息通知
+Route::get('introduction', function () {
+	return view('introduction.introduction');
+});
