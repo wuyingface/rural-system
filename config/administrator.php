@@ -37,8 +37,15 @@ return array(
      *  ]
      */
     'menu' => [
-        '用户与权限' => [
+        '用户权限' => [
             'users',
+            'roles',
+            'permissions',
+        ],
+        '平台内容' => [
+            'article_categories',
+            'articles',
+            'replies',
         ],
     ],
 
@@ -50,7 +57,7 @@ return array(
      */
     'permission' => function () {
         // 只要是能管理内容的用户，就允许访问后台
-        return Auth::check() && Auth::user()->can('manage_contents');
+        return Auth::check() && Auth::user()->can('管理文章');
     },
 
     /*
