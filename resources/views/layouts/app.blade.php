@@ -6,9 +6,10 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>@yield('title', '村村汇') - 广东美丽乡村文化建设平台</title>
+    <title>@yield('title', '村村汇') - {{ setting('site_name', '村村汇') }}</title>
     <meta name="description" content="@yield('description', '村村汇')" />
+    <meta name="description" content="@yield('description', setting('seo_description', '广东省农村信息收集分享平台'))" />
+    <meta name="keyword" content="@yield('keyword', setting('seo_keyword', '广东省,新农村,信息收集,文化建设,社会主义新农村,美丽乡村,乡村信息'))" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
