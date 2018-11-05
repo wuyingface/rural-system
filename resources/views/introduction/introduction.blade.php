@@ -1,19 +1,6 @@
 @extends('layouts.app')
 
-@section('script')
- @parent
-<script>
-    $(function () {
-        // body...
-        $('#nav_li').each(function () {
-            $(this).click(function(){
-                console.log('ssss');
-                $(this).addClass('active').siblings().removeClass('active'); 
-            })
-        })
-    })
-</script>
-@endsection
+
 
 @section('content')
   <div class="container row">
@@ -54,9 +41,29 @@
                 $navs = ['人文', '风情', '吃喝', '发展']
                 ?>
             @foreach ($navs as $nav)
-            <li id="nav_li"><a href="#">{{$nav}}</a></li>
+            <li class="nav_li"><a href="#">{{$nav}}</a></li>
             @endforeach
         </ul>
     </div>
   </div>
 @endsection
+
+@section('script')
+<script type="text/javascript">
+    // $(function () {
+    //     // body...
+    //     $('nav_li').each(function () {
+    //         $(this).click(function(){
+    //             console.log('ssss');
+    //             $(this).addClass('active').siblings().removeClass('active'); 
+    //         })
+    //     })
+    // })
+      var elements = document.getElementsByClassName("nav_li");
+        for(var i = 0;i < elements.length;i++){
+            elements[i].onclick=function(){
+                console.log('aaaaaaaa');
+            };
+        }
+</script>
+@stop
