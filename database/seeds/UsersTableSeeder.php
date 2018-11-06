@@ -12,12 +12,13 @@ class UsersTableSeeder extends Seeder
 
         // 头像假数据
         $avatars = [
-            'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/s5ehp11z6s.png?imageView2/1/w/200/h/200',
-            'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/Lhd1SHqu86.png?imageView2/1/w/200/h/200',
-            'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/LOnMrqbHJn.png?imageView2/1/w/200/h/200',
-            'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/xAuDMxteQy.png?imageView2/1/w/200/h/200',
-            'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png?imageView2/1/w/200/h/200',
-            'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/NDnzMutoxX.png?imageView2/1/w/200/h/200',
+            // 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/s5ehp11z6s.png?imageView2/1/w/200/h/200',
+            // 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/Lhd1SHqu86.png?imageView2/1/w/200/h/200',
+            // 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/LOnMrqbHJn.png?imageView2/1/w/200/h/200',
+            // 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/xAuDMxteQy.png?imageView2/1/w/200/h/200',
+            // 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png?imageView2/1/w/200/h/200',
+            // 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/NDnzMutoxX.png?imageView2/1/w/200/h/200',
+            'http://www.rural-system.com/uploads/images/avatars/default_avatar.jpg'
         ];
 
         // 生成数据集合
@@ -41,7 +42,6 @@ class UsersTableSeeder extends Seeder
         $user = User::find(1);
         $user->name = '许应';
         $user->email = 'xuyingface@163.com';
-        $user->avatar = 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png?imageView2/1/w/200/h/200';
         $user->introduction = '华夏人氏，生于潮州，學于高州，伏于广州';
         $user->save();
 
@@ -52,7 +52,6 @@ class UsersTableSeeder extends Seeder
         $user = User::find(2);
         $user->name = 'owner';
         $user->email = 'owner@szyc.com';
-        $user->avatar = 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/s5ehp11z6s.png?imageView2/1/w/200/h/200';
         $user->introduction = '村村汇综合管理员是也';
         $user->save();
         // 将 2 号用户指派为『综合管理员』

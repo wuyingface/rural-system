@@ -18,4 +18,12 @@ class UserObserver
     {
         //
     }
+
+    //生成默认图片
+    public function saving(User $user)
+    {
+        if (empty($user->avatar)) {
+            $user->avatar = 'http://www.rural-system.com/uploads/images/avatars/default_avatar.jpg';
+        }
+    }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticlesTable extends Migration 
+class CreateArticlesTable extends Migration
 {
 	public function up()
 	{
@@ -20,6 +20,7 @@ class CreateArticlesTable extends Migration
             $table->text('excerpt')->nullable();
             $table->string('slug')->nullable();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
 	}
 

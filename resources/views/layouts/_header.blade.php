@@ -65,7 +65,7 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            @can('manage_contents')
+                            @can('管理文章')
                                 <li>
                                     <a href="{{ url(config('administrator.uri')) }}">
                                         <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
