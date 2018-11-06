@@ -47,13 +47,17 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" id="position" placeholder="请点击地图选取位置" disabled="disabled" style="width: 200px;display: inline-block;margin-bottom: 5px;">
+                        <input type="text" name="location" class="form-control" id="position" placeholder="请点击地图选取位置" disabled="disabled" style="width: 500px;display: inline-block;margin-bottom: 5px;">
                         <a href="javascript:void(0);" onclick="hasMap()" id="hasMap">显示地图</a>
                         <div style="display: none;" id="mapWrap">
                             <input class="form-control" type="text" placeholder="搜索位置" id="searchId" >
                             <div id="map" style="height: 500px;"></div>
                         </div>
                     </div>
+
+                    <!-- <div class="form-group">
+                        <span class="" name=""></span>
+                    </div> -->
 
                     <div class="well well-sm">
                         <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 保存</button>
@@ -69,6 +73,12 @@
 
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
+    <style>    
+    /*去掉logo标签*/
+    .BMap_cpyCtrl, .anchorBL{
+        display:none;
+    }
+    </style>
 @stop
 
 @section('scripts')
@@ -92,7 +102,6 @@
         });
 
     });
-    // window.onload = function(){
         // 地图定位
         var position = document.getElementById('position');
         var map = new BMap.Map('map');
@@ -101,6 +110,7 @@
             positionPoint.lng = position.value.split(',')[0]
             positionPoint.lat = position.value.split(',')[1]
             map.centerAndZoom(new BMap.Point(positionPoint.lng, positionPoint.lat), 15)
+            map.enableScrollWheelZoom();
         } else {
             map.centerAndZoom(new BMap.Point(113.331189,23.112153), 13);
             map.enableScrollWheelZoom();
@@ -114,6 +124,21 @@
             } else {
                 mapWrap.style.display = 'block';
                 hasMap.innerHTML = '隐藏地图'
+                // var point = new BMap.Point(116.331398,39.897445);
+                // map.centerAndZoom(point,12);
+                // var geolocation = new BMap.Geolocation();
+                // geolocation.getCurrentPosition(function(r){
+                //     console.log(r);
+                //     if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                //         var mk = new BMap.Marker(r.point);
+                //         map.addOverlay(mk);
+                //         map.panTo(r.point);
+                //         // alert('您的位置：'+r.point.lng+','+r.point.lat);
+                //     }
+                //     else {
+                //         alert('failed'+this.getStatus());
+                //     }        
+                // },{enableHighAccuracy: true})
             }
         }
         // 建立一个自动完成的对象
@@ -128,9 +153,9 @@
             position.value = ''
             var _value = e.item.value;
             myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
-            setPlace();
+            setPlace(_value.city);
         });
-        function setPlace () {
+        function setPlace (city) {
             // 创建地址解析器实例
             var myGeo = new BMap.Geocoder();
             // 将地址解析结果显示在地图上,并调整地图视野
@@ -140,12 +165,20 @@
                     map.centerAndZoom(point, 16);
                     map.addOverlay(new BMap.Marker(point));
                 }
-            }, '广州');
+            }, city);
         }
         map.addEventListener('click', function (e) {
-            position.value = e.point.lng + ',' + e.point.lat
+            console.log($('.detailDiv>a'))
+            console.log(e);
+            // position.value = e.point.lng + ',' + e.point.lat
+            var myGeo = new BMap.Geocoder()
+            myGeo.getLocation(new BMap.Point(e.point.lng, e.point.lat), function(rs){
+                var addComp = rs.addressComponents;
+                var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber
+                position.value = address + '(' + e.point.lng + ',' + e.point.lat + ')'
+            })
         })
-    // }
+
     </script>
 @stop
 

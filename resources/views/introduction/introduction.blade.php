@@ -29,7 +29,7 @@
             </ul>
         </div>
         <div class="container">
-            <p class="lead">short title</p>
+            <p class="lead" id="detailTitle">人文</p>
             <p>
                 something detail...
             </p>
@@ -48,22 +48,17 @@
   </div>
 @endsection
 
-@section('script')
+@section('scripts')
 <script type="text/javascript">
-    // $(function () {
-    //     // body...
-    //     $('nav_li').each(function () {
-    //         $(this).click(function(){
-    //             console.log('ssss');
-    //             $(this).addClass('active').siblings().removeClass('active'); 
-    //         })
-    //     })
-    // })
-      var elements = document.getElementsByClassName("nav_li");
-        for(var i = 0;i < elements.length;i++){
-            elements[i].onclick=function(){
-                console.log('aaaaaaaa');
-            };
-        }
+    $(function () {
+        // body...
+        $('.nav_li:first-child').addClass('active')
+        $('.nav_li').each(function () {
+            $(this).click(function() {
+                $(this).addClass('active').siblings().removeClass('active');
+                $('#detailTitle').html($(this).find('a').html())
+            })
+        })
+    })
 </script>
 @stop

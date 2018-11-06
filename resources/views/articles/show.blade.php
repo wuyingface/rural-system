@@ -34,10 +34,36 @@
 
                 <div class="article-meta text-center">
                     {{ $article->created_at->diffForHumans() }}
-                    ⋅
+                    
                     <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
                     {{ $article->reply_count }}
                 </div>
+                
+                <!-- 位置坐标 -->
+                <div class="row" style="margin-top: 20px;">
+                  <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p>
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                            <a href="javascript:void(0);" id="position" >无锡市江阴市华西村风景区</a>
+                            </p>
+                            <p>
+                                <span class="glyphicon glyphicon-globe"></span>
+                                <a href="javascript:void(0);" id="position">120.439879, 31.839665</a>
+                            </p>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                   <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div id="map" style="height: 200px;"></div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
 
                 <div class="article-body">
                     {!! $article->body !!}
@@ -75,3 +101,26 @@
     </div>
 </div>
 @stop
+
+@section('styles')
+    <style>    
+    /*去掉logo标签*/
+    .BMap_cpyCtrl, .anchorBL{
+        display:none;
+    }
+    .panel{
+        margin-bottom: 0;
+    }
+    </style>
+@stop
+
+@section('scripts')
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7OOvPVfFtq8vZEUZn1Zv5Q7W4ndE4g0H"></script>
+    <script type="text/javascript">
+        var map = new BMap.Map('map');  
+        var point = new BMap.Point(120.439879, 31.839665);
+        map.centerAndZoom(point, 15); 
+        map.enableScrollWheelZoom(true);
+    </script>
+@stop
+
