@@ -81,7 +81,7 @@ return [
             'title' => '文章 序号',
         ],
         'user' => [
-            'title'              => '用户',
+            'title'              => '作者',
             'type'               => 'relationship',
             'name_field'         => 'name',
             'autocomplete'       => true,
@@ -100,6 +100,6 @@ return [
         'title' => 'required'
     ],
     'messages' => [
-        'title.required' => '请填写标题',
+        'title.required' => '请填写完整的信息',
     ],
 ];

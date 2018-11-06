@@ -13,6 +13,7 @@ class CreateRepliesTable extends Migration
             $table->integer('user_id')->unsigned()->default(0)->index();
             $table->text('content');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
 	}
 

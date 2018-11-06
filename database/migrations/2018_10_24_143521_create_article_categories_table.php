@@ -19,6 +19,7 @@ class CreateArticleCategoriesTable extends Migration
             $table->text('description')->nullable()->comment('描述');
             $table->integer('num')->default(0)->comment('帖子数');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

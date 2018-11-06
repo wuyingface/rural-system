@@ -10,17 +10,17 @@ return [
     'columns' => [
 
         'id' => [
-            'title' => 'ID',
+            'title' => '序号',
         ],
         'content' => [
-            'title'    => '内容',
+            'title'    => '回复内容',
             'sortable' => false,
             'output'   => function ($value, $model) {
                 return '<div style="max-width:220px">' . $value . '</div>';
             },
         ],
         'user' => [
-            'title'    => '作者',
+            'title'    => '用户名称',
             'sortable' => false,
             'output'   => function ($value, $model) {
                 $avatar = $model->user->avatar;
@@ -29,10 +29,10 @@ return [
             },
         ],
         'article' => [
-            'title'    => '话题',
+            'title'    => '回复文章名称',
             'sortable' => false,
             'output'   => function ($value, $model) {
-                return '<div style="max-width:260px">' . model_admin_link($model->article->title, $model->article) . '</div>';
+                return '<div style="max-width:260px">' . model_link($model->article->title, $model->article) . '</div>';
             },
         ],
         'operation' => [
@@ -42,7 +42,7 @@ return [
     ],
     'edit_fields' => [
         'user' => [
-            'title'              => '用户',
+            'title'              => '用户名称',
             'type'               => 'relationship',
             'name_field'         => 'name',
             'autocomplete'       => true,
@@ -50,7 +50,7 @@ return [
             'options_sort_field' => 'id',
         ],
         'article' => [
-            'title'              => '话题',
+            'title'              => '文章',
             'type'               => 'relationship',
             'name_field'         => 'title',
             'autocomplete'       => true,
@@ -72,7 +72,7 @@ return [
             'options_sort_field' => 'id',
         ],
         'article' => [
-            'title'              => '话题',
+            'title'              => '文章',
             'type'               => 'relationship',
             'name_field'         => 'title',
             'autocomplete'       => true,
