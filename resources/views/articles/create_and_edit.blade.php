@@ -46,18 +46,22 @@
                         <textarea name="body" class="form-control" id="editor" rows="3" placeholder="请填入至少十三字符的内容。" required>{{ old('body', $article->body ) }}</textarea>
                     </div>
 
+                    <div class="form-group" style="display: none;">
+                        <span name="map" id="coordinate"></span>
+                    </div>
+
                     <div class="form-group">
-                        <input type="text" name="location" class="form-control" id="position" placeholder="请点击地图选取位置" disabled="disabled" style="width: 500px;display: inline-block;margin-bottom: 5px;">
+                        <input type="text" name="location1" class="form-control" id="position" placeholder="请点击地图选取位置" disabled="disabled" style="width: 500px;display: inline-block;">
                         <a href="javascript:void(0);" onclick="hasMap()" id="hasMap">显示地图</a>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="location2" class="form-control" style="display: none;margin-bottom: 5px;" id="userDefined" placeholder="自定义地址名称" />
                         <div style="display: none;" id="mapWrap">
                             <input class="form-control" type="text" placeholder="搜索位置" id="searchId" >
                             <div id="map" style="height: 500px;"></div>
                         </div>
                     </div>
-
-                    <!-- <div class="form-group">
-                        <span class="" name=""></span>
-                    </div> -->
 
                     <div class="well well-sm">
                         <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 保存</button>
@@ -106,9 +110,10 @@
         var position = document.getElementById('position');
         var map = new BMap.Map('map');
         if (position.value) {
+            var coordinate = $('#coordinate').html()
             var positionPoint = {}
-            positionPoint.lng = position.value.split(',')[0]
-            positionPoint.lat = position.value.split(',')[1]
+            positionPoint.lng = coordinate.split(',')[0]
+            positionPoint.lat = coordinate.split(',')[1]
             map.centerAndZoom(new BMap.Point(positionPoint.lng, positionPoint.lat), 15)
             map.enableScrollWheelZoom();
         } else {
@@ -124,21 +129,21 @@
             } else {
                 mapWrap.style.display = 'block';
                 hasMap.innerHTML = '隐藏地图'
-                // var point = new BMap.Point(116.331398,39.897445);
-                // map.centerAndZoom(point,12);
-                // var geolocation = new BMap.Geolocation();
-                // geolocation.getCurrentPosition(function(r){
-                //     console.log(r);
-                //     if(this.getStatus() == BMAP_STATUS_SUCCESS){
-                //         var mk = new BMap.Marker(r.point);
-                //         map.addOverlay(mk);
-                //         map.panTo(r.point);
-                //         // alert('您的位置：'+r.point.lng+','+r.point.lat);
-                //     }
-                //     else {
-                //         alert('failed'+this.getStatus());
-                //     }        
-                // },{enableHighAccuracy: true})
+                // 获取当前位置
+                var point = new BMap.Point(116.331398,39.897445);
+                map.centerAndZoom(point,12);
+                var geolocation = new BMap.Geolocation();
+                geolocation.getCurrentPosition(function(r){
+                    console.log(r);
+                    if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                        var mk = new BMap.Marker(r.point);
+                        map.addOverlay(mk);
+                        map.panTo(r.point);
+                    }
+                    else {
+                        alert('failed'+this.getStatus());
+                    }        
+                },{enableHighAccuracy: true})
             }
         }
         // 建立一个自动完成的对象
@@ -167,18 +172,19 @@
                 }
             }, city);
         }
+        // 点击地图
         map.addEventListener('click', function (e) {
-            console.log($('.detailDiv>a'))
             console.log(e);
-            // position.value = e.point.lng + ',' + e.point.lat
+            $('#coordinate').text(e.point.lng + ',' + e.point.lat)
+            $('#userDefined').show()
             var myGeo = new BMap.Geocoder()
             myGeo.getLocation(new BMap.Point(e.point.lng, e.point.lat), function(rs){
                 var addComp = rs.addressComponents;
                 var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber
-                position.value = address + '(' + e.point.lng + ',' + e.point.lat + ')'
+                position.value = address
+                console.log(rs);
             })
         })
-
     </script>
 @stop
 
