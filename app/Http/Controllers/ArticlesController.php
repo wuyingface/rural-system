@@ -60,7 +60,6 @@ class ArticlesController extends Controller
 	public function store(ArticleRequest $request, Article $article)
 	{
 
-        dd($request->all());
         $article->fill($request->all());
 
         $article->user_id = Auth::id();
