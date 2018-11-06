@@ -51,12 +51,12 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" name="location1" class="form-control" id="position" placeholder="请点击地图选取位置" disabled="disabled" style="width: 500px;display: inline-block;">
+                        <input type="text" name="location" class="form-control" id="position" placeholder="请点击地图选取位置" disabled="disabled" style="width: 500px;display: inline-block;">
                         <a href="javascript:void(0);" onclick="hasMap()" id="hasMap">显示地图</a>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" name="location2" class="form-control" style="display: none;margin-bottom: 5px;" id="userDefined" placeholder="自定义地址名称" />
+                        <input type="text" name="location_name" class="form-control" style="display: none;margin-bottom: 5px;" id="userDefined" placeholder="自定义地址名称" />
                         <div style="display: none;" id="mapWrap">
                             <input class="form-control" type="text" placeholder="搜索位置" id="searchId" >
                             <div id="map" style="height: 500px;"></div>
@@ -77,7 +77,7 @@
 
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
-    <style>    
+    <style>
     /*去掉logo标签*/
     .BMap_cpyCtrl, .anchorBL{
         display:none;
@@ -142,19 +142,19 @@
                     }
                     else {
                         alert('failed'+this.getStatus());
-                    }        
+                    }
                 },{enableHighAccuracy: true})
             }
         }
         // 建立一个自动完成的对象
-        var ac = new BMap.Autocomplete(    
+        var ac = new BMap.Autocomplete(
             {
                 'input' : 'searchId',
                 'location' : map
             }
         );
         var myValue;
-        ac.addEventListener('onconfirm', function(e) {    
+        ac.addEventListener('onconfirm', function(e) {
             position.value = ''
             var _value = e.item.value;
             myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;

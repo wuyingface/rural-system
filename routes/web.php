@@ -59,3 +59,4 @@ Route::resource('notifications', 'NotificationsController', ['only' => ['index']
 Route::get('introduction', function () {
 	return view('introduction.introduction');
 });
+Route::resource('rurals', 'RuralsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);

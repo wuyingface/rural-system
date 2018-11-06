@@ -15,6 +15,7 @@ class AddLocationAndMapToArticlesTable extends Migration
     {
         Schema::table('articles', function (Blueprint $table) {
             $table->text('location')->nullable()->commit('位置');
+            $table->text('location_name')->nullable()->commit('自定义位置名称');
             $table->string('map')->nullable()->commit('经纬度');
         });
     }
@@ -28,6 +29,7 @@ class AddLocationAndMapToArticlesTable extends Migration
     {
         Schema::table('articles', function (Blueprint $table) {
             $table->dropColumn('location');
+            $table->dropColumn('location_name');
             $table->dropColumn('map');
         });
     }

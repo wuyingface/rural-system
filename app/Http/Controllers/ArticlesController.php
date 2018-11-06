@@ -60,11 +60,13 @@ class ArticlesController extends Controller
 	public function store(ArticleRequest $request, Article $article)
 	{
 
+        dd($request->all());
         $article->fill($request->all());
 
         $article->user_id = Auth::id();
 
         $article->save();
+
 
 		return redirect()->to($article->link())->with('message', '创建文章成功');
 	}
