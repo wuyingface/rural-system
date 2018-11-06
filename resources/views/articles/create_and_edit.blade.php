@@ -47,18 +47,18 @@
                     </div>
 
                     <div class="form-group" style="display: none;">
-                        <span name="map" id="coordinate"></span>
+                        <input name="map" id="coordinate">
                     </div>
-
+                        
                     <div class="form-group">
-                        <input type="text" name="location" class="form-control" id="position" placeholder="请点击地图选取位置" disabled="disabled" style="width: 500px;display: inline-block;">
+                        <input type="text" name="location" class="form-control" id="position" placeholder="请点击地图选取位置" style="width: 500px;display: inline-block;" readonly="readonly">
                         <a href="javascript:void(0);" onclick="hasMap()" id="hasMap">显示地图</a>
                     </div>
 
                     <div class="form-group">
                         <input type="text" name="location_name" class="form-control" style="display: none;margin-bottom: 5px;" id="userDefined" placeholder="自定义地址名称" />
                         <div style="display: none;" id="mapWrap">
-                            <input class="form-control" type="text" placeholder="搜索位置" id="searchId" >
+                            <input class="form-control" type="text" placeholder="搜索位置" id="searchId">
                             <div id="map" style="height: 500px;"></div>
                         </div>
                     </div>
@@ -110,7 +110,8 @@
         var position = document.getElementById('position');
         var map = new BMap.Map('map');
         if (position.value) {
-            var coordinate = $('#coordinate').html()
+            var coordinate = $('#coordinate').val()
+            console.log(coordinate);
             var positionPoint = {}
             positionPoint.lng = coordinate.split(',')[0]
             positionPoint.lat = coordinate.split(',')[1]
@@ -175,14 +176,13 @@
         // 点击地图
         map.addEventListener('click', function (e) {
             console.log(e);
-            $('#coordinate').text(e.point.lng + ',' + e.point.lat)
+            $('#coordinate').val(e.point.lng + ',' + e.point.lat)
             $('#userDefined').show()
             var myGeo = new BMap.Geocoder()
             myGeo.getLocation(new BMap.Point(e.point.lng, e.point.lat), function(rs){
                 var addComp = rs.addressComponents;
                 var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber
                 position.value = address
-                console.log(rs);
             })
         })
     </script>
