@@ -46,6 +46,7 @@ return array(
             'article_categories',
             'articles',
             'replies',
+            'rurals',
         ],
         '站点管理' => [
             'settings.site',
