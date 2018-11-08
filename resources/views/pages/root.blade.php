@@ -138,6 +138,7 @@
 
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('js/editor/css/simditor.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/sliderShow/css/slider.css') }}">
 @stop
 
 @section('scripts')
