@@ -9,12 +9,7 @@ class RuralPolicy extends Policy
 {
     public function update(User $user, Rural $rural)
     {
-        // return $rural->user_id == $user->id;
-        return true;
+        return ture;
     }
 
-    public function destroy(User $user, Rural $rural)
-    {
-        return true;
-    }
 }

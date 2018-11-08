@@ -41,7 +41,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
 
 
-/*-------------------------------用户操作 Start------------------------------------*/
+/*-------------------------------文章板块 Start------------------------------------*/
 
 //文章列表
 Route::resource('articles', 'ArticlesController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
@@ -60,5 +60,15 @@ Route::get('introduction', function () {
 	return view('introduction.introduction');
 });
 
+/*---------------------------------文章板块 End-------------------------------------*/
+
+
+
+/*---------------------------------乡村板块 Start-----------------------------------*/
+
 //乡村板块
 Route::resource('rurals', 'RuralsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+//文章上传图片
+Route::post('upload_rarul_img', 'ArticlesController@uploadImage')->name('rural.upload_rarul_img');
+
+/*---------------------------------乡村板块 End--------------------------------------*/

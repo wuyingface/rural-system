@@ -61,7 +61,7 @@ return array(
      */
     'permission' => function () {
         // 只要是能管理内容的用户，就允许访问后台
-        return Auth::check() && Auth::user()->can('管理文章');
+        return Auth::check() && Auth::user()->can('管理平台内容');
     },
 
     /*

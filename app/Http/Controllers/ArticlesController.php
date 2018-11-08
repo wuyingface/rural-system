@@ -103,6 +103,7 @@ class ArticlesController extends Controller
 		return redirect()->route('articles.index')->with('message', '删除文章成功');
 	}
 
+
     //文章上传图片
     public function uploadImage(Request $request, ImageUploadHandler $uploader)
     {
@@ -128,4 +129,5 @@ class ArticlesController extends Controller
 
         return $data;
     }
+
 }

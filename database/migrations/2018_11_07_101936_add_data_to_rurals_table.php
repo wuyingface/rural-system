@@ -32,6 +32,7 @@ class AddDataToRuralsTable extends Migration
             $table->string('bus_station', 30)->nullable()->commit('汽车站');
             $table->string('airport', 30)->nullable()->commit('机场');
             $table->text('introdution')->nullable()->commit('简介');
+            $table->string('slug')->nullable()->commit('优化url');
         });
     }
 
@@ -61,6 +62,7 @@ class AddDataToRuralsTable extends Migration
             $table->dropColumn('bus_station');
             $table->dropColumn('airport');
             $table->dropColumn('introdution');
+            $table->dropColumn('slug');
         });
     }
 }
