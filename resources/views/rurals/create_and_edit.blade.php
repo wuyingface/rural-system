@@ -189,7 +189,7 @@
                     </div>
                     <div class="">
                         <button type="submit" class="btn btn-primary">Save</button>
-                        <a class="btn btn-link pull-right" href="{{ route('rurals.index') }}"><i class="glyphicon glyphicon-backward"></i>  Back</a>
+                        <a class="btn btn-link pull-right" href="{{ route('rurals.show', $rural->id) }}"><i class="glyphicon glyphicon-backward"></i>  Back</a>
                     </div> 
                 </form>
             </div>
