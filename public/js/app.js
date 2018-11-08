@@ -1005,7 +1005,6 @@ window._ = __webpack_require__(12);
  * for JavaScript based Bootstrap features such as modals and tabs. This
  * code may be modified to fit the specific needs of your application.
  */
-
 try {
   window.$ = window.jQuery = __webpack_require__(14);
 

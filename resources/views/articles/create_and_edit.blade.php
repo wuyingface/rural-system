@@ -48,6 +48,7 @@
 
                     <div class="form-group" style="display: none;">
                         <input name="map" id="coordinate">
+                        
                     </div>
                         
                     <div class="form-group">
@@ -62,6 +63,7 @@
                             <div id="map" style="height: 500px;"></div>
                         </div>
                     </div>
+                </div>
 
                     <div class="well well-sm">
                         <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 保存</button>
@@ -76,7 +78,7 @@
 
 
 @section('styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/editor/css/simditor.css') }}">
     <style>
     /*去掉logo标签*/
     .BMap_cpyCtrl, .anchorBL{
@@ -86,10 +88,10 @@
 @stop
 
 @section('scripts')
-    <script type="text/javascript"  src="{{ asset('js/module.js') }}"></script>
-    <script type="text/javascript"  src="{{ asset('js/hotkeys.js') }}"></script>
-    <script type="text/javascript"  src="{{ asset('js/uploader.js') }}"></script>
-    <script type="text/javascript"  src="{{ asset('js/simditor.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/editor/js/module.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/editor/js/hotkeys.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/editor/js/uploader.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/editor/js/simditor.js') }}"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7OOvPVfFtq8vZEUZn1Zv5Q7W4ndE4g0H"></script>
     <script type="text/javascript">
     $(document).ready(function(){
