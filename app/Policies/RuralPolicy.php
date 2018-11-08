@@ -7,9 +7,12 @@ use App\Models\Rural;
 
 class RuralPolicy extends Policy
 {
+
     public function update(User $user, Rural $rural)
     {
-        return ture;
+        if ($user->can('管理'.$rural->name) || $user->can('管理平台内容')) {
+            return ture;
+        }
     }
 
 }
