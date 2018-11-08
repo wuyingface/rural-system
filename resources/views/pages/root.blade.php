@@ -137,7 +137,7 @@
 @stop
 
 @section('styles')
-<link rel="stylesheet" type="text/css" href="{{ asset('js/sliderShow/css/slider.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/editor/css/simditor.css') }}">
 @stop
 
 @section('scripts')
@@ -152,3 +152,4 @@
 	jQuery(".scrollBox").slide({ titCell:".list li", mainCell:".piclist", effect:"left",vis:4,scroll:4,delayTime:800,trigger:"click",easing:"easeOutCirc"});
 </script>
 @stop
+

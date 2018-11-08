@@ -48,6 +48,7 @@
 
                     <div class="form-group" style="display: none;">
                         <input name="map" id="coordinate">
+                        
                     </div>
                         
                     <div class="form-group">
@@ -62,6 +63,7 @@
                             <div id="map" style="height: 500px;"></div>
                         </div>
                     </div>
+                </div>
 
                     <div class="well well-sm">
                         <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 保存</button>
