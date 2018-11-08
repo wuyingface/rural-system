@@ -8,12 +8,15 @@
         <div class="introduct_header">
             <div class="jumbotron">
                 <h1>{{$rural -> name}}</h1>
+                <p>
+                    <a href="{{ route('rurals.edit', $rural->id) }}" class="btn btn-primary" role="button" style="float: right;">编辑</a>
+                </p>
             </div>
         </div>
         <div class="introduct_list row" style="padding-left: 15px;">
             <ul class="list-group col-md-6">
                 <li class="list-group-item">别名： {{$rural -> alias}}</li>
-                <li class="list-group-item">所属城市： {{$rural -> city}}</li>
+                <li class="list-group-item">行政规划： {{$rural -> city}}{{$rural -> county}}{{$rural -> town}}</li>
                 <li class="list-group-item">人口： {{$rural -> population}}</li>
                 <li class="list-group-item">方言： {{$rural -> dialect}}</li>
                 <li class="list-group-item">行政类别： {{$rural -> type}}</li>
@@ -21,6 +24,7 @@
                 <li class="list-group-item">电话区号： {{$rural -> area_code}}</li>
             </ul>
              <ul class="list-group col-md-6">
+                <li class="list-group-item">地理位置： {{$rural -> location}}</li>
                 <li class="list-group-item">著名景点： {{$rural -> scenery}}</li>
                 <li class="list-group-item">特色产品： {{$rural -> product}}</li>
                 <li class="list-group-item">特色产业： {{$rural -> industry}}</li>

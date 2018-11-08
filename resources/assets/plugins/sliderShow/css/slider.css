@@ -1,0 +1,166 @@
+<style>
+   	.nav-pills li a, .nav-pills li a:hover {
+	text-decoration: underline;a
+}
+   	/*轮播图*/
+.outBox {
+	width: 100%;
+	border: 1px solid #ddd;
+	text-align: left;
+}
+
+.outBox .hd {
+	width: 175px;
+		/*height: 70px;*/
+	line-height: 70px;
+	background: #f4f4f4;
+	padding: 0 20px;
+	border-bottom: 1px solid #ddd;
+	position: relative;
+}
+
+.outBox .hd ul {
+	float: left;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	height: 32px;
+	padding-left: 0px;
+	list-style: none;
+}
+
+.outBox .hd ul li {
+	float: left;
+	cursor: pointer;
+	width: 100%;
+	border-bottom: 1px solid #ddd;
+	text-align: center;
+	border-right: 1px solid #ddd;
+}
+
+.inBox {
+	width: 100%;
+}
+
+.inBox .inHd {
+	height: 70px;
+	line-height: 50px;
+	border-bottom: 1px solid #ddd;
+}
+
+.inBox .inHd ul {
+	overflow: hidden;
+	zoom: 1;
+	list-style: none;
+	padding-left: 0px;
+}
+
+.inBox .inHd ul li {
+	height: 100%;
+	width: 175px;
+	text-align: center;
+	float: left;
+	cursor: pointer;
+	border-right: 1px solid #ddd;
+}
+
+.inBox .inBd ul {
+	padding: 15px;
+	zoom: 1;
+	overflow: hidden;
+}
+
+.inBox .inBd li {
+	height: 500px;
+	line-height: 24px;
+	overflow: hidden;
+	zoom: 1;
+}
+
+.inBox .inBd li img {
+	width: 100%;
+	height: 100%;
+}
+	/*信息滚动*/
+.scrollBox {
+	position: relative;
+	overflow: hidden;
+	zoom: 1;
+}
+
+.scrollBox {
+	width: 100%;
+	padding: 10px;
+}
+
+.scrollBox .ohbox {
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	left: 60px;
+}
+
+.scrollBox .piclist li {
+	float: left;
+	display: inline;
+	width: 200px;
+	background: #fff;
+    /*margin-right: 10px;*/
+	float: left;
+	transition: all .3s ease;
+	margin: 9px;
+}
+
+.scrollBox .piclist li a {
+	text-decoration: none;
+}
+
+.scrollBox .piclist li:hover {
+	background: #3e97df;
+	transform: translate3d(0,-.3rem,0);
+}
+
+.scrollBox .piclist li:hover span {
+	color: #fff;
+}
+
+.scrollBox .piclist li span {
+	height: 90px;
+	line-height: 90px;
+	display: block;
+	text-align: center;
+	font-size: 20px;
+	color: #000;
+}
+
+.scrollBox .pageBtn .prev {
+	left: 20px;
+	background-position: -11px -84px;
+}
+
+.scrollBox .pageBtn span {
+	display: block;
+	width: 37px;
+	height: 59px;
+	position: absolute;
+	top: 50%;
+	cursor: pointer;
+	overflow: hidden;
+	text-align: center;
+}
+
+.scrollBox .pageBtn .next {
+	right: 20px;
+	background-position: -53px -84px;
+}
+
+.scrollBox .piclist li {
+	width: 232px !important;
+}
+
+.scrollBox .piclist li img {
+	width: 232px !important;
+	height: 150px;
+}
+
+    </style>

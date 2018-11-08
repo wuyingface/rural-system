@@ -5,7 +5,7 @@
   <div class="container">
   	<!-- 头部搜索 -->
   	<div class="page-header">
-  		<h1>欢迎来到村村汇</h1>
+  		<h1 style="margin-bottom: 24px;">欢迎来到村村汇</h1>
   		<div class="input-group input-group-lg" style="width: 60%;">
   			<input type="text" class="form-control">
   			<div class="input-group-btn">
