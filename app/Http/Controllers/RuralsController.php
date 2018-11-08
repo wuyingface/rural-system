@@ -14,19 +14,19 @@ class RuralsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['show']]);
     }
 
-
-	public function index()
-	{
-		$rurals = Rural::paginate();
-		return view('rurals.index', compact('rurals'));
-	}
-
-
-    public function show(Rural $rural)
+    public function show(Request $request, Rural $rural)
     {
+
+        // URL 矫正
+        if ($rural->slug != $request->slug) {
+
+            return redirect($rural->link(), 301);
+
+        }
+
         return view('rurals.show', compact('rural'));
     }
 
@@ -56,16 +56,7 @@ class RuralsController extends Controller
 		$this->authorize('update', $rural);
 		$rural->update($request->all());
 
-		return redirect()->route('rurals.show', $rural->id)->with('message', 'Updated successfully.');
-	}
-
-
-	public function destroy(Rural $rural)
-	{
-		$this->authorize('destroy', $rural);
-		$rural->delete();
-
-		return redirect()->route('rurals.index')->with('message', 'Deleted successfully.');
+		return redirect()->to($rural->link())->with('message', 'Updated successfully.');
 	}
 
 
