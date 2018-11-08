@@ -31,17 +31,17 @@ class RuralsController extends Controller
     }
 
 
-	public function create(Rural $rural)
+	/*public function create(Rural $rural)
 	{
 		return view('rurals.create_and_edit', compact('rural'));
-	}
+	}*/
 
 
-	public function store(RuralRequest $request)
+	/*public function store(RuralRequest $request)
 	{
 		$rural = Rural::create($request->all());
 		return redirect()->route('rurals.show', $rural->id)->with('message', 'Created successfully.');
-	}
+	}*/
 
 
 	public function edit(Rural $rural)
@@ -56,7 +56,7 @@ class RuralsController extends Controller
 		$this->authorize('update', $rural);
 		$rural->update($request->all());
 
-		return redirect()->to($rural->link())->with('message', 'Updated successfully.');
+		return redirect()->to($rural->link())->with('message', '更新乡村信息成功.');
 	}
 
 
