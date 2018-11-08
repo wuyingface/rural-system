@@ -24,19 +24,18 @@
                     <form action="{{ route('rurals.update', $rural->id) }}" method="POST" accept-charset="UTF-8" class="form-horizontal">
                         <input type="hidden" name="_method" value="PUT">
                 @else
-                    <form action="{{ route('rurals.store') }}" method="POST" accept-charset="UTF-8" class="form-horizontal">
+                    <form action="{{ route('rurals.store') }}" method="POST" accept-charset="UTF-8" class="form-horizontal" style="width: 80%;"> 
                 @endif
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                    
                     <div class="form-group">
                     	<label for="name-field" class="col-sm-2 control-label">村民</label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text" name="name" id="name-field" value="{{ old('name', $rural->name ) }}" placeholder="请输入村名" />
                         </div>
                     </div>
-                    <hr />
+                    <!-- <hr /> -->
                     <!-- 城市联级 -->
                     <div class="form-group">
                             <label for="name-field" class="col-sm-2 control-label">地址</label>
@@ -58,7 +57,16 @@
                             </select>
                         </div>
                     </div>
-                    <hr />
+                    <!-- <hr /> -->
+                    
+                    <!-- 地理位置 -->
+                    <div class="form-group">
+                        <label for="location-field" class="col-sm-2 control-label">地理位置</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" name="location" id="location-field" value="{{ old('location', $rural->location ) }}" placeholder="请输入地理位置" />
+                        </div>
+                    </div>
+                    <!-- <hr /> -->
 
                     <!-- 概况 -->
                     <div class="form-group">
@@ -78,27 +86,27 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <input type="text" class="form-control" name="alias" placeholder="请输入别名">
+                                            <input type="text" class="form-control" name="alias" placeholder="请输入别名" value="{{old('alias', $rural -> alias)}}" >
                                         </td>
                                         <td>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="请输入人口数量" name="population">
+                                                <input type="text" class="form-control" placeholder="请输入人口数量" name="population" value="{{old('population', $rural -> population)}}">
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-default" type="button">人</button>
                                                 </span>
                                             </div>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" name="dialect" placeholder="请输入方言">
+                                            <input type="text" class="form-control" name="dialect" placeholder="请输入方言" value="{{old('dialect', $rural -> dialect)}}">
                                         </td>
                                         <td>
-                                            <select class="form-control" onchange="selectOnchang(this)">
+                                            <select class="form-control" onchange="selectOnchang(this)" name="type">
                                                 <option>自然村</option>
                                                 <option>行政村</option>
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" name="postalcode" placeholder="请输入邮政编码">
+                                            <input type="text" class="form-control" name="postalcode" placeholder="请输入邮政编码" value="{{old('postalcode', $rural -> postalcode)}}">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -117,19 +125,19 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <input type="text" class="form-control" name="area_code" placeholder="请输入电话区号">
+                                            <input type="text" class="form-control" name="area_code" placeholder="请输入电话区号" value="{{old('area_code', $rural -> area_code)}}">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" name="scenery" placeholder="请输入著名景点">
+                                            <input type="text" class="form-control" name="scenery" placeholder="请输入著名景点" value="{{old('scenery', $rural -> scenery)}}">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" name="product" placeholder="请输入特色产品">
+                                            <input type="text" class="form-control" name="product" placeholder="请输入特色产品" value="{{old('product', $rural -> product)}}">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" name="industry" placeholder="请输入特色产业">
+                                            <input type="text" class="form-control" name="industry" placeholder="请输入特色产业" value="{{old('industry', $rural -> industry)}}">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" name="railway_station" placeholder="请输入火车站">
+                                            <input type="text" class="form-control" name="railway_station" placeholder="请输入火车站" value="{{old('railway_station', $rural -> railway_station)}}">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -148,30 +156,30 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <input type="text" class="form-control" name="bus_station" placeholder="请输入汽车站">
+                                            <input type="text" class="form-control" name="bus_station" placeholder="请输入汽车站"  value="{{old('bus_station', $rural -> bus_station)}}">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" name="airport" placeholder="请输入机场">
+                                            <input type="text" class="form-control" name="airport" placeholder="请输入机场" value="{{old('airport', $rural -> airport)}}">
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <hr />
+                    <!-- <hr /> -->
                     <!-- 介绍 -->
                     <div class="form-group">
                         <label for="editor" class="col-sm-2 control-label">介绍</label>
                         <div class="col-sm-10">
-                            <textarea name="introdution" class="form-control" id="editor" rows="3" placeholder="请填入至少十三字符的内容。" required>{{ old('introdution', $rural->introdution ) }}</textarea>
+                            <textarea name="introdution" class="form-control" id="editor" rows="3" placeholder="请填入至少十三字符的内容。" required>{{ old('introdution', $rural->introdution ) }}</textarea>   
                         </div>
                     </div>           
-                    <hr />
+                    <!-- <hr /> -->
                     <!-- 地图 -->
                     <div class="form-group">
                         <label for="name-field" class="col-sm-2 control-label">位置</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="position" name="map" placeholder="请选择地理坐标" style="display: inline-block;width: 500px;" readonly="readonly">
+                            <input type="text" class="form-control" id="position" name="map" placeholder="请选择地理坐标" style="display: inline-block;width: 500px;" readonly="readonly" value="{{old('map', $rural -> map)}}">
                             <a href="javascript:void(0);" onclick="hasMap()"  id="hasMap">显示地图</a>
                             <div id="mapWrap" style="display: none; margin-top: 5px;">
                                 <input type="text" class="form-control" placeholder="搜索位置" id="searchId">
@@ -182,7 +190,7 @@
                     <div class="">
                         <button type="submit" class="btn btn-primary">Save</button>
                         <a class="btn btn-link pull-right" href="{{ route('rurals.index') }}"><i class="glyphicon glyphicon-backward"></i>  Back</a>
-                    </div>
+                    </div> 
                 </form>
             </div>
         </div>

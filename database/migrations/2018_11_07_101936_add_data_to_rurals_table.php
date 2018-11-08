@@ -23,7 +23,7 @@ class AddDataToRuralsTable extends Migration
             $table->string('city', 20)->nullable()->commit('所属城市');
             $table->string('county', 20)->nullable()->commit('所属县区（市）');
             $table->string('town', 20)->nullable()->commit('所属乡镇（街道）');
-            $table->string('location', 30)->nullable()->commit('所属乡镇（街道）');
+            $table->string('location', 30)->nullable()->commit('地理位置');
             $table->string('map', 30)->nullable()->commit('经纬度');
             $table->string('scenery', 50)->nullable()->commit('著名景点');
             $table->string('product', 30)->nullable()->commit('特色产品');
