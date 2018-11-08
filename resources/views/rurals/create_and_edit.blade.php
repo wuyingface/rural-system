@@ -36,10 +36,9 @@
                             <input class="form-control" type="text" name="name" id="name-field" value="{{ old('name', $rural->name ) }}" placeholder="请输入村名" />
                         </div>
                     </div>
-                    
+                    <hr />
                     <!-- 城市联级 -->
                     <div class="form-group">
-                        <div class="form-group">
                             <label for="name-field" class="col-sm-2 control-label">地址</label>
                         <div class="col-sm-10">
                             <select name="city" onchange="getCounty()" class="form-control cityCascade" id="city">
@@ -59,7 +58,7 @@
                             </select>
                         </div>
                     </div>
-                </div>
+                    <hr />
 
                     <!-- 概况 -->
                     <div class="form-group">
@@ -159,7 +158,7 @@
                             </table>
                         </div>
                     </div>
-                        
+                    <hr />
                     <!-- 介绍 -->
                     <div class="form-group">
                         <label for="editor" class="col-sm-2 control-label">介绍</label>
@@ -167,7 +166,7 @@
                             <textarea name="introdution" class="form-control" id="editor" rows="3" placeholder="请填入至少十三字符的内容。" required>{{ old('introdution', $rural->introdution ) }}</textarea>
                         </div>
                     </div>           
-                    
+                    <hr />
                     <!-- 地图 -->
                     <div class="form-group">
                         <label for="name-field" class="col-sm-2 control-label">位置</label>
@@ -180,7 +179,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="">
                         <button type="submit" class="btn btn-primary">Save</button>
                         <a class="btn btn-link pull-right" href="{{ route('rurals.index') }}"><i class="glyphicon glyphicon-backward"></i>  Back</a>
