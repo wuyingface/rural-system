@@ -37,17 +37,19 @@ return array(
      *  ]
      */
     'menu' => [
-        '用户管理' => [
-            'users',
-            'roles',
-            'permissions',
-        ],
         '平台内容' => [
             'article_categories',
             'articles',
             'replies',
             'rurals',
         ],
+
+        '用户管理' => [
+            'users',
+            'roles',
+            'permissions',
+        ],
+
         '站点管理' => [
             'settings.site',
         ],
@@ -76,7 +78,7 @@ return array(
     'dashboard_view' => '',
 
     // 用来作为后台主页的菜单条目，由 `use_dashboard` 选项决定，菜单指的是 `menu` 选项
-    'home_page' => 'articles',
+    'home_page' => 'article_categories',
 
     // 右上角『返回主站』按钮的链接
     'back_to_site_path' => '/',
