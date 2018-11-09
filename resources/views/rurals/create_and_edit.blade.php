@@ -37,10 +37,10 @@
                         <div class="col-sm-10">
                             <select name="city" onchange="getCounty()" class="form-control cityCascade" id="city">
                                 <option value="0">请选择所在的城市</option>
-                                <option value="1">广州市</option>
-                                <option value="2">深圳市</option>
-                                <option value="3">佛山市</option>
-                                <option value="4">珠海市</option>
+                               <!--  <option value="1">广州市</option>
+                                <option value="2">深圳市</option> -->
+                                <!-- <option value="3">佛山市</option>
+                                <option value="4">珠海市</option> -->
                             </select>
 
                             <select name="county" id="county" onchange="getTown()" class="form-control cityCascade">
@@ -95,7 +95,7 @@
                                             <input type="text" class="form-control" name="dialect" placeholder="请输入方言" value="{{old('dialect', $rural -> dialect)}}">
                                         </td>
                                         <td>
-                                            <select class="form-control" onchange="selectOnchang(this)" name="type">
+                                            <select class="form-control" name="type">
                                                 <option>自然村</option>
                                                 <option>行政村</option>
                                             </select>
@@ -214,6 +214,7 @@
     <script type="text/javascript"  src="{{ asset('js/editor/js/hotkeys.js') }}"></script>
     <script type="text/javascript"  src="{{ asset('js/editor/js/uploader.js') }}"></script>
     <script type="text/javascript"  src="{{ asset('js/editor/js/simditor.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/city_data/city_data.js') }}"></script>
 
     <!-- 百度地图API -->
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7OOvPVfFtq8vZEUZn1Zv5Q7W4ndE4g0H"></script>
@@ -234,58 +235,35 @@
         });
     });
 
-    // mock数据
-    var county = [
-        ['天河区', '越秀区', '白云区'],
-        ['福田区', '罗湖区', '宝安区'],
-        ['南海区', '禅城区', '顺德区'],
-        ['香洲区', '斗门区', '金湾区']
-    ]
-    var town = [
-        [
-            ['天河一村', '天河二村'],
-            ['越秀一村', '越秀二村'],
-            ['白云一村', '白云二村'],
-        ],
-        [
-            ['福田一村', '福田二村'],
-            ['罗湖一村', '罗湖二村'],
-            ['宝安一村', '宝安二村'],
-        ],
-        [
-            ['南海一村', '南海二村'],
-            ['禅城一村', '禅城二村'],
-            ['顺德一村', '顺德二村'],
-        ],
-        [
-            ['香洲一村', '香洲二村'],
-            ['斗门一村', '斗门二村'],
-            ['金湾一村', '金湾二村'],
-        ],
-    ]
     // 城市联级
     var City = document.getElementById('city')
     var County = document.getElementById('county')
     var Town = document.getElementById('town')
-
+    // 获取城市
+    function getCity() {
+        City.length = 1
+        for (var i = 0; i < obj['list'].length; i++) {
+            City[i+1] = new Option(obj['list'][i].name, i+1)
+        }
+    }
+    getCity()
     // 获取区县
     function getCounty() {
         County.length = 1
         Town.length = 1
         var getSelectIndex = City.selectedIndex
-        // 获得市下面的区县
-        var proCounty = county[getSelectIndex - 1]
+        var proCounty = obj.list[getSelectIndex - 1].list
         for (var i = 0; i < proCounty.length; i++) {
-            County[i+1] = new Option(proCounty[i], getSelectIndex)
+            County[i+1] = new Option(proCounty[i].name, getSelectIndex)
         }
     }
     // 获取乡镇
     function getTown() {
         var getSelectIndex = City.selectedIndex
         var getCountySelectIndex = County.selectedIndex
-        var countytown = town[getSelectIndex - 1][getCountySelectIndex - 1]
+        var countytown = obj.list[getSelectIndex - 1].list[getCountySelectIndex - 1].list
         for( var i = 0; i < countytown.length; i++){
-            Town[i+1] = new Option(countytown[0],getCountySelectIndex)
+            Town[i+1] = new Option(countytown[i].name, getCountySelectIndex)
         }
     }
 
@@ -293,14 +271,16 @@
     var position = $('#position')
     var map = new BMap.Map('map')
     // 初始化地图
+    console.log(position.val());
     if (position.val()) {
         var positionPoint = {}
         positionPoint.lng = position.val().split(',')[0]
         positionPoint.lat = position.val().split(',')[1]
-        map.centerAndZoom(new BMap.Point(positionPoint.lng, positionPoint.lat))
+        console.log(positionPoint);
+        map.centerAndZoom(new BMap.Point(positionPoint.lng, positionPoint.lat), 20)
         map.enableScrollWheelZoom()
     } else {
-        map.centerAndZoom(new BMap.Point(113.331189,23.112153), 13);
+        map.centerAndZoom(new BMap.Point(113.331189,23.112153), 20);
         map.enableScrollWheelZoom()
     }
     // 是否显示地图
@@ -338,7 +318,7 @@
         myGeo.getPoint(myValue, function(point){
         // 获取输入地址的地理位置坐标
             if (point) {
-                map.centerAndZoom(point, 16);
+                map.centerAndZoom(point, 20);
                 map.addOverlay(new BMap.Marker(point));
             }
         }, city);
@@ -347,5 +327,25 @@
     map.addEventListener('click', function (e) {
         $('#position').val(e.point.lng + ',' + e.point.lat)
     })
+    $.ajax({
+        type: 'get',
+        url: 'https://apis.map.qq.com/ws/district/v1/list',
+        dataType:"jsonp",
+        // jsonp: 'callback',
+        data: {
+            'key': 'WNKBZ-GH2W4-MQ3U6-XMUQG-C22BK-46BGO',
+            // 'output': 'json',
+        },
+        headers: {
+            'Access-Control-Allow-Credentials' : true,
+            'Access-Control-Allow-Origin':'*',
+            'Access-Control-Allow-Methods':'GET',
+            'Access-Control-Allow-Headers':'Content-Type',
+        },
+        success: function(date) {
+            console.log(data);
+        }
+    })
+
     </script>
 @stop
