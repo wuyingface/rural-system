@@ -35,20 +35,27 @@
                     <div class="form-group">
                             <label for="name-field" class="col-sm-2 control-label">地址</label>
                         <div class="col-sm-10">
+
+                            <!-- @if($rural->city)
+                                <select name="city" onchange="getCounty()" class="form-control cityCascade" id="city">
+                                    <option value="$rural->city">{{ $rural->city }}</option>
+                                </select>
+                            @else
+                                <select name="city" onchange="getCounty()" class="form-control cityCascade" id="city">
+                                    <option value="0">请选择所在的城市</option>
+                                </select>
+                            @endif -->
+                            
                             <select name="city" onchange="getCounty()" class="form-control cityCascade" id="city">
-                                <option value="0">请选择所在的城市</option>
-                               <!--  <option value="1">广州市</option>
-                                <option value="2">深圳市</option> -->
-                                <!-- <option value="3">佛山市</option>
-                                <option value="4">珠海市</option> -->
+                                <option>请选择所在的城市</option>
                             </select>
-
+                        
                             <select name="county" id="county" onchange="getTown()" class="form-control cityCascade">
-                                <option value = "0">请选择所在的县区</option>
+                                <option>请选择所在的县区</option>
                             </select>
-
+                        
                             <select name="town" class="form-control cityCascade" id="town">
-                                <option value = "0">请选择所在的乡镇（街道）</option>
+                                <option>请选择所在的乡镇（街道）</option>
                             </select>
                         </div>
                     </div>
@@ -243,7 +250,7 @@
     function getCity() {
         City.length = 1
         for (var i = 0; i < obj['list'].length; i++) {
-            City[i+1] = new Option(obj['list'][i].name, i+1)
+            City[i+1] = new Option(obj['list'][i].name)
         }
     }
     getCity()
@@ -252,9 +259,10 @@
         County.length = 1
         Town.length = 1
         var getSelectIndex = City.selectedIndex
+        console.log(getSelectIndex);
         var proCounty = obj.list[getSelectIndex - 1].list
         for (var i = 0; i < proCounty.length; i++) {
-            County[i+1] = new Option(proCounty[i].name, getSelectIndex)
+            County[i+1] = new Option(proCounty[i].name)
         }
     }
     // 获取乡镇
@@ -263,7 +271,7 @@
         var getCountySelectIndex = County.selectedIndex
         var countytown = obj.list[getSelectIndex - 1].list[getCountySelectIndex - 1].list
         for( var i = 0; i < countytown.length; i++){
-            Town[i+1] = new Option(countytown[i].name, getCountySelectIndex)
+            Town[i+1] = new Option(countytown[i].name)
         }
     }
 
