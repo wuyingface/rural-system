@@ -53,7 +53,8 @@ class RuralsController extends Controller
 
 	public function update(RuralRequest $request, Rural $rural)
 	{
-		$this->authorize('update', $rural);
+		//dd($request->all());
+        $this->authorize('update', $rural);
 		$rural->update($request->all());
 
 		return redirect()->to($rural->link())->with('message', '更新乡村信息成功.');
