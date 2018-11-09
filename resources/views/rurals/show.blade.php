@@ -8,9 +8,11 @@
         <div class="introduct_header">
             <div class="jumbotron">
                 <h1>{{$rural -> name}}</h1>
+                @can('update', $rural)
                 <p>
                     <a href="{{ route('rurals.edit', $rural->id) }}" class="btn btn-primary" role="button" style="float: right;">编辑</a>
                 </p>
+                @endcan
             </div>
         </div>
         <div class="introduct_list row" style="padding-left: 15px;">

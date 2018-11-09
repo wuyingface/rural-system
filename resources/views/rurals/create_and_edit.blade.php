@@ -5,7 +5,7 @@
 <div class="container">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
-            
+
             <div class="panel-heading">
                 <h1>
                     <i class="glyphicon glyphicon-edit"></i> Rural /
@@ -20,13 +20,8 @@
             @include('common.error')
 
             <div class="panel-body">
-                @if($rural->id)
-                    <form action="{{ route('rurals.update', $rural->id) }}" method="POST" accept-charset="UTF-8" class="form-horizontal">
-                        <input type="hidden" name="_method" value="PUT">
-                @else
-                    <form action="{{ route('rurals.store') }}" method="POST" accept-charset="UTF-8" class="form-horizontal" style="width: 80%;"> 
-                @endif
-
+                <form action="{{ route('rurals.update', $rural->id) }}" method="POST" accept-charset="UTF-8" class="form-horizontal">
+                    <input type="hidden" name="_method" value="PUT">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">
@@ -44,21 +39,21 @@
                                 <option value="0">请选择所在的城市</option>
                                 <option value="1">广州市</option>
                                 <option value="2">深圳市</option>
-                                <option value="3">佛山市</option> 
-                                <option value="4">珠海市</option> 
+                                <option value="3">佛山市</option>
+                                <option value="4">珠海市</option>
                             </select>
-                    
+
                             <select name="county" id="county" onchange="getTown()" class="form-control cityCascade">
                                 <option value = "0">请选择所在的县区</option>
                             </select>
-                    
+
                             <select name="town" class="form-control cityCascade" id="town">
                                 <option value = "0">请选择所在的乡镇（街道）</option>
                             </select>
                         </div>
                     </div>
                     <!-- <hr /> -->
-                    
+
                     <!-- 地理位置 -->
                     <div class="form-group">
                         <label for="location-field" class="col-sm-2 control-label">地理位置</label>
@@ -171,9 +166,9 @@
                     <div class="form-group">
                         <label for="editor" class="col-sm-2 control-label">介绍</label>
                         <div class="col-sm-10">
-                            <textarea name="introdution" class="form-control" id="editor" rows="3" placeholder="请填入至少十三字符的内容。" required>{{ old('introdution', $rural->introdution ) }}</textarea>   
+                            <textarea name="introdution" class="form-control" id="editor" rows="3" placeholder="请填入至少十三字符的内容。" required>{{ old('introdution', $rural->introdution ) }}</textarea>
                         </div>
-                    </div>           
+                    </div>
                     <!-- <hr /> -->
                     <!-- 地图 -->
                     <div class="form-group">
@@ -189,8 +184,8 @@
                     </div>
                     <div class="">
                         <button type="submit" class="btn btn-primary">Save</button>
-                        <a class="btn btn-link pull-right" href="{{ route('rurals.show', $rural->id) }}"><i class="glyphicon glyphicon-backward"></i>  Back</a>
-                    </div> 
+                        <a class="btn btn-link pull-right" href="{{ $rural->link() }}"><i class="glyphicon glyphicon-backward"></i>取消</a>
+                    </div>
                 </form>
             </div>
         </div>
@@ -219,7 +214,7 @@
     <script type="text/javascript"  src="{{ asset('js/editor/js/hotkeys.js') }}"></script>
     <script type="text/javascript"  src="{{ asset('js/editor/js/uploader.js') }}"></script>
     <script type="text/javascript"  src="{{ asset('js/editor/js/simditor.js') }}"></script>
-    
+
     <!-- 百度地图API -->
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7OOvPVfFtq8vZEUZn1Zv5Q7W4ndE4g0H"></script>
 
