@@ -8,12 +8,12 @@ class Article extends Model
     protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug', 'location', 'location_name', 'map'];
 
 
+
     //获取文章分类
     public function category()
     {
         return $this->belongsTo(ArticleCategory::class);
     }
-
     //获取文章作者
     public function user()
     {
