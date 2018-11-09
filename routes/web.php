@@ -70,6 +70,6 @@ Route::get('introduction', function () {
 Route::resource('rurals', 'RuralsController', ['only' => ['update', 'edit']]);
 Route::get('rurals/{rural}/{slug?}', 'RuralsController@show')->name('rurals.show');//为乡村详情页兼容友好的URL
 //文章上传图片
-Route::post('upload_rarul_img', 'ArticlesController@uploadImage')->name('rural.upload_rarul_img');
+Route::post('upload_rarul_img', 'ArticlesController@uploadImage')->name('rurals.upload_rarul_img');
 
 /*---------------------------------乡村板块 End--------------------------------------*/
