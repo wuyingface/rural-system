@@ -15,7 +15,7 @@
                 @endcan
             </div>
         </div>
-        <div class="introduct_list row" style="padding-left: 15px;">
+        <div class="introduct_list row" style="padding-left: 15px;" id="introduct_list">
             <ul class="list-group col-md-6">
                 <li class="list-group-item">别名： {{$rural -> alias}}</li>
                 <li class="list-group-item">行政规划： {{$rural -> city}}{{$rural -> county}}{{$rural -> town}}</li>
@@ -45,7 +45,7 @@
     <div class="col-md-3 col-md-pull-9">
         <ul class="nav nav-pills nav-stacked">
             <?php
-                $navs = ['人文', '风情', '吃喝', '发展']
+                $navs = ['概况', '乡村发展', '民风民俗', '文化建设', '吃喝玩乐', '随想随写']
                 ?>
             @foreach ($navs as $nav)
             <li class="nav_li"><a href="#">{{$nav}}</a></li>
@@ -63,6 +63,14 @@
         $('.nav_li').each(function () {
             $(this).click(function() {
                 $(this).addClass('active').siblings().removeClass('active');
+            })
+        })
+        $('.nav_li:first-child').click(function() {
+            $('#introduct_list').show()
+        })
+        $('.nav_li:not(:first)').each(function () {
+            $(this).click(function() {
+                $('#introduct_list').hide()
                 $('#detailTitle').html($(this).find('a').html())
             })
         })
