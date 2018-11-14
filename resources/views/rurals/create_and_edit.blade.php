@@ -25,37 +25,31 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">
-                    	<label for="name-field" class="col-sm-2 control-label">村民</label>
+                    	<label for="name-field" class="col-sm-2 control-label">村名</label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text" name="name" id="name-field" value="{{ old('name', $rural->name ) }}" placeholder="请输入村名" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="alias-field" class="col-sm-2 control-label">别名</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" name="alias" id="alias-field" value="{{ old('alias', $rural->alias ) }}" placeholder="请输入别名" />
                         </div>
                     </div>
                     <!-- <hr /> -->
                     <!-- 城市联级 -->
                     <div class="form-group">
-                            <label for="name-field" class="col-sm-2 control-label">地址</label>
+                        <label for="name-field" class="col-sm-2 control-label">地址</label>
                         <div class="col-sm-10">
 
-                            <!-- @if($rural->city)
-                                <select name="city" onchange="getCounty()" class="form-control cityCascade" id="city">
-                                    <option value="$rural->city">{{ $rural->city }}</option>
-                                </select>
-                            @else
-                                <select name="city" onchange="getCounty()" class="form-control cityCascade" id="city">
-                                    <option value="0">请选择所在的城市</option>
-                                </select>
-                            @endif -->
-                            
                             <select name="city" onchange="getCounty()" class="form-control cityCascade" id="city">
-                                <option>请选择所在的城市</option>
+                                <option value="0">{{$rural->city}}</option>
                             </select>
-                        
                             <select name="county" id="county" onchange="getTown()" class="form-control cityCascade">
-                                <option>请选择所在的县区</option>
+                                <option>{{$rural->county}}</option>
                             </select>
-                        
                             <select name="town" class="form-control cityCascade" id="town">
-                                <option>请选择所在的乡镇（街道）</option>
+                                <option>{{$rural->town}}</option>
                             </select>
                         </div>
                     </div>
@@ -190,8 +184,9 @@
                         </div>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                        <a class="btn btn-link pull-right" href="{{ $rural->link() }}"><i class="glyphicon glyphicon-backward"></i>取消</a>
+                        <button type="submit" class="btn btn-primary">保存</button>
+                        <button type="submit" class="btn btn-primary">返回</button>
+                        <!-- <a class="btn btn-link btn-primary pull-right" href="{{ $rural->link() }}"><i class="glyphicon glyphicon-backward"></i>取消</a> -->
                     </div>
                 </form>
             </div>
@@ -250,7 +245,7 @@
     function getCity() {
         City.length = 1
         for (var i = 0; i < obj['list'].length; i++) {
-            City[i+1] = new Option(obj['list'][i].name)
+            City[i+1] = new Option(obj['list'][i].name, i+1)
         }
     }
     getCity()
@@ -262,7 +257,7 @@
         console.log(getSelectIndex);
         var proCounty = obj.list[getSelectIndex - 1].list
         for (var i = 0; i < proCounty.length; i++) {
-            County[i+1] = new Option(proCounty[i].name)
+            County[i+1] = new Option(proCounty[i].name, getSelectIndex)
         }
     }
     // 获取乡镇
@@ -271,7 +266,7 @@
         var getCountySelectIndex = County.selectedIndex
         var countytown = obj.list[getSelectIndex - 1].list[getCountySelectIndex - 1].list
         for( var i = 0; i < countytown.length; i++){
-            Town[i+1] = new Option(countytown[i].name)
+            Town[i+1] = new Option(countytown[i].name, getCountySelectIndex)
         }
     }
 
@@ -335,25 +330,5 @@
     map.addEventListener('click', function (e) {
         $('#position').val(e.point.lng + ',' + e.point.lat)
     })
-    $.ajax({
-        type: 'get',
-        url: 'https://apis.map.qq.com/ws/district/v1/list',
-        dataType:"jsonp",
-        // jsonp: 'callback',
-        data: {
-            'key': 'WNKBZ-GH2W4-MQ3U6-XMUQG-C22BK-46BGO',
-            // 'output': 'json',
-        },
-        headers: {
-            'Access-Control-Allow-Credentials' : true,
-            'Access-Control-Allow-Origin':'*',
-            'Access-Control-Allow-Methods':'GET',
-            'Access-Control-Allow-Headers':'Content-Type',
-        },
-        success: function(date) {
-            console.log(data);
-        }
-    })
-
     </script>
 @stop
