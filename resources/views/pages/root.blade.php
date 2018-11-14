@@ -25,9 +25,9 @@
 		<div id="slideBox" class="slideBox">
 			<div class="hd">
 				<ul>
-					<li class="">1</li>
-					<li class="on">2</li>
-					<li class="">3</li>
+					<li class=""></li>
+					<li class="on"></li>
+					<li class=""></li>
 				</ul>
 			</div>
 			<div class="bd">
@@ -50,13 +50,54 @@
 				</ul>
 			</div>
 
-			<!-- 下面是前/后按钮代码，如果不需要删除即可 -->
+			<!-- 下面是前/后按钮代码-->
 			<a class="prev" href="javascript:void(0)"></a>
 			<a class="next" href="javascript:void(0)"></a>
 
 		</div>
 	</div>
 	
+	<!-- 城市联动 -->
+	<div class="container">
+		<div class="page-header" style="border-bottom: 5px solid #000;color: #000;">
+		  	<h2>城市</h2>
+		</div>
+		<div class="scrollBox" style="margin:0 auto"> 
+		   <div class="ohbox"> 
+		    	<div class="tempWrap" style="overflow:hidden; position:relative; width:100%">
+		     		<ul class="piclist" style="width: 2484px; left: -1656px; overflow: hidden; padding: 0px; margin: 0px;" id="cities"> 
+				      	<!-- <li><a href="" target="_blank"><span>乡村发展</span></a></li> 
+				      	<li><a href="" target="_blank"><span>民风民俗</span></a></li> 
+				      	<li><a href="" target="_blank"><span>文化建设</span></a></li> 
+				      	<li><a href="" target="_blank"><span>吃喝玩乐</span></a></li> 
+				      	<li><a href="" target="_blank"><span>随想随写</span></a></li> 
+				      	<li><a href="" target="_blank"><span>乡村发展2</span></a></li> 
+				      	<li><a href="" target="_blank"><span>民风民俗2</span></a></li> 
+				      	<li><a href="" target="_blank"><span>文化建设2</span></a></li> 
+				      	<li><a href="" target="_blank"><span>吃喝玩乐2</span></a></li> 
+				      	<li><a href="" target="_blank"><span>随想随写2</span></a></li> 
+				      	<li><a href="" target="_blank"><span>乡村发展3</span></a></li> 
+				      	<li><a href="" target="_blank"><span>民风民俗3</span></a></li>  -->
+		     		</ul>
+		    	</div> 
+		   	</div> 
+		   	
+		   	<div class="pageBtn"> 
+			    <span class="prev glyphicon glyphicon-chevron-left"></span> 
+			    <span class="next glyphicon glyphicon-chevron-right"></span> 
+			    <ul class="list" style="display: none;">
+					<li class="on">0</li>
+					<li class="">1</li>
+					<li class="">2</li>
+			    </ul> 
+		   	</div> 
+		   	<div class="popWrap">
+		   		
+		   	</div>
+		</div>
+	</div>
+
+
 	<!-- 信息栏 -->
 	<div class="container">
 		<div class="page-header" style="border-bottom: 5px solid #000;color: #000;">
@@ -64,36 +105,36 @@
 		</div>
 		<div class="scrollBox" style="margin:0 auto"> 
 		   <div class="ohbox"> 
-		    <div class="tempWrap" style="overflow:hidden; position:relative; width:100%">
-		     <ul class="piclist" style="width: 2484px; left: -1656px; position: relative; overflow: hidden; padding: 0px; margin: 0px;"> 
-		      <li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>乡村发展</span></a></li> 
-		      <li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>民风民俗</span></a></li> 
-		      <li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>文化建设</span></a></li> 
-		      <li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>吃喝玩乐</span></a></li> 
-		      <li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>随想随写</span></a></li> 
-		      <li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>乡村发展2</span></a></li> 
-		      <li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>民风民俗2</span></a></li> 
-		      <li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>文化建设2</span></a></li> 
-		      <li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>吃喝玩乐2</span></a></li> 
-		      <li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>随想随写2</span></a></li> 
-		      <li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>乡村发展3</span></a></li> 
-		      <li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>民风民俗3</span></a></li> 
-		     </ul>
-		    </div> 
-		   </div> 
+		    	<div class="tempWrap" style="overflow:hidden; position:relative; width:100%">
+		     		<ul class="piclist" style="width: 2484px; left: -1656px; position: relative; overflow: hidden; padding: 0px; margin: 0px;"> 
+				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>乡村发展</span></a></li> 
+				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>民风民俗</span></a></li> 
+				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>文化建设</span></a></li> 
+				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>吃喝玩乐</span></a></li> 
+				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>随想随写</span></a></li> 
+				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>乡村发展2</span></a></li> 
+				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>民风民俗2</span></a></li> 
+				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>文化建设2</span></a></li> 
+				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>吃喝玩乐2</span></a></li> 
+				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>随想随写2</span></a></li> 
+				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>乡村发展3</span></a></li> 
+				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>民风民俗3</span></a></li> 
+		     		</ul>
+		    	</div> 
+		   	</div> 
 		   	<div class="pageBtn"> 
 			    <span class="prev glyphicon glyphicon-chevron-left"></span> 
 			    <span class="next glyphicon glyphicon-chevron-right"></span> 
 			    <ul class="list" style="display: none;">
-			     <li class="on">0</li>
-			     <li class="">1</li>
-			     <li class="">2</li>
+					<li class="on">0</li>
+					<li class="">1</li>
+					<li class="">2</li>
 			    </ul> 
 		   	</div> 
-		  </div>
+		</div>
 	</div>
 
-
+	
 </div>
 @stop
 
@@ -102,8 +143,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('js/sliderShow/css/slider.css') }}">
     <style>
 .slideBox {
-	width: 450px;
-	height: 230px;
+	width: 100%;
+	height: 450px;
 	overflow: hidden;
 	position: relative;
 	border: 1px solid #ddd;
@@ -127,18 +168,18 @@
 
 .slideBox .hd ul li {
 	float: left;
-	margin-right: 2px;
+	margin-right: 8px;
 	width: 15px;
 	height: 15px;
 	line-height: 14px;
 	text-align: center;
 	background: #fff;
 	cursor: pointer;
+	border-radius: 20px;
 }
 
 .slideBox .hd ul li.on {
-	background: #f00;
-	color: #fff;
+	background: #3097d1;
 }
 
 .slideBox .bd {
@@ -156,14 +197,12 @@
 }
 
 .slideBox .bd img {
-	width: 450px;
-	height: 230px;
+	width: 100%;
+	height: 450px;
 	display: block;
 }
 
-		/* 下面是前/后按钮代码，如果不需要删除即可 */
-.slideBox .prev,
-		.slideBox .next {
+.slideBox .prev, .slideBox .next {
 	position: absolute;
 	left: 3%;
 	top: 50%;
@@ -195,11 +234,18 @@
 .slideBox .nextStop {
 	display: none;
 }
+.popWrap {
+	width: 100%;
+	height: 200px;
+	background: #fff;
+}
+
+
     </style>
 @stop
 
 @section('scripts')
-<script src="{{ asset('js/sliderShow/jquery.SuperSlide.2.1.3.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/sliderShow/js/jquery.SuperSlide.2.1.3.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
 
 	// 信息栏
@@ -207,21 +253,43 @@
 	// 轮播图
 	jQuery(".slideBox").slide({mainCell:".bd ul",autoPlay:true});
 
-	$.ajax({
-		url: '/getArea',
-		data: {
-			type: 'cities'
-		},
-		type: 'get',
-		success: function(res) {
-			console.log(res);
-		}
-	})
+	function getCities() {
+		$.ajax({
+			url: '/getArea',
+			data: {
+				type: 'cities'
+			},
+			type: 'get',
+			success: function(res) {
+				if (res) {
+					for (var i in res) {
+						var id = res[i].id
+						var items = '<li onclick="getCounties(\''+res[i].id+'\')">'+ '<a>' + '<span>' + res[i].name + '</span>' + '</a>' + '</li>'
+						$('#cities').append(items)
+					}
+				}
+			}
+		})
+	}
+	getCities()
+	function getCounties(d) {
+		console.log(d);
+		$.ajax({
+			url: '/getArea',
+			data: {
+				type: 'counties',
+				cities_pid: d
+			},
+			success: function(res) {
+				console.log(res);
+			} 
+		})
+	}
 	$.ajax({
 		url: '/',
 		type: 'get',
 		success: function(res) {
-			console.log(res);
+			// console.log(res);
 		}
 	})
 </script>
