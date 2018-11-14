@@ -21,9 +21,11 @@ class PagesController extends Controller
     }
 
     //获取二级或者三级地区
-    public function getArea($type, $id = '')
+    public function getArea(Request $request)
     {
-        if ($id = '') {
+        $type = $request->type;
+
+        if (!$request->id) {
             //获取一级行政区
             return $datas = DB::table($type)->select('id', 'name')->get();
         }
