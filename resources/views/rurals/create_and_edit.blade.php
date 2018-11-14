@@ -243,6 +243,7 @@
     var Town = document.getElementById('town')
     // 获取城市
     function getCity() {
+        console.log(obj);
         City.length = 1
         // console.log(City.options[0].value + 'hhhh')
         for (var i = 0; i < obj['list'].length; i++) {

@@ -17,15 +17,17 @@ class PagesController extends Controller
     public function root()
     {
 
-        //获取一级行政区
-        $cities = DB::table('cities')->select('id', 'name')->get();
-
-        return view('pages.root', compact('cities'));
+        return view('pages.root');
     }
 
     //获取二级或者三级地区
-    public function getArea($type, $id)
+    public function getArea($type, $id = '')
     {
+        if ($id = '') {
+            //获取一级行政区
+            return $datas = DB::table($type)->select('id', 'name')->get();
+        }
+
         return $datas = DB::table($type)->where($type.'_id', $id)->select('id','name')->get();
     }
 
