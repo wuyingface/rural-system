@@ -62,29 +62,17 @@
 		<div class="page-header" style="border-bottom: 5px solid #000;color: #000;">
 		  	<h2>城市</h2>
 		</div>
-		<div class="scrollBox" style="margin:0 auto"> 
+		<div class="scrollBox" style="margin:0 auto" id="cityscrollBox">
 		   <div class="ohbox"> 
-		    	<div class="tempWrap" style="overflow:hidden; position:relative; width:100%">
-		     		<ul class="piclist" style="width: 2484px; left: -1656px; overflow: hidden; padding: 0px; margin: 0px;" id="cities"> 
-				      	<!-- <li><a href="" target="_blank"><span>乡村发展</span></a></li> 
-				      	<li><a href="" target="_blank"><span>民风民俗</span></a></li> 
-				      	<li><a href="" target="_blank"><span>文化建设</span></a></li> 
-				      	<li><a href="" target="_blank"><span>吃喝玩乐</span></a></li> 
-				      	<li><a href="" target="_blank"><span>随想随写</span></a></li> 
-				      	<li><a href="" target="_blank"><span>乡村发展2</span></a></li> 
-				      	<li><a href="" target="_blank"><span>民风民俗2</span></a></li> 
-				      	<li><a href="" target="_blank"><span>文化建设2</span></a></li> 
-				      	<li><a href="" target="_blank"><span>吃喝玩乐2</span></a></li> 
-				      	<li><a href="" target="_blank"><span>随想随写2</span></a></li> 
-				      	<li><a href="" target="_blank"><span>乡村发展3</span></a></li> 
-				      	<li><a href="" target="_blank"><span>民风民俗3</span></a></li>  -->
+		    	<div class="tempWrap" style="overflow:hidden; position:relative; width:90%">
+		     		<ul class="piclist" style="width: 2484px; left: -1656px; overflow: hidden; padding: 0px; margin: 0px;" id="cities">
 		     		</ul>
 		    	</div> 
 		   	</div> 
 		   	
 		   	<div class="pageBtn"> 
 			    <span class="prev glyphicon glyphicon-chevron-left"></span> 
-			    <span class="next glyphicon glyphicon-chevron-right"></span> 
+			    <span class="next glyphicon glyphicon-chevron-right"></span>
 			    <ul class="list" style="display: none;">
 					<li class="on">0</li>
 					<li class="">1</li>
@@ -93,13 +81,14 @@
 		   	</div> 
 
 		</div>
-		<div class="container">
-			<div class="countyWrap" id="countyWrap">
-				<ul class="nav nav-pills" role="tablist" id="counties"></ul>
-				<!-- <button class="btn btn-primary cityBack">返回</button> -->
-			</div>
+	</div>
+
+	<!-- 城市联动弹出框 -->
+	<div class="container cityCascade">
+		<div class="countyWrap" id="countyWrap">
+			<ul class="nav nav-pills" role="tablist" id="counties"></ul>
+			<span class="glyphicon glyphicon-remove closeConuty" onclick="closeConuty()"></span>
 		</div>
-		
 	</div>
 
 
@@ -243,18 +232,29 @@
 			width: 86%;
 			height: 200px;
 			background: #fff;
-			margin-left: 62px;
+			margin-left: 79px;
 			position: relative;
 			display: none;
 			padding: 15px;
 			z-index: 99999;
 
 		}
-
+		.cityCascade{
+			position: absolute;
+		}
 		.cityBack{
 			position: absolute;
 			bottom: 20px;
 			right: 20px;
+		}
+		.closeConuty{
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			cursor: pointer;
+		}
+		#counties li {
+			cursor: pointer;
 		}
     </style>
 @stop
@@ -265,6 +265,8 @@
 
 	// 信息栏
 	jQuery(".scrollBox").slide({ titCell:".list li", mainCell:".piclist", effect:"left",vis:4,scroll:4,delayTime:800,trigger:"click",easing:"easeOutCirc"});
+
+	// jQuery("#cityscrollBox").slide({ mainCell:".piclist", effect:"left",vis:4,scroll:4,delayTime:800,trigger:"click",easing:"easeOutCirc"});
 	// 轮播图
 	jQuery(".slideBox").slide({mainCell:".bd ul",autoPlay:true});
 	function getCities() {
@@ -280,6 +282,7 @@
 						var items = '<li onclick="getCounties(\''+res[i].id+'\')">'+ '<a>' + '<span>' + res[i].name + '</span>' + '</a>' + '</li>'
 						$('#cities').append(items)
 					}
+					// <a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>乡村发展</span></a>
 				}
 			}
 		})
@@ -363,13 +366,17 @@
 				id_type: 'town'
 			}, 
 			success: function(res) {
-				if (res) {
+				console.log(res);
+				if (res.length) {
 					for (var i in res) {
-						var items = '<li role="presentation" onclick="">'+ '<a>' + '<span>' + res[i].name + '</span>' + '</a>' + '</li>'
+						var items = '<li role="presentation" onclick="toRural(\''+res[i].id+'\')">'+ '<a>' + '<span>' + res[i].name + '</span>' + '</a>' + '</li>'
 						$('#counties').append(items)
 					}
 					var btn = '<button class="btn btn-primary cityBack" onclick="townBack(\''+counties_id+'\')">' + '返回' + '</button>'
 					$('#counties').append(btn)
+				} else {
+					var nothing = '<p>' + '未找到结果' +'</p>'
+					$('#counties').append(nothing)
 				}
 			}
 		})
@@ -380,6 +387,12 @@
 	function townBack(id) {
 		getTowns(id)
 	}
+	function closeConuty() {
+		$('#countyWrap').hide()
+	}
+	function toRural(id) {
+		location.href= '/rurals/' + id
+	} 
 </script>
 @stop
 
