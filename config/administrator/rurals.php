@@ -7,7 +7,7 @@ return [
     'title'   => '乡村管理',
 
     // 模型单数，用作页面『新建 $single』
-    'single'  => '乡村管理',
+    'single'  => '乡村',
 
     // 数据模型，用作数据的 CRUD
     'model'   => Rural::class,
@@ -28,13 +28,6 @@ return [
             'title' => '序号',
         ],
 
-        'name' => [
-            'title'    => '乡村名称',
-            'sortable' => false,
-            'output' => function ($name, $model) {
-                return '<a href="/rurals/'.$model->id.'" target=_blank>'.$name.'</a>';
-            },
-        ],
 
         'city' => [
             'title' => '所属城市',
@@ -42,6 +35,18 @@ return [
 
         'county' => [
             'title' => '所属县(区)',
+        ],
+
+        'town' => [
+            'title' => '所属乡镇(街道)',
+        ],
+
+        'name' => [
+            'title'    => '乡村名称',
+            'sortable' => false,
+            'output' => function ($name, $model) {
+                return '<a href="/rurals/'.$model->id.'" target=_blank>'.$name.'</a>';
+            },
         ],
 
         'location' => [
