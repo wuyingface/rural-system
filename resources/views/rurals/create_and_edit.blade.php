@@ -43,7 +43,7 @@
                         <div class="col-sm-10">
 
                             <select name="city" onchange="getCounty()" class="form-control cityCascade" id="city">
-                                <option value="0">{{$rural->city}}</option>
+                                <option>{{$rural->city}}</option>
                             </select>
                             <select name="county" id="county" onchange="getTown()" class="form-control cityCascade">
                                 <option>{{$rural->county}}</option>
@@ -244,8 +244,12 @@
     // 获取城市
     function getCity() {
         City.length = 1
+        // console.log(City.options[0].value + 'hhhh')
         for (var i = 0; i < obj['list'].length; i++) {
             City[i+1] = new Option(obj['list'][i].name, i+1)
+            // if (obj['list'][i].name === City.options[0].value) {
+            //     City.options.remove(i)
+            // }
         }
     }
     getCity()
@@ -257,7 +261,7 @@
         console.log(getSelectIndex);
         var proCounty = obj.list[getSelectIndex - 1].list
         for (var i = 0; i < proCounty.length; i++) {
-            County[i+1] = new Option(proCounty[i].name, getSelectIndex)
+            County[i+1] = new Option(proCounty[i].name, proCounty[i].name)
         }
     }
     // 获取乡镇
@@ -266,7 +270,7 @@
         var getCountySelectIndex = County.selectedIndex
         var countytown = obj.list[getSelectIndex - 1].list[getCountySelectIndex - 1].list
         for( var i = 0; i < countytown.length; i++){
-            Town[i+1] = new Option(countytown[i].name, getCountySelectIndex)
+            Town[i+1] = new Option(countytown[i].name, countytown[i].name)
         }
     }
 

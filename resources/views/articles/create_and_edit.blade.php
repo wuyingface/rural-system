@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="form-group">
-                        <textarea name="body" class="form-control" id="editor" rows="3" placeholder="请填入至少十三字符的内容。" required>{{ old('body', $article->body ) }}</textarea>
+                        <textarea name="body" class="form-control" id="editor" rows="3" placeholder="请填入至少十三字符的内容。">{{ old('body', $article->body ) }}</textarea>
                     </div>
 
                     <div class="form-group" style="display: none;">
