@@ -91,10 +91,15 @@
 					<li class="">2</li>
 			    </ul> 
 		   	</div> 
-		   	<div class="popWrap">
-		   		
-		   	</div>
+
 		</div>
+		<div class="container">
+			<div class="countyWrap" id="countyWrap">
+				<ul class="nav nav-pills" role="tablist" id="counties"></ul>
+				<!-- <button class="btn btn-primary cityBack">返回</button> -->
+			</div>
+		</div>
+		
 	</div>
 
 
@@ -142,105 +147,115 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('js/editor/css/simditor.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('js/sliderShow/css/slider.css') }}">
     <style>
-.slideBox {
-	width: 100%;
-	height: 450px;
-	overflow: hidden;
-	position: relative;
-	border: 1px solid #ddd;
-}
+		.slideBox {
+			width: 100%;
+			height: 450px;
+			overflow: hidden;
+			position: relative;
+			border: 1px solid #ddd;
+		}
 
-.slideBox .hd {
-	height: 15px;
-	overflow: hidden;
-	position: absolute;
-	right: 5px;
-	bottom: 5px;
-	z-index: 1;
-}
+		.slideBox .hd {
+			height: 15px;
+			overflow: hidden;
+			position: absolute;
+			right: 5px;
+			bottom: 5px;
+			z-index: 1;
+		}
 
-.slideBox .hd ul {
-	overflow: hidden;
-	zoom: 1;
-	float: left;
-	list-style: none;
-}
+		.slideBox .hd ul {
+			overflow: hidden;
+			zoom: 1;
+			float: left;
+			list-style: none;
+		}
 
-.slideBox .hd ul li {
-	float: left;
-	margin-right: 8px;
-	width: 15px;
-	height: 15px;
-	line-height: 14px;
-	text-align: center;
-	background: #fff;
-	cursor: pointer;
-	border-radius: 20px;
-}
+		.slideBox .hd ul li {
+			float: left;
+			margin-right: 8px;
+			width: 15px;
+			height: 15px;
+			line-height: 14px;
+			text-align: center;
+			background: #fff;
+			cursor: pointer;
+			border-radius: 20px;
+		}
 
-.slideBox .hd ul li.on {
-	background: #3097d1;
-}
+		.slideBox .hd ul li.on {
+			background: #3097d1;
+		}
 
-.slideBox .bd {
-	position: relative;
-	height: 100%;
-	z-index: 0;
-}
-.slideBox .bd ul{
-	padding: 0;
-}
+		.slideBox .bd {
+			position: relative;
+			height: 100%;
+			z-index: 0;
+		}
+		.slideBox .bd ul{
+			padding: 0;
+		}
 
-.slideBox .bd li {
-	zoom: 1;
-	vertical-align: middle;
-}
+		.slideBox .bd li {
+			zoom: 1;
+			vertical-align: middle;
+		}
 
-.slideBox .bd img {
-	width: 100%;
-	height: 450px;
-	display: block;
-}
+		.slideBox .bd img {
+			width: 100%;
+			height: 450px;
+			display: block;
+		}
 
-.slideBox .prev, .slideBox .next {
-	position: absolute;
-	left: 3%;
-	top: 50%;
-	margin-top: -25px;
-	display: block;
-	width: 32px;
-	height: 40px;
-	background: url('{{asset('js/sliderShow/img/slider-arrow.png')}}') -110px 5px no-repeat;
-	filter: alpha(opacity=50);
-	opacity: 0.5;
-}
+		.slideBox .prev, .slideBox .next {
+			position: absolute;
+			left: 3%;
+			top: 50%;
+			margin-top: -25px;
+			display: block;
+			width: 32px;
+			height: 40px;
+			background: url('{{asset('js/sliderShow/img/slider-arrow.png')}}') -110px 5px no-repeat;
+			filter: alpha(opacity=50);
+			opacity: 0.5;
+		}
 
-.slideBox .next {
-	left: auto;
-	right: 3%;
-	background-position: 8px 5px;
-}
+		.slideBox .next {
+			left: auto;
+			right: 3%;
+			background-position: 8px 5px;
+		}
 
-.slideBox .prev:hover,
-		.slideBox .next:hover {
-	filter: alpha(opacity=100);
-	opacity: 1;
-}
+		.slideBox .prev:hover,
+				.slideBox .next:hover {
+			filter: alpha(opacity=100);
+			opacity: 1;
+		}
 
-.slideBox .prevStop {
-	display: none;
-}
+		.slideBox .prevStop {
+			display: none;
+		}
 
-.slideBox .nextStop {
-	display: none;
-}
-.popWrap {
-	width: 100%;
-	height: 200px;
-	background: #fff;
-}
+		.slideBox .nextStop {
+			display: none;
+		}
+		.countyWrap {
+			width: 86%;
+			height: 200px;
+			background: #fff;
+			margin-left: 62px;
+			position: relative;
+			display: none;
+			padding: 15px;
+			z-index: 99999;
 
+		}
 
+		.cityBack{
+			position: absolute;
+			bottom: 20px;
+			right: 20px;
+		}
     </style>
 @stop
 
@@ -252,7 +267,6 @@
 	jQuery(".scrollBox").slide({ titCell:".list li", mainCell:".piclist", effect:"left",vis:4,scroll:4,delayTime:800,trigger:"click",easing:"easeOutCirc"});
 	// 轮播图
 	jQuery(".slideBox").slide({mainCell:".bd ul",autoPlay:true});
-
 	function getCities() {
 		$.ajax({
 			url: '/getArea',
@@ -263,7 +277,6 @@
 			success: function(res) {
 				if (res) {
 					for (var i in res) {
-						var id = res[i].id
 						var items = '<li onclick="getCounties(\''+res[i].id+'\')">'+ '<a>' + '<span>' + res[i].name + '</span>' + '</a>' + '</li>'
 						$('#cities').append(items)
 					}
@@ -272,26 +285,101 @@
 		})
 	}
 	getCities()
-	function getCounties(d) {
-		console.log(d);
+	function common (id, type, id_type, getData, flag) {
+		if (flag) {
+			$('#countyWrap').show()
+		}
+		$('#counties').empty()
+		$.ajax({
+			url: '/getArea',
+			data: {
+				type: type,
+				id: id,
+				id_type: id_type
+			},
+			success: function(res) {
+				if (res) {
+					for (var i in res) {
+						var items = '<li role="presentation" onclick="getData(\''+res[i].id+'\')">'+ '<a>' + '<span>' + res[i].name + '</span>' + '</a>' + '</li>'
+						$('#counties').append(items) 
+					}
+				}
+				// console.log(id);
+				// console.log(res);
+			} 
+		})
+	}
+	function getCounties(id) {
+		city_id = id
+		$('#countyWrap').show()
+		$('#counties').empty()
 		$.ajax({
 			url: '/getArea',
 			data: {
 				type: 'counties',
-				cities_pid: d
+				id: id,
+				id_type: 'cities'
 			},
 			success: function(res) {
-				console.log(res);
+				if (res) {
+					for (var i in res) {
+						var items = '<li role="presentation" onclick="getTowns(\''+res[i].id+'\')">'+ '<a>' + '<span>' + res[i].name + '</span>' + '</a>' + '</li>'
+						$('#counties').append(items)
+					}
+				}
 			} 
 		})
 	}
-	$.ajax({
-		url: '/',
-		type: 'get',
-		success: function(res) {
+	function getTowns(id) {
+		$('#counties').empty()
+		$.ajax({
+			url: '/getArea',
+			data: {
+				type: 'towns',
+				id: id,
+				id_type: 'counties'
+			}, 
+			success: function(res) {
 			// console.log(res);
-		}
-	})
+				if (res) {
+					for (var i in res) {
+						var items = '<li role="presentation" onclick="getRurals(\''+res[i].id+'\', \''+id+'\')">'+ '<a>' + '<span>' + res[i].name + '</span>' + '</a>' + '</li>'
+						$('#counties').append(items)
+					}
+					var btn = '<button class="btn btn-primary cityBack" onclick="countyBack(\''+city_id+'\')">' + '返回' + '</button>'
+					$('#counties').append(btn)
+				}
+			}
+		})
+	}
+	
+	function getRurals(id, counties_id) {
+		$('#counties').empty()
+		$.ajax({
+			url: '/getArea',
+			data: {
+				type: 'rurals',
+				id: id,
+				id_type: 'town'
+			}, 
+			success: function(res) {
+				if (res) {
+					for (var i in res) {
+						var items = '<li role="presentation" onclick="">'+ '<a>' + '<span>' + res[i].name + '</span>' + '</a>' + '</li>'
+						$('#counties').append(items)
+					}
+					var btn = '<button class="btn btn-primary cityBack" onclick="townBack(\''+counties_id+'\')">' + '返回' + '</button>'
+					$('#counties').append(btn)
+				}
+			}
+		})
+	}
+	function countyBack(id) {
+		getCounties(id)
+	}
+	function townBack(id) {
+		getTowns(id)
+	}
 </script>
 @stop
 
