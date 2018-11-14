@@ -28,17 +28,28 @@ return [
             'title' => '序号',
         ],
 
-
         'city' => [
             'title' => '所属城市',
+            'sortable' => false,
+            'output'   => function ($value, $model) {
+                return $model->city->name;
+            },
         ],
 
         'county' => [
-            'title' => '所属县(区)',
+            'title' => '所属县区',
+            'sortable' => false,
+            'output'   => function ($value, $model) {
+                return $model->county->name;
+            },
         ],
 
         'town' => [
             'title' => '所属乡镇(街道)',
+            'sortable' => false,
+            'output'   => function ($value, $model) {
+                return $model->town->name;
+            },
         ],
 
         'name' => [
@@ -64,17 +75,28 @@ return [
         'name' => [
             'title' => '乡村名称',
         ],
-
         'city' => [
-            'title' => '所属城市',
+            'title'              => '所属城市',
+            'type'               => 'relationship',
+            'name_field'         => 'name',
+            'search_fields'      => ["CONCAT(id, ' ', name)"],
+            'options_sort_field' => 'id',
         ],
 
         'county' => [
-            'title' => '所属县区(市)',
+            'title'              => '所属县区(市)',
+            'type'               => 'relationship',
+            'name_field'         => 'name',
+            'search_fields'      => ["CONCAT(id, ' ', name)"],
+            'options_sort_field' => 'id',
         ],
 
         'town' => [
-            'title' => '所属乡镇(街道)',
+            'title'              => '所属乡镇(街道)',
+            'type'               => 'relationship',
+            'name_field'         => 'name',
+            'search_fields'      => ["CONCAT(id, ' ', name)"],
+            'options_sort_field' => 'id',
         ],
 
         'location' => [
@@ -87,15 +109,34 @@ return [
         'name' => [
             'title' => '乡村名称',
         ],
+
         'city' => [
-            'title' => '所属城市',
+            'title'              => '所属城市',
+            'type'               => 'relationship',
+            'name_field'         => 'name',
+            'autocomplete'       => true,
+            'search_fields'      => array("CONCAT(id, ' ', name)"),
+            'options_sort_field' => 'id',
         ],
+
         'county' => [
-            'title' => '所属县(区)',
+            'title'              => '所属县(区)',
+            'type'               => 'relationship',
+            'name_field'         => 'name',
+            'autocomplete'       => true,
+            'search_fields'      => array("CONCAT(id, ' ', name)"),
+            'options_sort_field' => 'id',
         ],
+
         'town' => [
-            'title' => '所属乡镇(街道)',
+            'title'              => '所属乡镇(街道)',
+            'type'               => 'relationship',
+            'name_field'         => 'name',
+            'autocomplete'       => true,
+            'search_fields'      => array("CONCAT(id, ' ', name)"),
+            'options_sort_field' => 'id',
         ],
+
         'location' => [
             'title' => '地理位置',
         ],

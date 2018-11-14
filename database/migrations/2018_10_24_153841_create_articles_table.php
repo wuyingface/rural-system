@@ -19,6 +19,7 @@ class CreateArticlesTable extends Migration
             $table->integer('order')->unsigned()->default(0);
             $table->text('excerpt')->nullable();
             $table->string('slug')->nullable();
+            $table->integer('rural_id')->nullable()->unsigned();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
