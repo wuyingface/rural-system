@@ -13,6 +13,7 @@
 
 //显示首页
 Route::get('/', 'PagesController@root')->name('root');
+Route::get('/getArea/{type}/{id}', 'PagesController@getArea')->name('getArea');
 
 
 /*-------------------------------用户认证 Start------------------------------------*/
