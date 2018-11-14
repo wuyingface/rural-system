@@ -15,7 +15,7 @@ class CreateCountiesTable extends Migration
     {
         Schema::create('counties', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cities_pid')->unsigned();
+            $table->integer('cities_id')->unsigned();
             $table->string('name')->comment('县区名称');
             $table->timestamps();
             $table->engine = 'InnoDB';
