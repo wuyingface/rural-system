@@ -11,4 +11,23 @@ class Rural extends Model
         return route('rurals.show', array_merge([$this->id, $this->slug], $params));
     }
 
+
+    //获取所属城市
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    //获取所属县区
+    public function county()
+    {
+        return $this->belongsTo(County::class);
+    }
+
+    //获取所属乡镇
+    public function town()
+    {
+        return $this->belongsTo(Town::class);
+    }
+
 }

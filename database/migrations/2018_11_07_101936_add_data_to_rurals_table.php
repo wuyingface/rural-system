@@ -20,9 +20,9 @@ class AddDataToRuralsTable extends Migration
             $table->string('type', 10)->nullable()->commit('行政类别：自然村/行政村');
             $table->string('postalcode', 10)->nullable()->commit('邮政编码');
             $table->string('area_code', 10)->nullable()->commit('电话区号');
-            $table->string('city', 20)->nullable()->commit('所属城市');
-            $table->string('county', 20)->nullable()->commit('所属县区（市）');
-            $table->string('town', 20)->nullable()->commit('所属乡镇（街道）');
+            $table->integer('city_id')->nullable()->unsigned()->commit('所属城市');
+            $table->integer('county_id')->nullable()->unsigned()->commit('所属县区（市）');
+            $table->integer('town_id')->nullable()->unsigned()->commit('所属乡镇（街道）');
             $table->string('location', 30)->nullable()->commit('地理位置');
             $table->string('map', 30)->nullable()->commit('经纬度');
             $table->string('scenery', 50)->nullable()->commit('著名景点');
@@ -50,9 +50,9 @@ class AddDataToRuralsTable extends Migration
             $table->dropColumn('type');
             $table->dropColumn('postalcode');
             $table->dropColumn('area_code');
-            $table->dropColumn('city');
-            $table->dropColumn('county');
-            $table->dropColumn('town');
+            $table->dropColumn('city_id');
+            $table->dropColumn('county_id');
+            $table->dropColumn('town_id');
             $table->dropColumn('location');
             $table->dropColumn('map');
             $table->dropColumn('scenery');
