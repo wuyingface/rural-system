@@ -30,7 +30,8 @@ class PagesController extends Controller
             return $datas = DB::table($type)->select('id', 'name')->get();
         }
 
-        return $datas = DB::table($type)->where($type.'_id', $id)->select('id','name')->get();
+        return $datas = DB::table($type)->where($request->id_type.'_id', $request->id)->select('id','name')->get();
     }
 
 }
+
