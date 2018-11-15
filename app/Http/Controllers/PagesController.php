@@ -17,7 +17,8 @@ class PagesController extends Controller
     public function root()
     {
 
-        return view('pages.root');
+        $cities = DB::table('cities')->select('id', 'name')->get();
+        return view('pages.root', compact('cities'));
     }
 
     //获取二级或者三级地区

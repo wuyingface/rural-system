@@ -66,6 +66,11 @@
 		   <div class="ohbox"> 
 		    	<div class="tempWrap" style="overflow:hidden; position:relative; width:90%">
 		     		<ul class="piclist" style="width: 2484px; left: -1656px; overflow: hidden; padding: 0px; margin: 0px;" id="cities">
+		     			@foreach($cities as $city)
+						<li onclick="getCounties({{$city->id}})">
+							<a><span>{{$city->name}}</span></a>
+						</li>
+		     			@endforeach
 		     		</ul>
 		    	</div> 
 		   	</div> 
@@ -278,16 +283,16 @@
 			type: 'get',
 			success: function(res) {
 				if (res) {
+					var items = ''
 					for (var i in res) {
-						var items = '<li onclick="getCounties(\''+res[i].id+'\')">'+ '<a>' + '<span>' + res[i].name + '</span>' + '</a>' + '</li>'
-						$('#cities').append(items)
+						items += '<li onclick="getCounties(\''+res[i].id+'\')">'+ '<a>' + '<span>' + res[i].name + '</span>' + '</a>' + '</li>'
 					}
-					// <a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>乡村发展</span></a>
+					$('#cities').html(items)
 				}
 			}
 		})
 	}
-	getCities()
+	// getCities()
 	function common (id, type, id_type, getData, flag) {
 		if (flag) {
 			$('#countyWrap').show()
@@ -307,8 +312,6 @@
 						$('#counties').append(items) 
 					}
 				}
-				// console.log(id);
-				// console.log(res);
 			} 
 		})
 	}
