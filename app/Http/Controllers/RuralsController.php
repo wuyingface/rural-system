@@ -30,11 +30,12 @@ class RuralsController extends Controller
 
         }
 
-        $cities = City::all();
-        $counties = County::all();
-        $towns = Town::all();
+        $city = City::where('id', $rural->city_id)->pluck('name');
 
-        return view('rurals.show', compact('rural', 'cities', 'counties', 'towns'));
+        $county = County::where('id', $rural->county_id)->pluck('name');
+        $town = Town::where('id', $rural->town_id)->pluck('name');
+
+        return view('rurals.show', compact('rural', 'city', 'county', 'town'));
     }
 
 
@@ -53,8 +54,15 @@ class RuralsController extends Controller
 
 	public function edit(Rural $rural)
 	{
+        
         $this->authorize('update', $rural);
-		return view('rurals.create_and_edit', compact('rural'));
+
+        $cities = City::all();
+        $counties = County::all();
+        $towns = Town::all();
+
+		return view('rurals.create_and_edit', compact('rural', 'cities', 'counties', 'towns'));
+
 	}
 
 

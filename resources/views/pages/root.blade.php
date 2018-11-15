@@ -268,31 +268,11 @@
 <script src="{{ asset('js/sliderShow/js/jquery.SuperSlide.2.1.3.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
 
-	// 信息栏
+	// 信息栏、城市
 	jQuery(".scrollBox").slide({ titCell:".list li", mainCell:".piclist", effect:"left",vis:4,scroll:4,delayTime:800,trigger:"click",easing:"easeOutCirc"});
 
-	// jQuery("#cityscrollBox").slide({ mainCell:".piclist", effect:"left",vis:4,scroll:4,delayTime:800,trigger:"click",easing:"easeOutCirc"});
 	// 轮播图
 	jQuery(".slideBox").slide({mainCell:".bd ul",autoPlay:true});
-	function getCities() {
-		$.ajax({
-			url: '/getArea',
-			data: {
-				type: 'cities'
-			},
-			type: 'get',
-			success: function(res) {
-				if (res) {
-					var items = ''
-					for (var i in res) {
-						items += '<li onclick="getCounties(\''+res[i].id+'\')">'+ '<a>' + '<span>' + res[i].name + '</span>' + '</a>' + '</li>'
-					}
-					$('#cities').html(items)
-				}
-			}
-		})
-	}
-	// getCities()
 	function common (id, type, id_type, getData, flag) {
 		if (flag) {
 			$('#countyWrap').show()

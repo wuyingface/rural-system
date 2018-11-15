@@ -41,15 +41,32 @@
                     <div class="form-group">
                         <label for="name-field" class="col-sm-2 control-label">地址</label>
                         <div class="col-sm-10">
-
-                            <select name="city" onchange="getCounty()" class="form-control cityCascade" id="city">
-                                <option>{{$rural->city}}</option>
+                            <select name="city_id" onchange="getCounty()" class="form-control cityCascade" id="city">
+                                @foreach($cities as $city)
+                                    @if($city -> id == $rural -> city_id)
+                                        <option value="{{$city -> id}}" selected="selected">{{$city->name}}</option>
+                                    @else
+                                        <option value="{{$city -> id}}">{{$city->name}}</option>
+                                    @endif
+                                @endforeach
                             </select>
-                            <select name="county" id="county" onchange="getTown()" class="form-control cityCascade">
-                                <option>{{$rural->county}}</option>
+                            <select name="county_id" id="county" onchange="getTown()" class="form-control cityCascade" data-id="{{$rural -> county_id}}">
+                               <!--  @foreach($counties as $county)
+                                    @if($county -> id == $rural -> county_id)
+                                        <option value="{{$county -> id}}" selected="selected">
+                                            {{$county->name}}
+                                        </option>
+                                    @endif
+                                @endforeach -->
                             </select>
-                            <select name="town" class="form-control cityCascade" id="town">
-                                <option>{{$rural->town}}</option>
+                            <select name="town_id" class="form-control cityCascade" id="town"  data-id="{{$rural -> town_id}}">
+                                <!--  @foreach($towns as $town)
+                                    @if($town -> id == $rural -> town_id)
+                                        <option value="{{$county -> id}}" selected="selected">
+                                            {{$town->name}}
+                                        </option>
+                                    @endif
+                                @endforeach -->
                             </select>
                         </div>
                     </div>
@@ -167,7 +184,7 @@
                     <div class="form-group">
                         <label for="editor" class="col-sm-2 control-label">介绍</label>
                         <div class="col-sm-10">
-                            <textarea name="introdution" class="form-control" id="editor" rows="3" placeholder="请填入至少十三字符的内容。" required>{{ old('introdution', $rural->introdution ) }}</textarea>
+                            <textarea name="introdution" class="form-control" id="editor" rows="3" placeholder="请填入至少十三字符的内容。">{{ old('introdution', $rural->introdution ) }}</textarea>
                         </div>
                     </div>
                     <!-- <hr /> -->
@@ -239,47 +256,137 @@
 
     // 城市联级
     var City = document.getElementById('city')
-    var County = document.getElementById('county')
+    var County =document.getElementById('county')
     var Town = document.getElementById('town')
-    // 获取城市
-    function getCity() {
-        console.log(obj);
-        City.length = 1
-        // console.log(City.options[0].value + 'hhhh')
-        for (var i = 0; i < obj['list'].length; i++) {
-            City[i+1] = new Option(obj['list'][i].name, i+1)
-            // if (obj['list'][i].name === City.options[0].value) {
-            //     City.options.remove(i)
-            // }
-        }
+    var initCountyId
+
+    // 初始化预加载区县数据
+    function initCounty() {
+        var initCityId = City.options[City.selectedIndex].value
+        console.log(City.selectedIndex);
+        $.ajax({
+            url: '/getArea',
+            data: {
+                type: 'counties',
+                id: initCityId,
+                id_type: 'cities'
+            },
+            success: function(res) {
+                if (res) {  
+                    console.log($('#county').data('id'));
+                    var id = $('#county').data('id')
+                    for (var i = 0 ; i < res.length; i++ ) {
+                        County[i] = new Option(res[i].name, res[i].id)
+                    }
+                    var nums = $('#county').find('option')
+                    for (var j = 1; j < nums.length; j++) {
+                        if ($(nums[j]).val() == id) {
+                            $(nums[j]).attr('selected', 'selected')
+                        }
+                    }
+                }
+            }
+        })
     }
-    getCity()
-    // 获取区县
+    initCounty()
+    // 初始化预加载城镇数据
+    function initPreTown() {
+        console.log(County.selectedIndex);
+
+        var initId = $('#county').data('id')
+        console.log(initId);
+        $.ajax({
+            url: '/getArea',
+            data: {
+                type: 'towns',
+                id: initId,
+                id_type: 'counties'
+            },
+            success: function(res) {
+                if (res) {  
+                    var id = $('#town').data('id')
+                    for (var i = 0 ; i < res.length; i++ ) {
+                        Town[i] = new Option(res[i].name, res[i].id)
+                    }
+                    var nums = $('#town').find('option')
+                    for (var j = 1; j < nums.length; j++) {
+                        if ($(nums[j]).val() == id) {
+                            $(nums[j]).attr('selected', 'selected')
+                        }
+                    }
+                }
+            }
+        })
+    }
+    initPreTown()
+    // 联动获取区县数据
     function getCounty() {
-        County.length = 1
-        Town.length = 1
-        var getSelectIndex = City.selectedIndex
-        console.log(getSelectIndex);
-        var proCounty = obj.list[getSelectIndex - 1].list
-        for (var i = 0; i < proCounty.length; i++) {
-            County[i+1] = new Option(proCounty[i].name, proCounty[i].name)
+        var citySelectId = City.value
+        $.ajax({
+            url: '/getArea',
+            data: {
+                type: 'counties',
+                id: citySelectId,
+                id_type: 'cities'
+            },
+            success: function(res){
+                if (res) {
+                    for (var i in res) {
+                        County[i] = new Option(res[i].name, res[i].id)
+                    }
+                    initCountyId = County[0].value
+                    // console.log(County[0].value + '就是我了');
+                }
+                initTown()
+            }
+        })
+    }
+    // 联动后获取区id初始化乡镇
+    function initTown() {
+        if (initCountyId !== undefined) {
+            $.ajax({
+                url: '/getArea',
+                data: {
+                    type: 'towns',
+                    id: initCountyId,
+                    id_type: 'counties'
+                }, 
+                success: function(res){
+                    console.log(res);
+                    for(var u in res) {
+                        Town[u] = new Option(res[u].name, res[u].id)
+                    }
+                }
+            })
         }
     }
-    // 获取乡镇
+    // 联动获取乡镇数据
     function getTown() {
-        var getSelectIndex = City.selectedIndex
-        var getCountySelectIndex = County.selectedIndex
-        var countytown = obj.list[getSelectIndex - 1].list[getCountySelectIndex - 1].list
-        for( var i = 0; i < countytown.length; i++){
-            Town[i+1] = new Option(countytown[i].name, countytown[i].name)
-        }
+        var CountySelectId = County.value
+        console.log(initCountyId);
+        console.log(CountySelectId);
+        $.ajax({
+            url: '/getArea',
+            data: {
+                type: 'towns',
+                id: CountySelectId,
+                id_type: 'counties'
+            },
+            success: function(res){
+                if (res) {
+                    console.log(res);
+                    for (var i in res) {
+                        Town[i] = new Option(res[i].name, res[i].id)
+                    }
+                }
+            }
+        })
     }
 
     // 地图
     var position = $('#position')
     var map = new BMap.Map('map')
     // 初始化地图
-    console.log(position.val());
     if (position.val()) {
         var positionPoint = {}
         positionPoint.lng = position.val().split(',')[0]

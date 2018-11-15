@@ -18,7 +18,7 @@
         <div class="introduct_list row" style="padding-left: 15px;" id="introduct_list">
             <ul class="list-group col-md-6">
                 <li class="list-group-item">别名： {{$rural -> alias}}</li>
-                <li class="list-group-item">行政规划： {{$rural -> city}}{{$rural -> county}}{{$rural -> town}}</li>
+                <li class="list-group-item">行政规划： {{$city[0]}}-{{$county[0]}}-{{$town[0]}}</li>
                 <li class="list-group-item">人口： {{$rural -> population}}</li>
                 <li class="list-group-item">方言： {{$rural -> dialect}}</li>
                 <li class="list-group-item">行政类别： {{$rural -> type}}</li>
