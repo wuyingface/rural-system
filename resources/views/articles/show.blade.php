@@ -45,9 +45,9 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <span class="glyphicon glyphicon-map-marker"></span>
-                            <a href="javascript:void(0);" id="position" >无锡市江阴市华西村风景区</a>
+                            <a href="javascript:void(0);" id="position" >{{$article -> location}} {{$article -> location_name}}</a>
                             <!-- 坐标 -->
-                            <span style="display: none;" id="coordinate">{{$article -> map}}</span>
+                            <span id="coordinate" style="display: none;">{{$article -> map}}</span>
                         </div>
                     </div>
                   </div>
@@ -114,9 +114,14 @@
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7OOvPVfFtq8vZEUZn1Zv5Q7W4ndE4g0H"></script>
     <script type="text/javascript">
         var coordinate = $('#coordinate').html()
+        var positionPoint = {}
+        positionPoint.lng = coordinate.split(',')[0]
+        positionPoint.lat = coordinate.split(',')[1]
         var map = new BMap.Map('map');  
-        var point = new BMap.Point(120.439879, 31.839665);
-        map.centerAndZoom(point, 15); 
+        var point = new BMap.Point(positionPoint.lng, positionPoint.lat);
+        map.centerAndZoom(point, 15);
+        var marker = new BMap.Marker(point)
+        map.addOverlay(marker)
         map.enableScrollWheelZoom(true);
     </script>
 @stop

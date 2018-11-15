@@ -20,20 +20,15 @@
             @include('common.error')
 
             <div class="panel-body">
-                <form action="{{ route('rurals.update', $rural->id) }}" method="POST" accept-charset="UTF-8" class="form-horizontal">
+                <form action="{{ route('rurals.update', $rural->id) }}" method="POST" accept-charset="UTF-8" class="form-horizontal" style="width: 92%;">
                     <input type="hidden" name="_method" value="PUT">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                    <div class="form-group">
-                    	<label for="name-field" class="col-sm-2 control-label">村名</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" type="text" name="name" id="name-field" value="{{ old('name', $rural->name ) }}" placeholder="请输入村名" />
-                        </div>
-                    </div>
                     <!-- 城市联级 -->
                     <div class="form-group">
                         <label for="name-field" class="col-sm-2 control-label">地址</label>
                         <div class="col-sm-10">
+                            <!-- 城市 -->
                             <select name="city_id" onchange="getCounty()" class="form-control cityCascade" id="city">
                                 @foreach($cities as $city)
                                     @if($city -> id == $rural -> city_id)
@@ -43,8 +38,10 @@
                                     @endif
                                 @endforeach
                             </select>
+                            <!-- 区县 -->
                             <select name="county_id" id="county" onchange="getTown()" class="form-control cityCascade" data-id="{{$rural -> county_id}}">
                             </select>
+                            <!-- 城镇 -->
                             <select name="town_id" class="form-control cityCascade" id="town"  data-id="{{$rural -> town_id}}">
                             </select>
                         </div>
@@ -196,7 +193,7 @@
     <style>
     .cityCascade{
         display: inline-block;
-        width: 30%;
+        width: 32.9%;
     }
     .tableHead {
         text-align: center;
