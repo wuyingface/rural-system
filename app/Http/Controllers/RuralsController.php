@@ -54,7 +54,7 @@ class RuralsController extends Controller
 
 	public function edit(Rural $rural)
 	{
-        
+
         $this->authorize('update', $rural);
 
         $cities = City::all();
@@ -68,7 +68,7 @@ class RuralsController extends Controller
 
 	public function update(RuralRequest $request, Rural $rural)
 	{
-		//dd($request->all());
+        //dd($request->all());
         $this->authorize('update', $rural);
 		$rural->update($request->all());
 
