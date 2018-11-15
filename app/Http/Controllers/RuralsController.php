@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RuralRequest;
 use Auth;
 use App\Handlers\ImageUploadHandler;
+use App\Models\City;
+use App\Models\County;
+use App\Models\Town;
 
 class RuralsController extends Controller
 {
@@ -27,7 +30,11 @@ class RuralsController extends Controller
 
         }
 
-        return view('rurals.show', compact('rural'));
+        $cities = City::all();
+        $counties = County::all();
+        $towns = Town::all();
+
+        return view('rurals.show', compact('rural', 'cities', 'counties', 'towns'));
     }
 
 
