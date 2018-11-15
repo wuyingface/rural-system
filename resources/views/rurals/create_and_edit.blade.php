@@ -30,13 +30,6 @@
                             <input class="form-control" type="text" name="name" id="name-field" value="{{ old('name', $rural->name ) }}" placeholder="请输入村名" />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="alias-field" class="col-sm-2 control-label">别名</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" type="text" name="alias" id="alias-field" value="{{ old('alias', $rural->alias ) }}" placeholder="请输入别名" />
-                        </div>
-                    </div>
-                    <!-- <hr /> -->
                     <!-- 城市联级 -->
                     <div class="form-group">
                         <label for="name-field" class="col-sm-2 control-label">地址</label>
@@ -51,22 +44,8 @@
                                 @endforeach
                             </select>
                             <select name="county_id" id="county" onchange="getTown()" class="form-control cityCascade" data-id="{{$rural -> county_id}}">
-                               <!--  @foreach($counties as $county)
-                                    @if($county -> id == $rural -> county_id)
-                                        <option value="{{$county -> id}}" selected="selected">
-                                            {{$county->name}}
-                                        </option>
-                                    @endif
-                                @endforeach -->
                             </select>
                             <select name="town_id" class="form-control cityCascade" id="town"  data-id="{{$rural -> town_id}}">
-                                <!--  @foreach($towns as $town)
-                                    @if($town -> id == $rural -> town_id)
-                                        <option value="{{$county -> id}}" selected="selected">
-                                            {{$town->name}}
-                                        </option>
-                                    @endif
-                                @endforeach -->
                             </select>
                         </div>
                     </div>
@@ -203,7 +182,6 @@
                     <div class="">
                         <button type="submit" class="btn btn-primary">保存</button>
                         <button type="submit" class="btn btn-primary">返回</button>
-                        <!-- <a class="btn btn-link btn-primary pull-right" href="{{ $rural->link() }}"><i class="glyphicon glyphicon-backward"></i>取消</a> -->
                     </div>
                 </form>
             </div>
@@ -263,7 +241,6 @@
     // 初始化预加载区县数据
     function initCounty() {
         var initCityId = City.options[City.selectedIndex].value
-        console.log(City.selectedIndex);
         $.ajax({
             url: '/getArea',
             data: {
@@ -273,7 +250,6 @@
             },
             success: function(res) {
                 if (res) {  
-                    console.log($('#county').data('id'));
                     var id = $('#county').data('id')
                     for (var i = 0 ; i < res.length; i++ ) {
                         County[i] = new Option(res[i].name, res[i].id)
@@ -291,10 +267,7 @@
     initCounty()
     // 初始化预加载城镇数据
     function initPreTown() {
-        console.log(County.selectedIndex);
-
         var initId = $('#county').data('id')
-        console.log(initId);
         $.ajax({
             url: '/getArea',
             data: {
@@ -335,7 +308,6 @@
                         County[i] = new Option(res[i].name, res[i].id)
                     }
                     initCountyId = County[0].value
-                    // console.log(County[0].value + '就是我了');
                 }
                 initTown()
             }
@@ -363,8 +335,6 @@
     // 联动获取乡镇数据
     function getTown() {
         var CountySelectId = County.value
-        console.log(initCountyId);
-        console.log(CountySelectId);
         $.ajax({
             url: '/getArea',
             data: {
@@ -374,7 +344,6 @@
             },
             success: function(res){
                 if (res) {
-                    console.log(res);
                     for (var i in res) {
                         Town[i] = new Option(res[i].name, res[i].id)
                     }

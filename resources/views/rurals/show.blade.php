@@ -51,6 +51,7 @@
             <li class="nav_li"><a href="#">{{$nav}}</a></li>
             @endforeach
         </ul>
+        <button class="btn btn-primary">新增文章</button>
     </div>
   </div>
 @endsection
