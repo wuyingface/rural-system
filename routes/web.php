@@ -13,6 +13,7 @@
 
 //显示首页
 Route::get('/', 'PagesController@root')->name('root');
+
 //获取首页地区信息
 Route::get('/getArea', 'PagesController@getArea');
 
