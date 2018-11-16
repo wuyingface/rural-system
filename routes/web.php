@@ -13,7 +13,7 @@
 
 //显示首页
 Route::get('/', 'PagesController@root')->name('root');
-Route::get('/getArea', 'PagesController@getArea');
+Route::get('/getArea/{type}', 'PagesController@getArea');
 
 
 
@@ -48,8 +48,10 @@ Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit'
 //文章列表
 Route::resource('articles', 'ArticlesController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
 Route::get('articles/{article}/{slug?}', 'ArticlesController@show')->name('articles.show');//为文章详情页兼容友好的URL
-//分类列表
+//分类列表下的文章
 Route::resource('articleCategories', 'ArticleCategroiesController', ['only' => ['show']]);
+//乡村板块下分类列表的文章
+Route::get('articleCategories/{articleCategory_id}/{rural_id}', 'ArticleCategroiesController@getRuralArticles');
 //文章上传图片
 Route::post('upload_image', 'ArticlesController@uploadImage')->name('articles.upload_image');
 //文章回复
