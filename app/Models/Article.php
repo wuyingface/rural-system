@@ -5,7 +5,7 @@ namespace App\Models;
 class Article extends Model
 {
 
-    protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug', 'location', 'location_name', 'map'];
+    protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug', 'location', 'location_name', 'map', 'rural_id'];
 
 
 
