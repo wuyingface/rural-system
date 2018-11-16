@@ -37,11 +37,11 @@
             </ul>
         </div>
         <!-- 文章列表 -->
-        <div class="container articleList">
+        <div class=" articleList">
             <p class="lead" id="detailTitle">人文</p>
-            <p>
-                something detail...
-            </p>
+            <div class="list-group articlesGroup">
+                
+            </div>
         </div>
         <!-- 新增文章表单 -->
         <div class="createArticleMark">
@@ -95,10 +95,11 @@
         <ul class="nav nav-pills nav-stacked">
                 <li class="nav_li"><a href="#">概况</a></li>
             @foreach ($articleCategories as $articleCategory)
-                <li class="nav_li"><a href="#">{{$articleCategory->name}}</a></li>
+                <li class="nav_li" data-categoryid="{{$articleCategory->id}}" data-ruralid="{{$rural->id}}" id="category_li"><a href="#">{{$articleCategory->name}}</a></li>
             @endforeach
-                <li class="nav_li hasCreateArticle"><a href="#">新建乡村文章</a></li>
+                
         </ul>
+        <button class="hasCreateArticle btn btn-primary">新建乡村文章</button>
     </div>
   </div>
 @endsection
@@ -140,6 +141,9 @@
             top: 10px;
             cursor: pointer;
         }
+        .hasCreateArticle{
+            margin-top: 20px;
+        }
     </style>
 @stop
 @section('scripts')
@@ -166,6 +170,22 @@
             $(this).click(function() {
                 $('#introduct_list').hide()
                 $('#detailTitle').html($(this).find('a').html())
+                var category_id = $(this).data('categoryid')
+                var rural_id = $(this).data('ruralid')
+                console.log($(this).data('categoryid'))
+                console.log($(this).data('ruralid'))
+                $.ajax({
+                    url: '/articleCategories/' + category_id + '/' + rural_id,
+                    success: function(res) {
+                        if (res) {
+                            console.log(res.data);
+                            for (var i in res.data) {
+                                var items = '<a class="list-group-item" href="{{ route('articleCategories.show', $articleCategory->id) }}">' + res.data[i].title + '</a>'
+                                $('.articlesGroup').append(items)
+                            }
+                        }
+                    }
+                })
             })
         })
         // 文本编辑器
