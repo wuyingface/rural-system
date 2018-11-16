@@ -56,14 +56,14 @@
 
 		</div>
 	</div>
-	
+
 	<!-- 城市联动 -->
 	<div class="container">
 		<div class="page-header" style="border-bottom: 5px solid #000;color: #000;">
 		  	<h2>城市</h2>
 		</div>
 		<div class="scrollBox" style="margin:0 auto" id="cityscrollBox">
-		   <div class="ohbox"> 
+		   <div class="ohbox">
 		    	<div class="tempWrap" style="overflow:hidden; position:relative; width:90%">
 		     		<ul class="piclist" style="width: 2484px; left: -1656px; overflow: hidden; padding: 0px; margin: 0px;" id="cities">
 		     			@foreach($cities as $city)
@@ -75,18 +75,18 @@
 						</li>
 		     			@endforeach
 		     		</ul>
-		    	</div> 
-		   	</div> 
-		   	
-		   	<div class="pageBtn"> 
-			    <span class="prev glyphicon glyphicon-chevron-left"></span> 
+		    	</div>
+		   	</div>
+
+		   	<div class="pageBtn">
+			    <span class="prev glyphicon glyphicon-chevron-left"></span>
 			    <span class="next glyphicon glyphicon-chevron-right"></span>
 			    <ul class="list" style="display: none;">
 					<li class="on">0</li>
 					<li class="">1</li>
 					<li class="">2</li>
-			    </ul> 
-		   	</div> 
+			    </ul>
+		   	</div>
 
 		</div>
 	</div>
@@ -105,31 +105,31 @@
 		<div class="page-header" style="border-bottom: 5px solid #000;color: #000;">
 		  	<h2>信息</h2>
 		</div>
-		<div class="scrollBox" style="margin:0 auto"> 
-		   <div class="ohbox"> 
+		<div class="scrollBox" style="margin:0 auto">
+		   <div class="ohbox">
 		    	<div class="tempWrap" style="overflow:hidden; position:relative; width:100%">
-		     		<ul class="piclist" style="width: 2484px; left: -1656px; position: relative; overflow: hidden; padding: 0px; margin: 0px;"> 
+		     		<ul class="piclist" style="width: 2484px; left: -1656px; position: relative; overflow: hidden; padding: 0px; margin: 0px;">
 		     			@foreach($articleCategories as $articleCategory)
 						<li>
-							<a><img src="{{asset('img/3.jpg')}}" /><span>{{$articleCategory->name}}</span></a>
+							<a href="{{ route('articleCategories.show', $articleCategory->id) }}"><img src="{{asset('img/3.jpg')}}" /><span>{{$articleCategory->name}}</span></a>
 						</li>
 		     			@endforeach
 		     		</ul>
-		    	</div> 
-		   	</div> 
-		   	<div class="pageBtn"> 
-			    <span class="prev glyphicon glyphicon-chevron-left"></span> 
-			    <span class="next glyphicon glyphicon-chevron-right"></span> 
+		    	</div>
+		   	</div>
+		   	<div class="pageBtn">
+			    <span class="prev glyphicon glyphicon-chevron-left"></span>
+			    <span class="next glyphicon glyphicon-chevron-right"></span>
 			    <ul class="list" style="display: none;">
 					<li class="on">0</li>
 					<li class="">1</li>
 					<li class="">2</li>
-			    </ul> 
-		   	</div> 
+			    </ul>
+		   	</div>
 		</div>
 	</div>
 
-	
+
 </div>
 @stop
 
@@ -285,10 +285,10 @@
 				if (res) {
 					for (var i in res) {
 						var items = '<li role="presentation" onclick="getData(\''+res[i].id+'\')">'+ '<a>' + '<span>' + res[i].name + '</span>' + '</a>' + '</li>'
-						$('#counties').append(items) 
+						$('#counties').append(items)
 					}
 				}
-			} 
+			}
 		})
 	}
 	function getCounties(id) {
@@ -309,7 +309,7 @@
 						$('#counties').append(items)
 					}
 				}
-			} 
+			}
 		})
 	}
 	function getTowns(id) {
@@ -320,7 +320,7 @@
 				type: 'towns',
 				id: id,
 				id_type: 'counties'
-			}, 
+			},
 			success: function(res) {
 			// console.log(res);
 				if (res) {
@@ -334,7 +334,7 @@
 			}
 		})
 	}
-	
+
 	function getRurals(id, counties_id) {
 		$('#counties').empty()
 		$.ajax({
@@ -343,7 +343,7 @@
 				type: 'rurals',
 				id: id,
 				id_type: 'town'
-			}, 
+			},
 			success: function(res) {
 				console.log(res);
 				if (res.length) {
@@ -373,7 +373,7 @@
 	}
 	function toRural(id) {
 		location.href= '/rurals/' + id
-	} 
+	}
 </script>
 @stop
 
