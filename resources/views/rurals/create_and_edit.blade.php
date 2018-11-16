@@ -273,6 +273,7 @@
                 id_type: 'counties'
             },
             success: function(res) {
+                // console.log(res);
                 if (res) {  
                     var id = $('#town').data('id')
                     for (var i = 0 ; i < res.length; i++ ) {
@@ -321,7 +322,6 @@
                     id_type: 'counties'
                 }, 
                 success: function(res){
-                    console.log(res);
                     for(var u in res) {
                         Town[u] = new Option(res[u].name, res[u].id)
                     }
@@ -357,7 +357,7 @@
         var positionPoint = {}
         positionPoint.lng = position.val().split(',')[0]
         positionPoint.lat = position.val().split(',')[1]
-        console.log(positionPoint);
+        // console.log(positionPoint);
         map.centerAndZoom(new BMap.Point(positionPoint.lng, positionPoint.lat), 20)
         map.enableScrollWheelZoom()
     } else {

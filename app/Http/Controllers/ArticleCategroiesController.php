@@ -8,6 +8,12 @@ use App\Models\ArticleCategory;
 
 class ArticleCategroiesController extends Controller
 {
+    
+    /*public function index()
+    {
+        return ArticleCategory::all();
+    }*/
+
     public function show(ArticleCategory $articleCategory, Request $request, Article $article)
     {
 

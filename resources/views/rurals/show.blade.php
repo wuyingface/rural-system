@@ -15,6 +15,7 @@
                 @endcan
             </div>
         </div>
+        <!-- 概况 -->
         <div class="introduct_list row" style="padding-left: 15px;" id="introduct_list">
             <ul class="list-group col-md-6">
                 <li class="list-group-item">别名： {{$rural -> alias}}</li>
@@ -35,11 +36,16 @@
                 <li class="list-group-item">机场： {{$rural -> airport}}</li>
             </ul>
         </div>
+        <!-- 文章列表 -->
         <div class="container">
             <p class="lead" id="detailTitle">人文</p>
             <p>
                 something detail...
             </p>
+        </div>
+        <!-- 新增文章表单 -->
+        <div>
+            <iframe id="createArticle" name="createArticle" frameborder="0"></iframe>
         </div>
     </div>
     <div class="col-md-3 col-md-pull-9">
@@ -51,11 +57,18 @@
             <li class="nav_li"><a href="#">{{$nav}}</a></li>
             @endforeach
         </ul>
-        <button class="btn btn-primary">新增文章</button>
+            <a class="btn btn-primary" href="{{ route('articles.create') }}" target="createArticle">新增文章</a>
     </div>
   </div>
 @endsection
-
+@section('styles')
+    <style>
+        #createArticle{
+            width: 100%;
+            height: 600px;
+        }
+    </style>
+@stop
 @section('scripts')
 <script type="text/javascript">
     $(function () {
