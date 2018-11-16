@@ -263,7 +263,6 @@
 @section('scripts')
 <script src="{{ asset('js/sliderShow/js/jquery.SuperSlide.2.1.3.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
-	// console.log(data);
 	// 信息栏、城市
 	jQuery(".scrollBox").slide({ titCell:".list li", mainCell:".piclist", effect:"left",vis:4,scroll:4,delayTime:800,trigger:"click",easing:"easeOutCirc"});
 
