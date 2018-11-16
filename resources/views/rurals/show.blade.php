@@ -63,7 +63,7 @@
 @endsection
 @section('styles')
     <style>
-        #createArticle{
+        #createArticle {
             width: 100%;
             height: 600px;
         }
