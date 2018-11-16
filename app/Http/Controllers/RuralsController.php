@@ -11,6 +11,7 @@ use App\Handlers\ImageUploadHandler;
 use App\Models\City;
 use App\Models\County;
 use App\Models\Town;
+use App\Models\ArticleCategory;
 
 class RuralsController extends Controller
 {
@@ -30,12 +31,13 @@ class RuralsController extends Controller
 
         }
 
-        $city = City::where('id', $rural->city_id)->pluck('name');
+        $articleCategories = ArticleCategory::all();
 
+        $city = City::where('id', $rural->city_id)->pluck('name');
         $county = County::where('id', $rural->county_id)->pluck('name');
         $town = Town::where('id', $rural->town_id)->pluck('name');
 
-        return view('rurals.show', compact('rural', 'city', 'county', 'town'));
+        return view('rurals.show', compact('rural', 'city', 'county', 'town', 'articleCategories'));
     }
 
 
