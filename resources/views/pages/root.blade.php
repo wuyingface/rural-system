@@ -68,7 +68,10 @@
 		     		<ul class="piclist" style="width: 2484px; left: -1656px; overflow: hidden; padding: 0px; margin: 0px;" id="cities">
 		     			@foreach($cities as $city)
 						<li onclick="getCounties({{$city->id}})">
-							<a><span>{{$city->name}}</span></a>
+							<a>
+								<img src="{{asset('img/2.jpg')}}" />
+								<span style="height: 60px;line-height: 60px;">{{$city->name}}</span>
+							</a>
 						</li>
 		     			@endforeach
 		     		</ul>
@@ -106,18 +109,11 @@
 		   <div class="ohbox"> 
 		    	<div class="tempWrap" style="overflow:hidden; position:relative; width:100%">
 		     		<ul class="piclist" style="width: 2484px; left: -1656px; position: relative; overflow: hidden; padding: 0px; margin: 0px;"> 
-				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>乡村发展</span></a></li> 
-				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>民风民俗</span></a></li> 
-				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>文化建设</span></a></li> 
-				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>吃喝玩乐</span></a></li> 
-				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>随想随写</span></a></li> 
-				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>乡村发展2</span></a></li> 
-				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>民风民俗2</span></a></li> 
-				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>文化建设2</span></a></li> 
-				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>吃喝玩乐2</span></a></li> 
-				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>随想随写2</span></a></li> 
-				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>乡村发展3</span></a></li> 
-				      	<li><a href="" target="_blank"><img src="{{asset('img/3.jpg')}}" /><span>民风民俗3</span></a></li> 
+		     			@foreach($articleCategories as $articleCategory)
+						<li>
+							<a><img src="{{asset('img/3.jpg')}}" /><span>{{$articleCategory->name}}</span></a>
+						</li>
+		     			@endforeach
 		     		</ul>
 		    	</div> 
 		   	</div> 
@@ -267,7 +263,7 @@
 @section('scripts')
 <script src="{{ asset('js/sliderShow/js/jquery.SuperSlide.2.1.3.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
-
+	// console.log(data);
 	// 信息栏、城市
 	jQuery(".scrollBox").slide({ titCell:".list li", mainCell:".piclist", effect:"left",vis:4,scroll:4,delayTime:800,trigger:"click",easing:"easeOutCirc"});
 
@@ -359,6 +355,8 @@
 					$('#counties').append(btn)
 				} else {
 					var nothing = '<p>' + '未找到结果' +'</p>'
+					var btn = '<button class="btn btn-primary cityBack" onclick="townBack(\''+counties_id+'\')">' + '返回' + '</button>'
+					$('#counties').append(btn)
 					$('#counties').append(nothing)
 				}
 			}

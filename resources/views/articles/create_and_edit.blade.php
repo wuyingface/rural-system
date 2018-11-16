@@ -29,47 +29,11 @@
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                    <div class="form-group">
-                        <input class="form-control" type="text" name="title" value="{{ old('title', $article->title ) }}" placeholder="请填写标题" required/>
-                    </div>
+                    @include('layouts.form')
 
-                    <div class="form-group">
-                        <select class="form-control" name="category_id" required>
-                            <option value="" hidden disabled {{ $article->id ? '' : 'selected' }}>请选择分类</option>
-                            @foreach ($categories as $value)
-                                <option value="{{ $value->id }}" {{ $article->category_id == $value->id ? 'selected' : '' }}>{{ $value->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <textarea name="body" class="form-control" id="editor" rows="3" placeholder="请填入至少十三字符的内容。">{{ old('body', $article->body ) }}</textarea>
-                    </div>
-
-                    <div class="form-group" style="display: none;">
-                        <input name="map" id="coordinate">
-                        
-                    </div>
-                        
-                    <div class="form-group">
-                        <input type="text" name="location" class="form-control" id="position" placeholder="请点击地图选取位置" style="width: 500px;display: inline-block;" readonly="readonly">
-                        <a href="javascript:void(0);" onclick="hasMap()" id="hasMap">显示地图</a>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" name="location_name" class="form-control" style="display: none;margin-bottom: 5px;" id="userDefined" placeholder="自定义地址名称" />
-                        <div style="display: none;" id="mapWrap">
-                            <input class="form-control" type="text" placeholder="搜索位置" id="searchId">
-                            <div id="map" style="height: 500px;"></div>
-                        </div>
-                    </div>
-                </div>
-
-                    <div class="well well-sm">
-                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 保存</button>
-                    </div>
                 </form>
             </div>
+
         </div>
     </div>
 </div>
@@ -113,15 +77,17 @@
         var map = new BMap.Map('map');
         if (position.value) {
             var coordinate = $('#coordinate').val()
-            console.log(coordinate);
             var positionPoint = {}
             positionPoint.lng = coordinate.split(',')[0]
             positionPoint.lat = coordinate.split(',')[1]
-            map.centerAndZoom(new BMap.Point(positionPoint.lng, positionPoint.lat), 15)
-            map.enableScrollWheelZoom();
+            var point = new BMap.Point(positionPoint.lng, positionPoint.lat)
+            map.centerAndZoom(point, 18)
+            var marker = new BMap.Marker(point)
+            map.addOverlay(marker)
+            map.enableScrollWheelZoom(true);
         } else {
-            map.centerAndZoom(new BMap.Point(113.331189,23.112153), 13);
-            map.enableScrollWheelZoom();
+            map.centerAndZoom(new BMap.Point(113.331189,23.112153), 15);
+            map.enableScrollWheelZoom(true);
         }
         function hasMap() {
             var hasMap = document.getElementById('hasMap')
@@ -132,21 +98,6 @@
             } else {
                 mapWrap.style.display = 'block';
                 hasMap.innerHTML = '隐藏地图'
-                // 获取当前位置
-                var point = new BMap.Point(116.331398,39.897445);
-                map.centerAndZoom(point,12);
-                var geolocation = new BMap.Geolocation();
-                geolocation.getCurrentPosition(function(r){
-                    console.log(r);
-                    if(this.getStatus() == BMAP_STATUS_SUCCESS){
-                        var mk = new BMap.Marker(r.point);
-                        map.addOverlay(mk);
-                        map.panTo(r.point);
-                    }
-                    else {
-                        alert('failed'+this.getStatus());
-                    }
-                },{enableHighAccuracy: true})
             }
         }
         // 建立一个自动完成的对象
@@ -167,7 +118,7 @@
             // 创建地址解析器实例
             var myGeo = new BMap.Geocoder();
             // 将地址解析结果显示在地图上,并调整地图视野
-            myGeo.getPoint(myValue, function(point){
+            myGeo.getPoint(myValue, function(point) {
             // 获取输入地址的地理位置坐标
                 if (point) {
                     map.centerAndZoom(point, 16);

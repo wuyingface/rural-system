@@ -20,20 +20,15 @@
             @include('common.error')
 
             <div class="panel-body">
-                <form action="{{ route('rurals.update', $rural->id) }}" method="POST" accept-charset="UTF-8" class="form-horizontal">
+                <form action="{{ route('rurals.update', $rural->id) }}" method="POST" accept-charset="UTF-8" class="form-horizontal" style="width: 92%;">
                     <input type="hidden" name="_method" value="PUT">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                    <div class="form-group">
-                    	<label for="name-field" class="col-sm-2 control-label">村名</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" type="text" name="name" id="name-field" value="{{ old('name', $rural->name ) }}" placeholder="请输入村名" />
-                        </div>
-                    </div>
                     <!-- 城市联级 -->
                     <div class="form-group">
                         <label for="name-field" class="col-sm-2 control-label">地址</label>
                         <div class="col-sm-10">
+                            <!-- 城市 -->
                             <select name="city_id" onchange="getCounty()" class="form-control cityCascade" id="city">
                                 @foreach($cities as $city)
                                     @if($city -> id == $rural -> city_id)
@@ -43,8 +38,10 @@
                                     @endif
                                 @endforeach
                             </select>
+                            <!-- 区县 -->
                             <select name="county_id" id="county" onchange="getTown()" class="form-control cityCascade" data-id="{{$rural -> county_id}}">
                             </select>
+                            <!-- 城镇 -->
                             <select name="town_id" class="form-control cityCascade" id="town"  data-id="{{$rural -> town_id}}">
                             </select>
                         </div>
@@ -196,7 +193,7 @@
     <style>
     .cityCascade{
         display: inline-block;
-        width: 30%;
+        width: 32.9%;
     }
     .tableHead {
         text-align: center;
@@ -276,6 +273,7 @@
                 id_type: 'counties'
             },
             success: function(res) {
+                // console.log(res);
                 if (res) {  
                     var id = $('#town').data('id')
                     for (var i = 0 ; i < res.length; i++ ) {
@@ -324,7 +322,6 @@
                     id_type: 'counties'
                 }, 
                 success: function(res){
-                    console.log(res);
                     for(var u in res) {
                         Town[u] = new Option(res[u].name, res[u].id)
                     }
@@ -360,7 +357,7 @@
         var positionPoint = {}
         positionPoint.lng = position.val().split(',')[0]
         positionPoint.lat = position.val().split(',')[1]
-        console.log(positionPoint);
+        // console.log(positionPoint);
         map.centerAndZoom(new BMap.Point(positionPoint.lng, positionPoint.lat), 20)
         map.enableScrollWheelZoom()
     } else {

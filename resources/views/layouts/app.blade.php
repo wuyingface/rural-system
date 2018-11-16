@@ -37,6 +37,19 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript">
+    //     console.log('eeeeeee');
+    //     function test() {
+    //         $.ajax({
+    //             url: '/articleCategories',
+    //             success: function(res) {
+    //                 var data = res
+    //                 console.log(res);
+    //             }
+    //         })
+    //     }
+    // test()
+    </script>
     @yield('scripts')
 </body>
 </html>
