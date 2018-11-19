@@ -238,7 +238,11 @@
 			display: none;
 			padding: 15px;
 			z-index: 99999;
-
+			border: 1px solid #ddd;
+			box-shadow: 1px 1px 10.7px;
+		}
+		.countyWrap ul li a {
+			color: #000;
 		}
 		.cityCascade{
 			position: absolute;

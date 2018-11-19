@@ -33,11 +33,15 @@
                 <div class="form-group">
 
                     <label for="" class="avatar-label">用户头像</label>
-                    <input type="file" name="avatar">
+                    <a href="javascript:;" class="file">
+                        选择文件
+                        <input type="file" name="avatar" id="file" onchange="showPic(this)" class="btn btn-default">
+                    </a>
+                    
 
                     @if($user->avatar)
-                        <br>
-                        <img class="thumbnail img-responsive" src="{{ $user->avatar }}" width="200" />
+                        <!-- <br> -->
+                        <img class="thumbnail img-responsive" src="{{ $user->avatar }}" width="200" id="preview" />
                     @endif
 
                 </div>
@@ -50,3 +54,44 @@
 </div>
 
 @endsection
+
+@section('styles')
+<style type="text/css">
+    .file {
+    position: relative;
+    width: 100px;
+    display: block;
+    background: #3097D1;
+    border: 1px solid #2a88bd;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #fff;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+    text-align: center;
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.file:hover {
+    background: #2579a9;
+    border-color: #1f648b;
+    color: #fff;
+    text-decoration: none;
+}
+</style>
+@stop
+
+@section('scripts')
+<script type="text/javascript">
+    function showPic(img) {
+        document.getElementById("preview").src = window.URL.createObjectURL(img.files[0])
+    }
+</script>
+@stop
