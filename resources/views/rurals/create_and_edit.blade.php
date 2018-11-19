@@ -157,7 +157,7 @@
                         <div class="col-sm-10">
                         <a href="javascript:;" class="file">
                             选择文件
-                            <input type="file" name="avatar" id="file" onchange="showPic(this)" class="btn btn-default">
+                            <input type="file" name="background" id="file" onchange="showPic(this)" class="btn btn-default">
                         </a>
                         @if($rural->background)
                             <img class="thumbnail img-responsive" src="{{ $rural->background }}" width="200" id="preview"  />
