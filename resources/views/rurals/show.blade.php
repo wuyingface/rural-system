@@ -16,31 +16,36 @@
             </div>
         </div>
         <!-- 概况 -->
-        <div class="introduct_list row" style="padding-left: 15px;" id="introduct_list">
-            <ul class="list-group col-md-6">
-                <li class="list-group-item">别名： {{$rural -> alias}}</li>
-                <li class="list-group-item">行政规划： {{$city[0]}}-{{$county[0]}}-{{$town[0]}}</li>
-                <li class="list-group-item">人口： {{$rural -> population}}</li>
-                <li class="list-group-item">方言： {{$rural -> dialect}}</li>
-                <li class="list-group-item">行政类别： {{$rural -> type}}</li>
-                <li class="list-group-item">邮政编码： {{$rural -> postalcode}}</li>
-                <li class="list-group-item">电话区号： {{$rural -> area_code}}</li>
-            </ul>
-             <ul class="list-group col-md-6">
-                <li class="list-group-item">地理位置： {{$rural -> location}}</li>
-                <li class="list-group-item">著名景点： {{$rural -> scenery}}</li>
-                <li class="list-group-item">特色产品： {{$rural -> product}}</li>
-                <li class="list-group-item">特色产业： {{$rural -> industry}}</li>
-                <li class="list-group-item">火车站： {{$rural -> railway_station}}</li>
-                <li class="list-group-item">汽车站： {{$rural -> bus_station}}</li>
-                <li class="list-group-item">机场： {{$rural -> airport}}</li>
-            </ul>
+        <div class="general">
+            <div class="introduct_list row" style="padding-left: 15px;" id="introduct_list">
+                <ul class="list-group col-md-6">
+                    <li class="list-group-item">别名： {{$rural -> alias}}</li>
+                    <li class="list-group-item">行政规划： {{$city[0]}}-{{$county[0]}}-{{$town[0]}}</li>
+                    <li class="list-group-item">人口： {{$rural -> population}}</li>
+                    <li class="list-group-item">方言： {{$rural -> dialect}}</li>
+                    <li class="list-group-item">行政类别： {{$rural -> type}}</li>
+                    <li class="list-group-item">邮政编码： {{$rural -> postalcode}}</li>
+                    <li class="list-group-item">电话区号： {{$rural -> area_code}}</li>
+                </ul>
+                 <ul class="list-group col-md-6">
+                    <li class="list-group-item">地理位置： {{$rural -> location}}</li>
+                    <li class="list-group-item">著名景点： {{$rural -> scenery}}</li>
+                    <li class="list-group-item">特色产品： {{$rural -> product}}</li>
+                    <li class="list-group-item">特色产业： {{$rural -> industry}}</li>
+                    <li class="list-group-item">火车站： {{$rural -> railway_station}}</li>
+                    <li class="list-group-item">汽车站： {{$rural -> bus_station}}</li>
+                    <li class="list-group-item">机场： {{$rural -> airport}}</li>
+                </ul>
+            </div>
+            <div class="introduct_general">
+                <p class="lead">{{$rural -> name}}简介</p>
+                {!! $rural->introdution !!}
+            </div>
         </div>
         <!-- 乡村简介 -->
-        <div class=" articleList">
-            <p class="lead" id="detailTitle">{{$rural -> name}}简介</p>
-            <div class="article-body">
-                    {!! $rural->introdution !!}
+        <div class="articleList">
+            <p class="lead" id="detailTitle"></p>
+            <div class="list-group articlesGroup">
             </div>
         </div>
         <!-- 新增文章表单 -->
@@ -167,12 +172,14 @@
             })
         })
         $('.nav_li:first-child').click(function() {
-            $('#introduct_list').show()
+            $('.general').show()
+            $('.articleList').hide()
         })
         $('.nav_li:not(:first)').each(function () {
             $(this).click(function() {
                 $('.articlesGroup').empty()
-                $('#introduct_list').hide()
+                $('.general').hide()
+                $('.articleList').show()
                 $('#detailTitle').html($(this).find('a').html())
                 var category_id = $(this).data('categoryid')
                 var rural_id = $(this).data('ruralid')

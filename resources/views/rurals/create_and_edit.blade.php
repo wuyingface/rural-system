@@ -151,6 +151,20 @@
                             </table>
                         </div>
                     </div>
+                    <div class="form-group">
+
+                    <label for="" class="col-sm-2 control-label">用户头像</label>
+                        <div class="col-sm-10">
+                        <a href="javascript:;" class="file">
+                            选择文件
+                            <input type="file" name="avatar" id="file" onchange="showPic(this)" class="btn btn-default">
+                        </a>
+                        @if($rural->background)
+                            <img class="thumbnail img-responsive" src="{{ $rural->background }}" width="200" id="preview"  />
+                        @endif
+                    </div>
+
+                </div>
                     <!-- <hr /> -->
                     <!-- 介绍 -->
                     <div class="form-group">
@@ -195,6 +209,35 @@
         text-align: center;
         width: 20%;
         font-size: 12px;
+    }
+    .file {
+        position: relative;
+        width: 100px;
+        display: block;
+        background: #3097D1;
+        border: 1px solid #2a88bd;
+        border-radius: 4px;
+        padding: 4px 12px;
+        overflow: hidden;
+        color: #fff;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .file input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+    }
+    .file:hover {
+        background: #2579a9;
+        border-color: #1f648b;
+        color: #fff;
+        text-decoration: none;
     }
     </style>
 @stop
@@ -404,5 +447,8 @@
     map.addEventListener('click', function (e) {
         $('#position').val(e.point.lng + ',' + e.point.lat)
     })
+     function showPic(img) {
+        document.getElementById("preview").src = window.URL.createObjectURL(img.files[0])
+    }
     </script>
 @stop
