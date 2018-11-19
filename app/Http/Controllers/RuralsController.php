@@ -74,6 +74,8 @@ class RuralsController extends Controller
         $this->authorize('update', $rural);
 		$data = $request->all();
 
+        dd($request->background);
+
         //上传乡村背景图片
         if ($request->background) {
 

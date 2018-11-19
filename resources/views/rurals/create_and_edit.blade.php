@@ -153,16 +153,16 @@
                     </div>
                     <div class="form-group">
 
-                    <label for="" class="col-sm-2 control-label">用户头像</label>
+                    <label for="" class="col-sm-2 control-label">乡村背景</label>
                         <div class="col-sm-10">
-                        <a href="javascript:;" class="file">
-                            选择文件
-                            <input type="file" name="background" id="file" onchange="showPic(this)" class="btn btn-default">
-                        </a>
-                        @if($rural->background)
-                            <img class="thumbnail img-responsive" src="{{ $rural->background }}" width="200" id="preview"  />
-                        @endif
-                    </div>
+                            <a href="javascript:;" class="file">
+                                选择文件
+                                <input type="file" name="background" id="file" onchange="showPic(this)" class="btn btn-default">
+                            </a>
+                            @if($rural->background)
+                                <img class="thumbnail img-responsive" src="{{ $rural->background }}" width="200" id="preview"  />
+                            @endif
+                         </div>
 
                 </div>
                     <!-- <hr /> -->
