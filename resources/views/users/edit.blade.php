@@ -58,33 +58,34 @@
 @section('styles')
 <style type="text/css">
     .file {
-    position: relative;
-    width: 100px;
-    display: block;
-    background: #3097D1;
-    border: 1px solid #2a88bd;
-    border-radius: 4px;
-    padding: 4px 12px;
-    overflow: hidden;
-    color: #fff;
-    text-decoration: none;
-    text-indent: 0;
-    line-height: 20px;
-    text-align: center;
-}
-.file input {
-    position: absolute;
-    font-size: 100px;
-    right: 0;
-    top: 0;
-    opacity: 0;
-}
-.file:hover {
-    background: #2579a9;
-    border-color: #1f648b;
-    color: #fff;
-    text-decoration: none;
-}
+        position: relative;
+        width: 100px;
+        display: block;
+        background: #3097D1;
+        border: 1px solid #2a88bd;
+        border-radius: 4px;
+        padding: 4px 12px;
+        overflow: hidden;
+        color: #fff;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .file input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+    }
+    .file:hover {
+        background: #2579a9;
+        border-color: #1f648b;
+        color: #fff;
+        text-decoration: none;
+    }
 </style>
 @stop
 
