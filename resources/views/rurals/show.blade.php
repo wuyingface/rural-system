@@ -8,6 +8,7 @@
         <div class="introduct_header">
             <div class="jumbotron">
                 <h1>{{$rural -> name}}</h1>
+                <p>{{$rural->summary}}</p>
                 @can('update', $rural)
                 <p>
                     <a href="{{ route('rurals.edit', $rural->id) }}" class="btn btn-primary" role="button" style="float: right;">编辑</a>
@@ -67,7 +68,7 @@
                             @endforeach
                     </select>
                 </div>
-
+            
                 <div class="form-group">
                     <textarea name="body" class="form-control" id="editor" rows="3" placeholder="请填入至少十三字符的内容。"></textarea>
                 </div>
