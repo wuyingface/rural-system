@@ -35,8 +35,8 @@ class ArticleCategroiesController extends Controller
                         ['rural_id', '=', $rural_id],
                     ])->paginate(20);
 
-        // 传参变量话题和分类到模板中
-        return view('articles.index', compact('articles'));
+        
+        return $articles;
     }
 
 

@@ -180,7 +180,7 @@
                         if (res) {
                             console.log(res.data);
                             for (var i in res.data) {
-                                var items = '<a class="list-group-item" href="{{ route('articleCategories.show', $articleCategory->id) }}">' + res.data[i].title + '</a>'
+                                var items = '<a class="list-group-item" onclick="toArticle(\''+res.data[i].id+'\')" style="cursor: pointer;">' + res.data[i].title + '</a>'
                                 $('.articlesGroup').append(items)
                             }
                         }
@@ -188,6 +188,7 @@
                 })
             })
         })
+        
         // 文本编辑器
         var editor = new Simditor({
             textarea: $('#editor'),
@@ -207,5 +208,8 @@
             $('.createArticleMark').hide()
         })
     })
+    function toArticle(id) {
+        location.href= '/articles/' + id
+    }
 </script>
 @stop
