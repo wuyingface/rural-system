@@ -14,6 +14,8 @@ class AddDataToRuralsTable extends Migration
     public function up()
     {
         Schema::table('rurals', function (Blueprint $table) {
+            $table->string('background')->nullable()->commit('背景图片');
+            $table->string('summary', 50)->nullable()->commit('一句话描述');
             $table->string('alias', 30)->nullable()->commit('别名');
             $table->string('population', 20)->nullable()->commit('人口');
             $table->string('dialect', 30)->nullable()->commit('方言');
@@ -44,6 +46,8 @@ class AddDataToRuralsTable extends Migration
     public function down()
     {
         Schema::table('rurals', function (Blueprint $table) {
+            $table->dropColumn('background');
+            $table->dropColumn('summary');
             $table->dropColumn('alias');
             $table->dropColumn('population');
             $table->dropColumn('dialect');

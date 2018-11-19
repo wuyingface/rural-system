@@ -68,17 +68,29 @@ class RuralsController extends Controller
 	}
 
 
-	public function update(RuralRequest $request, Rural $rural)
+	public function update(RuralRequest $request, ImageUploadHandler $uploader, Rural $rural)
 	{
-        //dd($request->all());
+        //授权验证
         $this->authorize('update', $rural);
-		$rural->update($request->all());
+		$data = $request->all();
+
+        //上传乡村背景图片
+        if ($request->background) {
+
+            $result = $uploader->save($request->background, 'rural_background', $rural->name, 1024);
+            if ($result) {
+                $data['background'] = $result['path'];
+            }
+        }
+
+        $rural->update($data);
 
 		return redirect()->to($rural->link())->with('message', '更新乡村信息成功.');
 	}
 
 
-    //文章上传图片
+
+    //乡村上传图片
     public function uploadImage(Request $request, ImageUploadHandler $uploader)
     {
 

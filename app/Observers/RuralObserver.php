@@ -57,5 +57,13 @@ class RuralObserver
         $ruralAdministrator->givePermissionTo($permission->name);
     }
 
+    //生成默认乡村背景图片
+    public function saving(Rural $rural)
+    {
+        if (empty($rural->background)) {
+            $rural->background = config('app.url').'/img/rural_background.jpg';
+        }
+    }
+
 
 }
