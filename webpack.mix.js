@@ -16,4 +16,5 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .copyDirectory('resources/assets/plugins', 'public/js')
    .copyDirectory('resources/assets/img', 'public/img')
    .copyDirectory('resources/assets/city_img', 'public/city_img')
+   .copyDirectory('resources/assets/default_avatar', 'public/uploads/images/avatars')
    ;

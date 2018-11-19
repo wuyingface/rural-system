@@ -71,7 +71,7 @@ return [
         ],
     ],
     'rules'   => [
-        'name' => 'required|min:1|unique:categories'
+        'name' => 'required|min:1|unique:article_categories'
     ],
     'messages' => [
         'name.unique'   => '分类名重复，请选用其他文章分类名称。',

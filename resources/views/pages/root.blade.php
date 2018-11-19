@@ -60,7 +60,7 @@
 	<!-- 城市联动 -->
 	<div class="container">
 		<div class="page-header" style="border-bottom: 5px solid #000;color: #000;">
-		  	<h2>城市</h2>
+		  	<h2>寻找乡村</h2>
 		</div>
 		<div class="scrollBox" style="margin:0 auto" id="cityscrollBox">
 		   <div class="ohbox">
@@ -103,7 +103,7 @@
 	<!-- 信息栏 -->
 	<div class="container">
 		<div class="page-header" style="border-bottom: 5px solid #000;color: #000;">
-		  	<h2>信息</h2>
+		  	<h2>文章分类</h2>
 		</div>
 		<div class="scrollBox" style="margin:0 auto">
 		   <div class="ohbox">
@@ -111,7 +111,7 @@
 		     		<ul class="piclist" style="width: 2484px; left: -1656px; position: relative; overflow: hidden; padding: 0px; margin: 0px;">
 		     			@foreach($articleCategories as $articleCategory)
 						<li>
-							<a href="{{ route('articleCategories.show', $articleCategory->id) }}"><img src="{{asset('img/3.jpg')}}" /><span>{{$articleCategory->name}}</span></a>
+							<a href="{{ route('articleCategories.show', $articleCategory->id) }}"><img src="{{$articleCategory->img}}" /><span>{{$articleCategory->name}}</span></a>
 						</li>
 		     			@endforeach
 		     		</ul>
