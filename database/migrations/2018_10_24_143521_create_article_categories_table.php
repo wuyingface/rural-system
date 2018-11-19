@@ -16,6 +16,7 @@ class CreateArticleCategoriesTable extends Migration
         Schema::create('article_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->index()->comment('名称');
+            $table->string('img')->nullable();
             $table->text('description')->nullable()->comment('描述');
             $table->integer('num')->default(0)->comment('帖子数');
             $table->timestamps();

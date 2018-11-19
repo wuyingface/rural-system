@@ -36,17 +36,17 @@
                 <li class="list-group-item">机场： {{$rural -> airport}}</li>
             </ul>
         </div>
-        <!-- 文章列表 -->
+        <!-- 乡村简介 -->
         <div class=" articleList">
-            <p class="lead" id="detailTitle">人文</p>
-            <div class="list-group articlesGroup">
-                
+            <p class="lead" id="detailTitle">{{$rural -> name}}简介</p>
+            <div class="article-body">
+                    {!! $rural->introdution !!}
             </div>
         </div>
         <!-- 新增文章表单 -->
         <div class="createArticleMark">
-            <form class="createArticle" action="{{ route('articles.store') }}" method="POST" accept-charset="UTF-8">   
-                <h4 style="font-weight: bold;margin-bottom: 18px;">发表关于{{$rural->name}}的文章</h4>   
+            <form class="createArticle" action="{{ route('articles.store') }}" method="POST" accept-charset="UTF-8">
+                <h4 style="font-weight: bold;margin-bottom: 18px;">发表关于{{$rural->name}}的文章</h4>
                 <span class="glyphicon glyphicon-remove closeBtn"></span>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="rural_id" value="{{ $rural->id }}">
@@ -69,9 +69,9 @@
 
                 <div class="form-group" style="display: none;">
                     <input name="map" id="coordinate">
-                    
+
                 </div>
-                    
+
                 <div class="form-group">
                     <input type="text" name="location" class="form-control" id="position" placeholder="请点击地图选取位置" style="width: 500px;display: inline-block;" readonly="readonly">
                     <a href="javascript:void(0);" onclick="hasMap()" id="hasMap">显示地图</a>
@@ -97,7 +97,7 @@
             @foreach ($articleCategories as $articleCategory)
                 <li class="nav_li" data-categoryid="{{$articleCategory->id}}" data-ruralid="{{$rural->id}}" id="category_li"><a href="#">{{$articleCategory->name}}</a></li>
             @endforeach
-                
+
         </ul>
         <button class="hasCreateArticle btn btn-primary">新建乡村文章</button>
     </div>
@@ -193,7 +193,7 @@
                 })
             })
         })
-        
+
         // 文本编辑器
         var editor = new Simditor({
             textarea: $('#editor'),

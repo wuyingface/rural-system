@@ -23,7 +23,7 @@ class UserObserver
     public function saving(User $user)
     {
         if (empty($user->avatar)) {
-            $user->avatar = 'http://www.rural-system.com/uploads/images/avatars/default_avatar.jpg';
+            $user->avatar = config('app.url').'/uploads/images/avatars/default_avatar.jpg';
         }
     }
 }
