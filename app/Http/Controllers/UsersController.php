@@ -39,7 +39,9 @@ class UsersController extends Controller
         $this->authorize('update', $user);
 
         $data = $request->all();
+
         dd($request->avatar);
+
         //上传头像
         if ($request->avatar) {
 

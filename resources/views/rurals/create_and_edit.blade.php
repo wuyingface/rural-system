@@ -19,33 +19,7 @@
                 <form action="{{ route('rurals.update', $rural->id) }}" method="POST" accept-charset="UTF-8" class="form-horizontal" style="width: 92%;">
                     <input type="hidden" name="_method" value="PUT">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    
-                    <!-- 乡村概况 -->
-                    <div class="form-group">
 
-                        <label for="summary-field" class="col-sm-2 control-label">乡村概况</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" type="text" name="summary" id="summary-field" value="{{ old('summary', $rural->summary ) }}" placeholder="请输入乡村概况" />
-                        </div>
-                    </div>
-
-                    <!-- 乡村背景图片 -->
-                    <div class="form-group">
-
-                        <label for="" class="col-sm-2 control-label">乡村背景</label>
-                            <div class="col-sm-10">
-                            <a href="javascript:;" class="file">
-                                选择文件
-                                <input type="file" name="background" id="file" onchange="showPic(this)" class="btn btn-default">
-                            </a>
-                            @if($rural->background)
-                                <img class="thumbnail img-responsive" src="{{ $rural->background }}" width="200" id="preview"  />
-                            @endif
-                        </div>
-
-                    </div>
-
-                    <hr />
                     <!-- 城市联级 -->
                     <div class="form-group">
                         <label for="name-field" class="col-sm-2 control-label">地址</label>
@@ -177,8 +151,21 @@
                             </table>
                         </div>
                     </div>
-                    
-                    <hr />
+                    <div class="form-group">
+
+                    <label for="" class="col-sm-2 control-label">乡村背景</label>
+                        <div class="col-sm-10">
+                            <a href="javascript:;" class="file">
+                                选择文件
+                                <input type="file" name="background" id="file" onchange="showPic(this)" class="btn btn-default">
+                            </a>
+                            @if($rural->background)
+                                <img class="thumbnail img-responsive" src="{{ $rural->background }}" width="200" id="preview"  />
+                            @endif
+                         </div>
+
+                </div>
+                    <!-- <hr /> -->
                     <!-- 介绍 -->
                     <div class="form-group">
                         <label for="editor" class="col-sm-2 control-label">介绍</label>
