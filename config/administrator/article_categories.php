@@ -24,10 +24,18 @@ return [
             'title'    => '文章分类名称',
             'sortable' => false,
         ],
+        'img' => [
+            'title'    => '分类图片',
+            'output' => function ($img, $model) {
+                return empty($img) ? 'N/A' : '<img src="'.$img.'" width="40">';
+            },
+            'sortable' => false,
+        ],
         'description' => [
             'title'    => '描述',
             'sortable' => false,
         ],
+
         'operation' => [
             'title'  => '管理',
             'sortable' => false,
@@ -36,6 +44,15 @@ return [
     'edit_fields' => [
         'name' => [
             'title' => '文章分类名称',
+        ],
+        'img' => [
+            'title' => '分类图片',
+
+            // 设置表单条目的类型，默认的 type 是 input
+            'type' => 'image',
+
+            // 图片上传必须设置图片存放路径
+            'location' => public_path() . '/uploads/images/article_category/',
         ],
         'description' => [
             'title' => '描述',
