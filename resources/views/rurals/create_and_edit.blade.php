@@ -7,14 +7,10 @@
         <div class="panel panel-default">
 
             <div class="panel-heading">
-                <h1>
-                    <i class="glyphicon glyphicon-edit"></i> Rural /
-                    @if($rural->id)
-                        Edit #{{$rural->id}}
-                    @else
-                        Create
-                    @endif
-                </h1>
+                <h2>
+                    <i class="glyphicon glyphicon-edit"></i>
+                   修改{{$rural->name}}信息
+                </h2>
             </div>
 
             @include('common.error')
@@ -246,7 +242,7 @@
                 id_type: 'cities'
             },
             success: function(res) {
-                if (res) {  
+                if (res) {
                     var id = $('#county').data('id')
                     for (var i = 0 ; i < res.length; i++ ) {
                         County[i] = new Option(res[i].name, res[i].id)
@@ -274,7 +270,7 @@
             },
             success: function(res) {
                 // console.log(res);
-                if (res) {  
+                if (res) {
                     var id = $('#town').data('id')
                     for (var i = 0 ; i < res.length; i++ ) {
                         Town[i] = new Option(res[i].name, res[i].id)
@@ -320,7 +316,7 @@
                     type: 'towns',
                     id: initCountyId,
                     id_type: 'counties'
-                }, 
+                },
                 success: function(res){
                     for(var u in res) {
                         Town[u] = new Option(res[u].name, res[u].id)
