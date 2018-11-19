@@ -144,6 +144,9 @@
         .hasCreateArticle{
             margin-top: 20px;
         }
+        .list-time{
+            float: right;
+        }
     </style>
 @stop
 @section('scripts')
@@ -168,21 +171,23 @@
         })
         $('.nav_li:not(:first)').each(function () {
             $(this).click(function() {
+                $('.articlesGroup').empty()
                 $('#introduct_list').hide()
                 $('#detailTitle').html($(this).find('a').html())
                 var category_id = $(this).data('categoryid')
                 var rural_id = $(this).data('ruralid')
-                console.log($(this).data('categoryid'))
-                console.log($(this).data('ruralid'))
                 $.ajax({
                     url: '/articleCategories/' + category_id + '/' + rural_id,
                     success: function(res) {
-                        if (res) {
-                            console.log(res.data);
+                        if (res.data.length) {
+                            console.log(res.data[0].created_at.split(' ')[0]);
                             for (var i in res.data) {
-                                var items = '<a class="list-group-item" onclick="toArticle(\''+res.data[i].id+'\')" style="cursor: pointer;">' + res.data[i].title + '</a>'
+                                var items = '<a class="list-group-item" onclick="toArticle(\''+res.data[i].id+'\')" style="cursor: pointer;">' + res.data[i].title + '<span class="list-time">' + res.data[i].created_at.split(' ')[0]  +'</span>' + ' </a>'
                                 $('.articlesGroup').append(items)
                             }
+                        } else {
+                            var nothing = '<p>' + '未找到结果' +'</p>'
+                            $('.articlesGroup').append(nothing)
                         }
                     }
                 })
