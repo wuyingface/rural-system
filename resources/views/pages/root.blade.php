@@ -69,7 +69,7 @@
 		     			@foreach($cities as $city)
 						<li onclick="getCounties({{$city->id}})">
 							<a>
-								<img src="{{asset('img/2.jpg')}}" />
+								<img src="/city_img/{{$city->name}}.png" />
 								<span style="height: 60px;line-height: 60px;">{{$city->name}}</span>
 							</a>
 						</li>
