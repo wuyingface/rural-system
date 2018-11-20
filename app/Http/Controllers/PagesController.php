@@ -19,7 +19,7 @@ class PagesController extends Controller
     {
         $articleCategories = ArticleCategory::all();
         $cities = DB::table('cities')->select('id', 'name')->get();
-        $rurals = DB::table('rurals')->latest()->select('id', 'name', 'background', 'summary')->limit(3)->get();
+        $rurals = DB::table('rurals')->latest()->select('id', 'name', 'background', 'summary')->limit(5)->get();
 
         return view('pages.root', compact('cities', 'articleCategories', 'rurals'));
     }
