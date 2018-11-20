@@ -152,16 +152,27 @@
         }
         .list-time{
             float: right;
+            font-weight: 600;
         }
         .list_excerpt{
             font-size: 14px;
             letter-spacing: 1px;
             text-indent: 28px;
-            line-height: 23px;
-            margin-top: 5px;
+            line-height: 27px;
+            margin-top: 11px;
+            font-weight: normal;
         }
         .tangram-suggestion{
             z-index: 99999999 !important;
+        }
+        .list_title{
+            font-weight: 700;
+            padding: 22px 22px;
+        }
+        #detailTitle{
+            font-weight: 800;
+            border-bottom: 7px solid;
+            padding-bottom: 10px;
         }
     </style>
 @stop
@@ -200,7 +211,7 @@
                         if (res.data.length) {
                             console.log(res.data[0].created_at.split(' ')[0]);
                             for (var i in res.data) {
-                                var items = '<h4 class="list-group-item" onclick="toArticle(\''+res.data[i].id+'\')" style="cursor: pointer;">' + res.data[i].title + '<p class="list_excerpt">' + res.data[i].excerpt+ '<span class="list-time">' + res.data[i].created_at.split(' ')[0]  +'</span>' + '</p>' +' </h4>'
+                                var items = '<h4 class="list-group-item list_title" onclick="toArticle(\''+res.data[i].id+'\')" style="cursor: pointer;">' + res.data[i].title + '<p class="list_excerpt">' + res.data[i].excerpt+ '<span class="list-time">' + res.data[i].created_at.split(' ')[0]  +'</span>' + '</p>' +' </h4>'
                                 $('.articlesGroup').append(items)
                             }
                         } else {
