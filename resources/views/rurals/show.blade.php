@@ -6,7 +6,7 @@
   <div class="container row">
     <div class="col-md-9 col-md-push-3 rightPart">
         <div class="introduct_header">
-            <div class="jumbotron">
+            <div class="jumbotron" style="background: url({{$rural->background}});background-repeat: no-repeat;background-size: 100% 100%;">
                 <h1>{{$rural -> name}}</h1>
                 <p>{{$rural->summary}}</p>
                 @can('update', $rural)
