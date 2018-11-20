@@ -1,6 +1,6 @@
-<form action="{{ route('articles.store') }}" method="POST" accept-charset="UTF-8">
+<!-- <form action="{{ route('articles.store') }}" method="POST" accept-charset="UTF-8">
                 
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
     <div class="form-group">
         <input class="form-control" type="text" name="title" value="{{ old('title', $article->title ) }}" placeholder="请填写标题" required/>
     </div>
@@ -15,12 +15,11 @@
     </div>
 
     <div class="form-group">
-        <textarea name="body" class="form-control" id="editor" rows="3" placeholder="请填入至少十三字符的内容。">{{ old('body', $article->body ) }}</textarea>
+        <textarea name="body" class="form-control" id="editor" rows="3" placeholder="请填入至少十三字符的内容。" required>{{ old('body', $article->body ) }}</textarea>
     </div>
-
+    <!-- 地图 -->
     <div class="form-group" style="display: none;">
         <input name="map" id="coordinate" value="{{old('map', $article -> map)}}">
-        
     </div>
         
     <div class="form-group">
@@ -39,4 +38,4 @@
     <div class="well well-sm">
         <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 保存</button>
     </div>
-</form>
+<!-- </form> -->
