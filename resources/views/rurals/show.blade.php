@@ -70,14 +70,14 @@
                 </div>
             
                 <div class="form-group">
-                    <textarea name="body" class="form-control" id="editor" rows="3" placeholder="请填入至少十三字符的内容。"></textarea>
+                    <textarea name="body" class="form-control" id="editor" rows="3" placeholder="请填入至少十三字符的内容。" required="required"></textarea>
                 </div>
 
                 <div class="form-group" style="display: none;">
                     <input name="map" id="coordinate">
 
                 </div>
-
+                <!-- 地图 -->
                 <div class="form-group">
                     <input type="text" name="location" class="form-control" id="position" placeholder="请点击地图选取位置" style="width: 500px;display: inline-block;" readonly="readonly">
                     <a href="javascript:void(0);" onclick="hasMap()" id="hasMap">显示地图</a>
@@ -152,6 +152,27 @@
         }
         .list-time{
             float: right;
+            font-weight: 600;
+        }
+        .list_excerpt{
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-indent: 28px;
+            line-height: 27px;
+            margin-top: 11px;
+            font-weight: normal;
+        }
+        .tangram-suggestion{
+            z-index: 99999999 !important;
+        }
+        .list_title{
+            font-weight: 700;
+            padding: 22px 22px;
+        }
+        #detailTitle{
+            font-weight: 800;
+            border-bottom: 7px solid;
+            padding-bottom: 10px;
         }
     </style>
 @stop
@@ -190,7 +211,7 @@
                         if (res.data.length) {
                             console.log(res.data[0].created_at.split(' ')[0]);
                             for (var i in res.data) {
-                                var items = '<a class="list-group-item" onclick="toArticle(\''+res.data[i].id+'\')" style="cursor: pointer;">' + res.data[i].title + '<span class="list-time">' + res.data[i].created_at.split(' ')[0]  +'</span>' + ' </a>'
+                                var items = '<h4 class="list-group-item list_title" onclick="toArticle(\''+res.data[i].id+'\')" style="cursor: pointer;">' + res.data[i].title + '<p class="list_excerpt">' + res.data[i].excerpt+ '<span class="list-time">' + res.data[i].created_at.split(' ')[0]  +'</span>' + '</p>' +' </h4>'
                                 $('.articlesGroup').append(items)
                             }
                         } else {

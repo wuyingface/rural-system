@@ -35,6 +35,7 @@ var ac = new BMap.Autocomplete(
 );
 var myValue;
 ac.addEventListener('onconfirm', function(e) {
+    console.log(e);
     position.value = ''
     var _value = e.item.value;
     myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;

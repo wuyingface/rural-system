@@ -24,8 +24,11 @@
                     <form action="{{ route('articles.update', $article->id) }}" method="POST" accept-charset="UTF-8">
                         <input type="hidden" name="_method" value="PUT">
                 @else
-                    @include('layouts.form')
+                    <form action="{{ route('articles.store') }}" method="POST" accept-charset="UTF-8">
+                
                 @endif
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    @include('layouts.form')
                 </form>
             </div>
 
