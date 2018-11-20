@@ -19,7 +19,9 @@ class PagesController extends Controller
     {
         $articleCategories = ArticleCategory::all();
         $cities = DB::table('cities')->select('id', 'name')->get();
-        return view('pages.root', compact('cities', 'articleCategories'));
+        $rurals = DB::table('rurals')->latest()->select('id', 'name', 'background', 'summary')->limit(3)->get();
+
+        return view('pages.root', compact('cities', 'articleCategories', 'rurals'));
     }
 
     //获取二级或者三级地区
