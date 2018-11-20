@@ -19,34 +19,53 @@
 			</ul>
   		</div>
 	</div>
-
-	<!-- 轮播图 -->
 	<div class="container">
+		  <div class="TB-focus" style="margin:0 auto"> 
+		   	<div class="hd"> 
+			    <ul> 
+					   <li class="">1</li> 
+					   <li class="">2</li> 
+					   <li class="">3</li> 
+					   <li class="on">4</li> 
+					   <li class="">5</li> 
+					  </ul>
+		   	</div> 
+		   <div class="bd"> 
+			    <ul > 
+			    	@foreach($rurals as $rural)
+				    <li >
+				    	<a href="" target="_blank">
+				    		<span class="slide_name">{{$rural -> name}}</span>
+							<span class="slide_summary">{{$rural -> summary}}</span>
+				    		<img src="{{$rural->background}}" />
+				    	</a>
+				    </li> 
+				    @endforeach
+			    </ul> 
+		   </div> 
+  		</div>
+	</div>
+	<!-- 轮播图 -->
+	<!-- <div class="container">
 		<div id="slideBox" class="slideBox">
 			<div class="hd">
 				<ul>
-					<li class=""></li>
-					<li class="on"></li>
-					<li class=""></li>
+					@foreach($rurals as $rural)
+					<li class="" id="{{$rural -> id}}">{{$rural -> id}}</li>
+					@endforeach
 				</ul>
 			</div>
 			<div class="bd">
 				<ul>
-					<li style="display: none;">
-						<a href="" target="_blank">
-							<img src="{{asset('img/1.jpg')}}">
+					@foreach($rurals as $rural)
+					<li style="display: none;" >
+						<a href="" target="_blank" class="slide_wrap">
+							<span class="slide_name">{{$rural -> name}}</span>
+							<span class="slide_summary">{{$rural -> summary}}</span>
+							<img src="{{$rural -> background}}">
 						</a>
 					</li>
-					<li style="display: list-item; opacity: 0.84;">
-						<a href="" target="_blank">
-							<img src="{{asset('img/2.jpg')}}">
-						</a>
-						</li>
-					<li style="display: none;">
-						<a href="" target="_blank">
-							<img src="{{asset('img/3.jpg')}}">
-						</a>
-					</li>
+					@endforeach
 				</ul>
 			</div>
 
@@ -55,7 +74,7 @@
 			<a class="next" href="javascript:void(0)"></a>
 
 		</div>
-	</div>
+	</div> -->
 
 	<!-- 城市联动 -->
 	<div class="container">
@@ -137,6 +156,52 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('js/editor/css/simditor.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('js/sliderShow/css/slider.css') }}">
     <style>
+		.TB-focus {
+		    width: 100%;
+			height: 450px;
+		    border: 1px solid #D8D8D8;
+		    position: relative;
+		    overflow: hidden;
+		}
+		.TB-focus .hd {
+		    position: absolute;
+		    right: 9px;
+		    bottom: 10px;
+		    z-index: 1;
+		    padding-left: 2px;
+		}
+		.TB-focus .hd li.on {
+		    background: #f60;
+		    color: #fff;
+		    font-weight: bold;
+		    opacity: 1;
+		    filter: alpha(opacity=100);
+		    z-index: 2;
+		    position: relative;
+		}
+		.TB-focus .hd li {
+		    color: #f60;
+		    cursor: pointer;
+		    margin-left: 3px;
+		    width: 18px;
+		    height: 18px;
+		    background: #fff;
+		    float: left;
+		    font-size: 13px;
+		    line-height: 18px;
+		    overflow: visible;
+		    text-align: center;
+		    opacity: .7;
+		    filter: alpha(opacity=70);
+		    border: 1px solid #d8d8d8;
+		    margin-left: -1px;
+		    list-style: none;
+		}
+		.TB-focus .bd li img{
+			width: 100%;
+			height: 450px;
+			display: block;
+		}
 		.slideBox {
 			width: 100%;
 			height: 450px;
@@ -174,7 +239,7 @@
 		}
 
 		.slideBox .hd ul li.on {
-			background: #3097d1;
+			background: #000;
 		}
 
 		.slideBox .bd {
@@ -261,6 +326,21 @@
 		#counties li {
 			cursor: pointer;
 		}
+		.slide_wrap{
+			position: relative;
+			color: #000;
+			/*display: inline-block;*/
+		}
+		.slide_name {
+			position: absolute;
+			font-size: 40px;
+			top: 68px;
+			z-index: 1111;
+			left: 80px;
+		}
+		.slide_summary{
+			position: absolute;
+		}
     </style>
 @stop
 
@@ -272,6 +352,7 @@
 
 	// 轮播图
 	jQuery(".slideBox").slide({mainCell:".bd ul",autoPlay:true});
+	jQuery(".TB-focus").slide({ mainCell:".bd ul",effect:"fold",autoPlay:true,delayTime:200 });
 	function common (id, type, id_type, getData, flag) {
 		if (flag) {
 			$('#countyWrap').show()
