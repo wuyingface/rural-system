@@ -19,63 +19,34 @@
 			</ul>
   		</div>
 	</div>
+
+	<!-- 轮播图 -->
 	<div class="container">
 		  <div class="TB-focus" style="margin:0 auto"> 
 		   	<div class="hd"> 
 			    <ul> 
-					   <li class="">1</li> 
-					   <li class="">2</li> 
-					   <li class="">3</li> 
-					   <li class="on">4</li> 
-					   <li class="">5</li> 
-					  </ul>
+					@foreach($rurals as $rural)
+				    <li id="{{$rural -> id}}"></li> 
+				    @endforeach
+				</ul>
 		   	</div> 
 		   <div class="bd"> 
 			    <ul > 
 			    	@foreach($rurals as $rural)
 				    <li >
 				    	<a href="" target="_blank">
+				    		<img src="{{$rural->background}}" />
 				    		<span class="slide_name">{{$rural -> name}}</span>
 							<span class="slide_summary">{{$rural -> summary}}</span>
-				    		<img src="{{$rural->background}}" />
 				    	</a>
 				    </li> 
 				    @endforeach
 			    </ul> 
+			    <div class="focus_box"></div>
 		   </div> 
   		</div>
 	</div>
-	<!-- 轮播图 -->
-	<!-- <div class="container">
-		<div id="slideBox" class="slideBox">
-			<div class="hd">
-				<ul>
-					@foreach($rurals as $rural)
-					<li class="" id="{{$rural -> id}}">{{$rural -> id}}</li>
-					@endforeach
-				</ul>
-			</div>
-			<div class="bd">
-				<ul>
-					@foreach($rurals as $rural)
-					<li style="display: none;" >
-						<a href="" target="_blank" class="slide_wrap">
-							<span class="slide_name">{{$rural -> name}}</span>
-							<span class="slide_summary">{{$rural -> summary}}</span>
-							<img src="{{$rural -> background}}">
-						</a>
-					</li>
-					@endforeach
-				</ul>
-			</div>
-
-			<!-- 下面是前/后按钮代码-->
-			<a class="prev" href="javascript:void(0)"></a>
-			<a class="next" href="javascript:void(0)"></a>
-
-		</div>
-	</div> -->
-
+	
 	<!-- 城市联动 -->
 	<div class="container">
 		<div class="page-header" style="border-bottom: 5px solid #000;color: #000;">
@@ -167,67 +138,22 @@
 		    position: absolute;
 		    right: 9px;
 		    bottom: 10px;
-		    z-index: 1;
+		    z-index: 99999;
 		    padding-left: 2px;
 		}
 		.TB-focus .hd li.on {
-		    background: #f60;
-		    color: #fff;
-		    font-weight: bold;
+		    background: #000;
 		    opacity: 1;
 		    filter: alpha(opacity=100);
 		    z-index: 2;
 		    position: relative;
 		}
 		.TB-focus .hd li {
-		    color: #f60;
-		    cursor: pointer;
-		    margin-left: 3px;
-		    width: 18px;
-		    height: 18px;
-		    background: #fff;
-		    float: left;
-		    font-size: 13px;
-		    line-height: 18px;
 		    overflow: visible;
-		    text-align: center;
 		    opacity: .7;
 		    filter: alpha(opacity=70);
-		    border: 1px solid #d8d8d8;
-		    margin-left: -1px;
 		    list-style: none;
-		}
-		.TB-focus .bd li img{
-			width: 100%;
-			height: 450px;
-			display: block;
-		}
-		.slideBox {
-			width: 100%;
-			height: 450px;
-			overflow: hidden;
-			position: relative;
-			border: 1px solid #ddd;
-		}
-
-		.slideBox .hd {
-			height: 15px;
-			overflow: hidden;
-			position: absolute;
-			right: 5px;
-			bottom: 5px;
-			z-index: 1;
-		}
-
-		.slideBox .hd ul {
-			overflow: hidden;
-			zoom: 1;
-			float: left;
-			list-style: none;
-		}
-
-		.slideBox .hd ul li {
-			float: left;
+		    float: left;
 			margin-right: 8px;
 			width: 15px;
 			height: 15px;
@@ -237,31 +163,17 @@
 			cursor: pointer;
 			border-radius: 20px;
 		}
-
-		.slideBox .hd ul li.on {
-			background: #000;
+		.TB-focus .bd ul{
+			width: 100% !important;
 		}
-
-		.slideBox .bd {
-			position: relative;
-			height: 100%;
-			z-index: 0;
+		.TB-focus .bd li{
+			width: 100% !important;
 		}
-		.slideBox .bd ul{
-			padding: 0;
-		}
-
-		.slideBox .bd li {
-			zoom: 1;
-			vertical-align: middle;
-		}
-
-		.slideBox .bd img {
+		.TB-focus .bd li img{
 			width: 100%;
 			height: 450px;
 			display: block;
 		}
-
 		.slideBox .prev, .slideBox .next {
 			position: absolute;
 			left: 3%;
@@ -273,26 +185,6 @@
 			background: url('{{asset('js/sliderShow/img/slider-arrow.png')}}') -110px 5px no-repeat;
 			filter: alpha(opacity=50);
 			opacity: 0.5;
-		}
-
-		.slideBox .next {
-			left: auto;
-			right: 3%;
-			background-position: 8px 5px;
-		}
-
-		.slideBox .prev:hover,
-				.slideBox .next:hover {
-			filter: alpha(opacity=100);
-			opacity: 1;
-		}
-
-		.slideBox .prevStop {
-			display: none;
-		}
-
-		.slideBox .nextStop {
-			display: none;
 		}
 		.countyWrap {
 			width: 86%;
@@ -329,17 +221,32 @@
 		.slide_wrap{
 			position: relative;
 			color: #000;
-			/*display: inline-block;*/
 		}
 		.slide_name {
 			position: absolute;
 			font-size: 40px;
-			top: 68px;
 			z-index: 1111;
 			left: 80px;
+			color: #fff;
+			bottom: 42px;
 		}
 		.slide_summary{
 			position: absolute;
+			bottom: 16px;
+			font-size: 19px;
+			color: #fff;
+			left: 79px;
+			z-index: 9999;
+		}
+		.focus_box{
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100px;
+			background-color:rgba(0,0,0,0.4);
+			z-index: 8;
+			overflow: hidden;
 		}
     </style>
 @stop
