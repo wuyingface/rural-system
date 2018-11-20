@@ -44,7 +44,7 @@
             </div>
         </div>
         <!-- 乡村简介 -->
-        <div class="articleList">
+        <div class="articleList" style="display: none;">
             <p class="lead" id="detailTitle"></p>
             <div class="list-group articlesGroup">
             </div>
