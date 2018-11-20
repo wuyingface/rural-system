@@ -23,18 +23,11 @@
 	<!-- 轮播图 -->
 	<div class="container">
 		  <div class="TB-focus" style="margin:0 auto"> 
-		   	<div class="hd"> 
-			    <ul> 
-					@foreach($rurals as $rural)
-				    <li id="{{$rural -> id}}"></li> 
-				    @endforeach
-				</ul>
-		   	</div> 
 		   <div class="bd"> 
 			    <ul > 
 			    	@foreach($rurals as $rural)
 				    <li >
-				    	<a href="" target="_blank">
+				    	<a href="/rurals/{{$rural->id}}" target="_blank">
 				    		<img src="{{$rural->background}}" />
 				    		<span class="slide_name">{{$rural -> name}}</span>
 							<span class="slide_summary">{{$rural -> summary}}</span>
@@ -44,6 +37,9 @@
 			    </ul> 
 			    <div class="focus_box"></div>
 		   </div> 
+		   <!-- 前后按钮 -->
+			<a class="prev" href="javascript:void(0)"></a>
+			<a class="next" href="javascript:void(0)"></a>
   		</div>
 	</div>
 	
@@ -174,7 +170,21 @@
 			height: 450px;
 			display: block;
 		}
-		.slideBox .prev, .slideBox .next {
+		
+		.TB-focus .prev:hover,
+				.TB-focus .next:hover {
+			filter: alpha(opacity=100);
+			opacity: 1;
+		}
+
+		.TB-focus .prevStop {
+			display: none;
+		}
+
+		.TB-focus .nextStop {
+			display: none;
+		}
+		.TB-focus .prev, .TB-focus .next {
 			position: absolute;
 			left: 3%;
 			top: 50%;
@@ -184,7 +194,12 @@
 			height: 40px;
 			background: url('{{asset('js/sliderShow/img/slider-arrow.png')}}') -110px 5px no-repeat;
 			filter: alpha(opacity=50);
-			opacity: 0.5;
+			opacity: 0.7;
+		}
+		.TB-focus .next {
+			left: auto;
+			right: 3%;
+			background-position: 8px 5px;
 		}
 		.countyWrap {
 			width: 86%;
@@ -244,7 +259,7 @@
 			bottom: 0;
 			width: 100%;
 			height: 100px;
-			background-color:rgba(0,0,0,0.4);
+			background-color: rgba(0,0,0,0.4);
 			z-index: 8;
 			overflow: hidden;
 		}
@@ -258,8 +273,8 @@
 	jQuery(".scrollBox").slide({ titCell:".list li", mainCell:".piclist", effect:"left",vis:4,scroll:4,delayTime:800,trigger:"click",easing:"easeOutCirc"});
 
 	// 轮播图
-	jQuery(".slideBox").slide({mainCell:".bd ul",autoPlay:true});
 	jQuery(".TB-focus").slide({ mainCell:".bd ul",effect:"fold",autoPlay:true,delayTime:200 });
+
 	function common (id, type, id_type, getData, flag) {
 		if (flag) {
 			$('#countyWrap').show()

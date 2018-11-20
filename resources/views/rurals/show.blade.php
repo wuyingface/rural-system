@@ -6,14 +6,24 @@
   <div class="container row">
     <div class="col-md-9 col-md-push-3 rightPart">
         <div class="introduct_header">
-            <div class="jumbotron" style="background: url({{$rural->background}});background-repeat: no-repeat;background-size: 100% 100%;">
-                <h1>{{$rural -> name}}</h1>
-                <p>{{$rural->summary}}</p>
+            <div class="jumbotron" style="background: url({{$rural->background}});background-repeat: no-repeat;background-size: 100% 100%; width: 100%; height: 100%;">
+                <h1 class="introduct_header_name">{{$rural -> name}}</h1>
+                <p class="introduct_header_summary">{{$rural->summary}}</p>
                 @can('update', $rural)
-                <p>
-                    <a href="{{ route('rurals.edit', $rural->id) }}" class="btn btn-primary" role="button" style="float: right;">编辑</a>
-                </p>
+                <a href="{{ route('rurals.edit', $rural->id) }}" class="btn btn-primary introduct_header_btn " role="button" style="float: right;">编辑</a>
                 @endcan
+            </div>
+            <div class="focus_box"></div>
+        </div>
+        <!-- 渲染地图 -->
+        <div class="row introduct_map" style="margin-top: 20px;">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <span id="coordinate" style="display: none;">{{$rural -> map}}</span>
+                    <div class="panel-body">
+                        <div id="map" style="height: 200px;"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- 概况 -->
@@ -39,8 +49,10 @@
                 </ul>
             </div>
             <div class="introduct_general">
-                <p class="lead">{{$rural -> name}}简介</p>
-                {!! $rural->introdution !!}
+                <p class="lead introduct_general_header">{{$rural -> name}}简介</p>
+                <div>
+                    {!! $rural->introdution !!}
+                </div>
             </div>
         </div>
         <!-- 乡村简介 -->
@@ -169,10 +181,47 @@
             font-weight: 700;
             padding: 22px 22px;
         }
-        #detailTitle{
+        #detailTitle, .introduct_general_header{
             font-weight: 800;
             border-bottom: 7px solid;
             padding-bottom: 10px;
+        }
+        .introduct_header{
+            height: 400px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .focus_box {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 130px;
+            background-color: rgba(0,0,0,0.4);
+            z-index: 8;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .introduct_header_name{
+            position: absolute;
+            bottom: 37px;
+            color: #fff !important;
+            z-index: 999;
+        }
+        .introduct_header_summary{
+            position: absolute;
+            bottom: 0px;
+            color: #fff !important;
+            z-index: 999;
+        }
+        .introduct_header_btn{
+            position: absolute;
+            right: 31px;
+            bottom: 16px;
+            z-index: 999;
+        }
+        .introduct_general_header{
+
         }
     </style>
 @stop
@@ -196,11 +245,13 @@
         $('.nav_li:first-child').click(function() {
             $('.general').show()
             $('.articleList').hide()
+            $('.introduct_map').show()
         })
         $('.nav_li:not(:first)').each(function () {
             $(this).click(function() {
                 $('.articlesGroup').empty()
                 $('.general').hide()
+                $('.introduct_map').hide()
                 $('.articleList').show()
                 $('#detailTitle').html($(this).find('a').html())
                 var category_id = $(this).data('categoryid')
@@ -241,6 +292,27 @@
         $('.closeBtn').click(function() {
             $('.createArticleMark').hide()
         })
+        // 渲染地图
+        var coordinate = $('#coordinate').html()
+        console.log(coordinate)
+        if (coordinate) {
+            var positionPoint = {}
+            positionPoint.lng = coordinate.split(',')[0]
+            positionPoint.lat = coordinate.split(',')[1]
+            var map = new BMap.Map('map');  
+            var point = new BMap.Point(positionPoint.lng, positionPoint.lat);
+            map.centerAndZoom(point, 15);
+            var marker = new BMap.Marker(point)
+            map.addOverlay(marker)
+            map.enableScrollWheelZoom(true);
+        } else {
+            var map = new BMap.Map('map');  
+            var point = new BMap.Point(113.275, 23.117);
+            map.centerAndZoom(point, 15);
+            var marker = new BMap.Marker(point)
+            map.addOverlay(marker)
+            map.enableScrollWheelZoom(true);
+        }
     })
     function toArticle(id) {
         location.href= '/articles/' + id
