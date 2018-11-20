@@ -50,6 +50,7 @@
             </div>
             <div class="introduct_general">
                 <p class="lead introduct_general_header">{{$rural -> name}}简介</p>
+                
                 <div style="background: #fff; padding: 10px; border-radius: 5px; border: 1px solid #d3e0e9;">
                     {!! $rural->introdution !!}
                 </div>
