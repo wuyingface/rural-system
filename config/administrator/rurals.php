@@ -141,4 +141,14 @@ return [
             'title' => '地理位置',
         ],
     ],
+
+    // 新建和编辑时的表单验证规则
+    'rules' => [
+        'name' => 'required',
+    ],
+
+    // 表单验证错误时定制错误消息
+    'messages' => [
+        'name.required' => '请填写乡村名称',
+    ]
 ];
