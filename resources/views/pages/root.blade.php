@@ -6,26 +6,25 @@
   	<!-- 头部搜索 -->
   	<div class="page-header">
   		<h1 style="margin-bottom: 24px;">欢迎来到村村汇</h1>
-  		<!-- 搜索 -->
-  		<!-- <div class="input-group input-group-lg" style="width: 60%;"> -->
-  			<!-- <input type="text" class="form-control">
-  			<div class="input-group-btn">
-  				<button type="submit" class="btn btn-primary">搜索</button>
-  			</div> -->
-  		<!-- </div> -->
-  		<!-- <div class="recentSearch" style="margin-top: 10px;">
-  			<span style="display: inline-block;position: relative;top: -13px;">最近搜索：</span>
-  			<ul class="nav nav-pills" style="display: inline-block;">
-			  	<li><a href="#">Home</a></li>
-			</ul>
-  		</div> -->
+  		<!-- <div class="input-group input-group-lg" style="width: 60%;">
+            <input type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="submit" class="btn btn-primary">搜索</button>
+            </div>
+        </div>
+        <div class="recentSearch" style="margin-top: 10px;">
+            <span style="display: inline-block;position: relative;top: -13px;">最近搜索：</span>
+            <ul class="nav nav-pills" style="display: inline-block;">
+                          <li><a href="#">Home</a></li>
+                    </ul>
+        </div> -->
 	</div>
 
 	<!-- 轮播图 -->
 	<div class="container">
-		  <div class="TB-focus" style="margin:0 auto"> 
-		   <div class="bd"> 
-			    <ul > 
+		  <div class="TB-focus" style="margin:0 auto">
+		   <div class="bd">
+			    <ul >
 			    	@foreach($rurals as $rural)
 				    <li >
 				    	<a href="/rurals/{{$rural->id}}" target="_blank">
@@ -33,17 +32,17 @@
 				    		<span class="slide_name">{{$rural -> name}}</span>
 							<span class="slide_summary">{{$rural -> summary}}</span>
 				    	</a>
-				    </li> 
+				    </li>
 				    @endforeach
-			    </ul> 
+			    </ul>
 			    <div class="focus_box"></div>
-		   </div> 
+		   </div>
 		   <!-- 前后按钮 -->
 			<a class="prev" href="javascript:void(0)"></a>
 			<a class="next" href="javascript:void(0)"></a>
   		</div>
 	</div>
-	
+
 	<!-- 城市联动 -->
 	<div class="container">
 		<div class="page-header" style="border-bottom: 5px solid #000;color: #000;">
@@ -171,7 +170,7 @@
 			height: 450px;
 			display: block;
 		}
-		
+
 		.TB-focus .prev:hover,
 				.TB-focus .next:hover {
 			filter: alpha(opacity=100);

@@ -7,7 +7,7 @@ use App\Models\ArticleCategrory;
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored
 
-class UserObserver
+class ArticleCategroriesObserver
 {
 
     //生成默认图片
