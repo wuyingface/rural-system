@@ -6,18 +6,19 @@
   	<!-- 头部搜索 -->
   	<div class="page-header">
   		<h1 style="margin-bottom: 24px;">欢迎来到村村汇</h1>
-  		<div class="input-group input-group-lg" style="width: 60%;">
-  			<input type="text" class="form-control">
+  		<!-- 搜索 -->
+  		<!-- <div class="input-group input-group-lg" style="width: 60%;"> -->
+  			<!-- <input type="text" class="form-control">
   			<div class="input-group-btn">
   				<button type="submit" class="btn btn-primary">搜索</button>
-  			</div>
-  		</div>
-  		<div class="recentSearch" style="margin-top: 10px;">
+  			</div> -->
+  		<!-- </div> -->
+  		<!-- <div class="recentSearch" style="margin-top: 10px;">
   			<span style="display: inline-block;position: relative;top: -13px;">最近搜索：</span>
   			<ul class="nav nav-pills" style="display: inline-block;">
 			  	<li><a href="#">Home</a></li>
 			</ul>
-  		</div>
+  		</div> -->
 	</div>
 
 	<!-- 轮播图 -->
