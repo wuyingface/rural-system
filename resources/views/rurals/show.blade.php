@@ -50,10 +50,11 @@
             </div>
             <div class="introduct_general">
                 <p class="lead introduct_general_header">{{$rural -> name}}简介</p>
-                
+                @if($rural->introdution)
                 <div style="background: #fff; padding: 10px; border-radius: 5px; border: 1px solid #d3e0e9;">
                     {!! $rural->introdution !!}
                 </div>
+                @endif
             </div>
         </div>
         <!-- 乡村简介 -->
