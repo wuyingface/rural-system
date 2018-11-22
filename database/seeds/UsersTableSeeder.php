@@ -18,12 +18,12 @@ class UsersTableSeeder extends Seeder
             // 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/xAuDMxteQy.png?imageView2/1/w/200/h/200',
             // 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png?imageView2/1/w/200/h/200',
             // 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/NDnzMutoxX.png?imageView2/1/w/200/h/200',
-            'http://www.rural-system.com/uploads/images/avatars/default_avatar.jpg'
+            config('app.url').'/uploads/images/avatars/default_avatar.jpg'
         ];
 
         // 生成数据集合
         $users = factory(User::class)
-                        ->times(10)
+                        ->times(2)
                         ->make()
                         ->each(function ($user, $index)
                             use ($faker, $avatars)
