@@ -21,7 +21,7 @@
                 <div class="panel panel-default">
                     <span id="coordinate" style="display: none;">{{$rural -> map}}</span>
                     <div class="panel-body">
-                        <div id="map" style="height: 200px;"></div>
+                        <div id="tomap" style="height: 200px;"></div>
                     </div>
                 </div>
             </div>
@@ -301,14 +301,14 @@
             var positionPoint = {}
             positionPoint.lng = coordinate.split(',')[0]
             positionPoint.lat = coordinate.split(',')[1]
-            var map = new BMap.Map('map');  
+            var map = new BMap.Map('tomap');  
             var point = new BMap.Point(positionPoint.lng, positionPoint.lat);
             map.centerAndZoom(point, 20);
             var marker = new BMap.Marker(point)
             map.addOverlay(marker)
             map.enableScrollWheelZoom(true);
         } else {
-            var map = new BMap.Map('map');  
+            var map = new BMap.Map('tomap');  
             var point = new BMap.Point(113.275, 23.117);
             map.centerAndZoom(point, 20);
             var marker = new BMap.Marker(point)
