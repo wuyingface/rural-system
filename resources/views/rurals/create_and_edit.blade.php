@@ -411,12 +411,12 @@
         positionPoint.lat = position.val().split(',')[1]
         // console.log(positionPoint);
         var point = new BMap.Point(positionPoint.lng, positionPoint.lat)
-        map.centerAndZoom(point, 15)
+        map.centerAndZoom(point, 20)
         var marker = new BMap.Marker(point)
         map.addOverlay(marker)
         map.enableScrollWheelZoom()
     } else {
-        map.centerAndZoom(new BMap.Point(113.331189,23.112153), 15);
+        map.centerAndZoom(new BMap.Point(113.331189,23.112153), 20);
         map.enableScrollWheelZoom()
     }
     // 是否显示地图

@@ -7,12 +7,12 @@ if (position.value) {
     positionPoint.lng = coordinate.split(',')[0]
     positionPoint.lat = coordinate.split(',')[1]
     var point = new BMap.Point(positionPoint.lng, positionPoint.lat)
-    map.centerAndZoom(point, 18)
+    map.centerAndZoom(point, 20)
     var marker = new BMap.Marker(point)
     map.addOverlay(marker)
     map.enableScrollWheelZoom(true);
 } else {
-    map.centerAndZoom(new BMap.Point(113.331189,23.112153), 15);
+    map.centerAndZoom(new BMap.Point(113.331189,23.112153), 20);
     map.enableScrollWheelZoom(true);
 }
 function hasMap() {
@@ -48,7 +48,7 @@ function setPlace (city) {
     myGeo.getPoint(myValue, function(point) {
     // 获取输入地址的地理位置坐标
         if (point) {
-            map.centerAndZoom(point, 16);
+            map.centerAndZoom(point, 20);
             map.addOverlay(new BMap.Marker(point));
         }
     }, city);

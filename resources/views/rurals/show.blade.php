@@ -303,14 +303,14 @@
             positionPoint.lat = coordinate.split(',')[1]
             var map = new BMap.Map('map');  
             var point = new BMap.Point(positionPoint.lng, positionPoint.lat);
-            map.centerAndZoom(point, 15);
+            map.centerAndZoom(point, 20);
             var marker = new BMap.Marker(point)
             map.addOverlay(marker)
             map.enableScrollWheelZoom(true);
         } else {
             var map = new BMap.Map('map');  
             var point = new BMap.Point(113.275, 23.117);
-            map.centerAndZoom(point, 15);
+            map.centerAndZoom(point, 20);
             var marker = new BMap.Marker(point)
             map.addOverlay(marker)
             map.enableScrollWheelZoom(true);
