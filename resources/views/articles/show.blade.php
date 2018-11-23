@@ -111,7 +111,7 @@
 @stop
 
 @section('scripts')
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7OOvPVfFtq8vZEUZn1Zv5Q7W4ndE4g0H"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=820EeAS7ihB2IyZLx1uSYP2vS9qlV4bo"></script>
     <script type="text/javascript">
         var coordinate = $('#coordinate').html()
         var positionPoint = {}
